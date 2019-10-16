@@ -19,6 +19,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class nuevaConsultaFrame extends javax.swing.JFrame {
     consultasMysql consultas = new consultasMysql();
+    String nombre = "", apellidos = "", sexo = "", fechaNacimiento = "";
+    private void setNombre(String name){
+        this.nombre = name;
+    }
+    public String getNombre(){
+        return this.nombre;
+    }
     /**
      * Creates new form nuevaConsultaFrame
      */
@@ -118,6 +125,11 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
         tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tabla.getTableHeader().setResizingAllowed(false);
         tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setResizable(false);
@@ -151,16 +163,14 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(291, 291, 291)
-                        .addComponent(btnNuevaConsulta)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelInfo)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(labelInfo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(347, 347, 347)
+                .addComponent(btnNuevaConsulta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +179,9 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
                 .addComponent(labelInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(32, 32, 32)
                 .addComponent(btnNuevaConsulta)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,8 +193,17 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
 
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
         // TODO add your handling code here:
-        
+        //int seleccion = tabla.rowAtPoint();
+        nuevaConsulta nc = new nuevaConsulta();
+        nc.setVisible(true);
     }//GEN-LAST:event_btnNuevaConsultaActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        int seleccion = tabla.rowAtPoint(evt.getPoint());
+        setNombre(String.valueOf(tabla.getValueAt(seleccion, 0)));
+        System.out.println(getNombre());
+    }//GEN-LAST:event_tablaMouseClicked
 
     /**
      * @param args the command line arguments
