@@ -13,7 +13,7 @@ public class conexionMysql {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String pass = "data1122";
-    private static final String url = "jdbc:mysql://localhost:3306/healthfocus";
+    private static final String url = "jdbc:mysql://localhost:3306/healthfocus?characterEncoding=latin1&useConfigs=maxPerformance";
 
     public conexionMysql() {
         conn = null;
