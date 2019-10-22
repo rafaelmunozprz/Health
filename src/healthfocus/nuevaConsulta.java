@@ -59,6 +59,8 @@ public class nuevaConsulta extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuArchivo = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 720));
@@ -194,6 +196,18 @@ public class nuevaConsulta extends javax.swing.JFrame {
 
         jMenuArchivo.setText("Archivo");
         jMenuArchivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+
+        jMenuItem1.setText("Guardar y proceder al plan alimenticio");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuArchivo.add(jMenuItem1);
+
+        jMenuItem2.setText("Salir");
+        jMenuArchivo.add(jMenuItem2);
+
         jMenuBar1.add(jMenuArchivo);
 
         setJMenuBar(jMenuBar1);
@@ -207,8 +221,14 @@ public class nuevaConsulta extends javax.swing.JFrame {
 
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
         // TODO add your handling code here:
-        
+        nuevoPlanAlimenticioFrame npaf=new nuevoPlanAlimenticioFrame();
+        npaf.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNuevaConsultaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +288,8 @@ public class nuevaConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenuArchivo;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

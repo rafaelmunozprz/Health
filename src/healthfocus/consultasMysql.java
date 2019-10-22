@@ -34,7 +34,20 @@ public class consultasMysql {
             return contador;
         }        
     }
-    
+    public int insertarNuevoPaciente(String dpID, String nombre, String apellidos, String sexo, String nac, String edad,String domicilio, String cp, String ciudad, String escolaridad, String estadoC, String telefono, String email) throws SQLException{
+        int contador = 0;
+        conexionMysql conexion = new conexionMysql();
+        Statement st = conexion.getConnection().createStatement();
+        Date nacimiento = Date.valueOf(nac);
+        try {
+            st.executeUpdate("INSERT INTO datospersonales (codigo, nombre, apellidos, sexo, fechaNacimiento, domicilio, cp, ciudad, , rol, ) "
+                    +"VALUES ("+dpID+", '"+nombre+"', '"+apellidos+"', '"+sexo+"', '"+nacimiento+"', '"+domicilio+"', "+cp+", '"+ciudad+"',  'nutriologo')");
+            return contador;
+        } catch (SQLException ex) {
+            Logger.getLogger(consultasMysql.class.getName()).log(Level.SEVERE, null, ex);
+            return contador;
+        }    
+    }
     public int ingresoUsuario(String usuario, String pass) throws SQLException{
         int contador = 0;
         conexionMysql conexion = new conexionMysql();

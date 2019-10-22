@@ -5,8 +5,10 @@
  */
 package healthfocus;
 
+import java.sql.SQLException;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -16,7 +18,1420 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class nuevoPacienteFrame extends javax.swing.JFrame {
     selectorTexto seleccionarTexto = new selectorTexto();
     funciones funcion = new funciones();
+    
+    /**
+     * Bloque para la asignación de getters y setters de la la primer
+     * ventana de un nuevo usuario, DATOS PERSONALES
+     */
+    private String vdpNombre = "";
+    private String vdpApellidos = "";
+    private String vdpSexo = "";
+    private String vdpNacimiento = "";
+    private String vdpEdad = "";
+    private String vdpCPostal = "";
+    private String vdpDomicilio = "";
+    private String vdpEscolaridad = "";
+    private String vdpCiudad = "";
+    private String vdpEstadoCivil = "";
+    private String vdpIDEspediente = "";
+    private String vdpEmail = "";
 
+    public String getVdpNombre() {
+        return vdpNombre;
+    }
+
+    public void setVdpNombre(String vdpNombre) {
+        this.vdpNombre = vdpNombre;
+    }
+
+    public String getVdpApellidos() {
+        return vdpApellidos;
+    }
+
+    public void setVdpApellidos(String vdpApellidos) {
+        this.vdpApellidos = vdpApellidos;
+    }
+
+    public String getVdpSexo() {
+        return vdpSexo;
+    }
+
+    public void setVdpSexo(String vdpSexo) {
+        this.vdpSexo = vdpSexo;
+    }
+
+    public String getVdpNacimiento() {
+        return vdpNacimiento;
+    }
+
+    public void setVdpNacimiento(String vdpNacimiento) {
+        this.vdpNacimiento = vdpNacimiento;
+    }
+
+    public String getVdpEdad() {
+        return vdpEdad;
+    }
+
+    public void setVdpEdad(String vdpEdad) {
+        this.vdpEdad = vdpEdad;
+    }
+
+    public String getVdpCPostal() {
+        return vdpCPostal;
+    }
+
+    public void setVdpCPostal(String vdpCPostal) {
+        this.vdpCPostal = vdpCPostal;
+    }
+
+    public String getVdpDomicilio() {
+        return vdpDomicilio;
+    }
+
+    public void setVdpDomicilio(String vdpDomicilio) {
+        this.vdpDomicilio = vdpDomicilio;
+    }
+
+    public String getVdpEscolaridad() {
+        return vdpEscolaridad;
+    }
+
+    public void setVdpEscolaridad(String vdpEscolaridad) {
+        this.vdpEscolaridad = vdpEscolaridad;
+    }
+
+    public String getVdpCiudad() {
+        return vdpCiudad;
+    }
+
+    public void setVdpCiudad(String vdpCiudad) {
+        this.vdpCiudad = vdpCiudad;
+    }
+
+    public String getVdpEstadoCivil() {
+        return vdpEstadoCivil;
+    }
+
+    public void setVdpEstadoCivil(String vdpEstadoCivil) {
+        this.vdpEstadoCivil = vdpEstadoCivil;
+    }
+
+    public String getVdpIDEspediente() {
+        return vdpIDEspediente;
+    }
+
+    public void setVdpIDEspediente(String vdpIDEspediente) {
+        this.vdpIDEspediente = vdpIDEspediente;
+    }
+
+    public String getVdpEmail() {
+        return vdpEmail;
+    }
+
+    public void setVdpEmail(String vdpEmail) {
+        this.vdpEmail = vdpEmail;
+    }
+    
+    /**
+     * Bloque para la asignación de getters y setters de la segunda
+     * ventana de un nuevo usuario, ANTECEDENTES SALUD Y ENFERMEDAD
+     */
+    private String vasediarrea = "";
+    private String vaseestrenimiento = "";
+    private String vasegastritis = "";
+    private String vaseulcera = "";
+    private String vasenauseas = "";
+    private String vasepirosis = "";
+    private String vasevomito = "";
+    private String vasecolitis = "";
+    private String vasedentadura = "";
+    private String vaseotros = "";
+    private String vaseobservaciones = "";
+    private String vaseenfermedadDiagosticada = "";
+    private String vasecualED = "";
+    private String vaseenfermedadImportante = "";
+    private String vasecualEI = "";
+    private String vasemedicamento = "";
+    private String vasecualMedicamento = "";
+    private String vasedosisMedicamento = "";
+    private String vasetiempoMedicamento = "";
+    private String vaselaxantes = "";
+    private String vasediureticos = "";
+    private String vaseantiacidos = "";
+    private String vaseanalgesicos = "";
+    private String vasecirujia = "";
+    private String vasecualCirujia = "";
+
+    public String getVasediarrea() {
+        return vasediarrea;
+    }
+
+    public void setVasediarrea(String vasediarrea) {
+        this.vasediarrea = vasediarrea;
+    }
+
+    public String getVaseestrenimiento() {
+        return vaseestrenimiento;
+    }
+
+    public void setVaseestrenimiento(String vaseestrenimiento) {
+        this.vaseestrenimiento = vaseestrenimiento;
+    }
+
+    public String getVasegastritis() {
+        return vasegastritis;
+    }
+
+    public void setVasegastritis(String vasegastritis) {
+        this.vasegastritis = vasegastritis;
+    }
+
+    public String getVaseulcera() {
+        return vaseulcera;
+    }
+
+    public void setVaseulcera(String vaseulcera) {
+        this.vaseulcera = vaseulcera;
+    }
+
+    public String getVasenauseas() {
+        return vasenauseas;
+    }
+
+    public void setVasenauseas(String vasenauseas) {
+        this.vasenauseas = vasenauseas;
+    }
+
+    public String getVasepirosis() {
+        return vasepirosis;
+    }
+
+    public void setVasepirosis(String vasepirosis) {
+        this.vasepirosis = vasepirosis;
+    }
+
+    public String getVasevomito() {
+        return vasevomito;
+    }
+
+    public void setVasevomito(String vasevomito) {
+        this.vasevomito = vasevomito;
+    }
+
+    public String getVasecolitis() {
+        return vasecolitis;
+    }
+
+    public void setVasecolitis(String vasecolitis) {
+        this.vasecolitis = vasecolitis;
+    }
+
+    public String getVasedentadura() {
+        return vasedentadura;
+    }
+
+    public void setVasedentadura(String vasedentadura) {
+        this.vasedentadura = vasedentadura;
+    }
+
+    public String getVaseobservaciones() {
+        return vaseobservaciones;
+    }
+
+    public void setVaseobservaciones(String vaseobservaciones) {
+        this.vaseobservaciones = vaseobservaciones;
+    }
+
+    public String getVaseenfermedadDiagosticada() {
+        return vaseenfermedadDiagosticada;
+    }
+
+    public void setVaseenfermedadDiagosticada(String vaseenfermedadDiagosticada) {
+        this.vaseenfermedadDiagosticada = vaseenfermedadDiagosticada;
+    }
+
+    public String getVasecualED() {
+        return vasecualED;
+    }
+
+    public void setVasecualED(String vasecualED) {
+        this.vasecualED = vasecualED;
+    }
+
+    public String getVaseenfermedadImportante() {
+        return vaseenfermedadImportante;
+    }
+
+    public void setVaseenfermedadImportante(String vaseenfermedadImportante) {
+        this.vaseenfermedadImportante = vaseenfermedadImportante;
+    }
+
+    public String getVasecualEI() {
+        return vasecualEI;
+    }
+
+    public void setVasecualEI(String vasecualEI) {
+        this.vasecualEI = vasecualEI;
+    }
+
+    public String getVasemedicamento() {
+        return vasemedicamento;
+    }
+
+    public void setVasemedicamento(String vasemedicamento) {
+        this.vasemedicamento = vasemedicamento;
+    }
+
+    public String getVasecualMedicamento() {
+        return vasecualMedicamento;
+    }
+
+    public void setVasecualMedicamento(String vasecualMedicamento) {
+        this.vasecualMedicamento = vasecualMedicamento;
+    }
+
+    public String getVasedosisMedicamento() {
+        return vasedosisMedicamento;
+    }
+
+    public void setVasedosisMedicamento(String vasedosisMedicamento) {
+        this.vasedosisMedicamento = vasedosisMedicamento;
+    }
+
+    public String getVasetiempoMedicamento() {
+        return vasetiempoMedicamento;
+    }
+
+    public void setVasetiempoMedicamento(String vasetiempoMedicamento) {
+        this.vasetiempoMedicamento = vasetiempoMedicamento;
+    }
+
+    public String getVaselaxantes() {
+        return vaselaxantes;
+    }
+
+    public void setVaselaxantes(String vaselaxantes) {
+        this.vaselaxantes = vaselaxantes;
+    }
+
+    public String getVasediureticos() {
+        return vasediureticos;
+    }
+
+    public void setVasediureticos(String vasediureticos) {
+        this.vasediureticos = vasediureticos;
+    }
+
+    public String getVaseantiacidos() {
+        return vaseantiacidos;
+    }
+
+    public void setVaseantiacidos(String vaseantiacidos) {
+        this.vaseantiacidos = vaseantiacidos;
+    }
+
+    public String getVaseanalgesicos() {
+        return vaseanalgesicos;
+    }
+
+    public void setVaseanalgesicos(String vaseanalgesicos) {
+        this.vaseanalgesicos = vaseanalgesicos;
+    }
+
+    public String getVasecirujia() {
+        return vasecirujia;
+    }
+
+    public void setVasecirujia(String vasecirujia) {
+        this.vasecirujia = vasecirujia;
+    }
+
+    public String getVasecualCirujia() {
+        return vasecualCirujia;
+    }
+
+    public void setVasecualCirujia(String vasecualCirujia) {
+        this.vasecualCirujia = vasecualCirujia;
+    }
+
+    public String getVaseotros() {
+        return vaseotros;
+    }
+
+    public void setVaseotros(String vaseotros) {
+        this.vaseotros = vaseotros;
+    }
+    
+    /**
+     * Bloque para la asignación de getters y setters de la tercera
+     * ventana de un nuevo usuario, ASEPECTOS GINECOLOGICOS
+     */
+    private String vagEmbarazoAcutal = "";
+    private String vagSemanasGestacion = "";
+    private String vagAnticonceptivos = "";
+    private String vagCualAnticonceptivo = "";
+    private String vagDosisAnticoconceptivo = "";
+    private String vagTiempoAnticonceptivo = "";
+    private String vagClimaterio = "";
+    private String vagTerapiaHormonal = "";
+    private String vagCualTerapiaHormonal = "";
+    private String vagDosisTerapiaHormonal = "";
+    private String vagTiempoTerapiaHormonal = "";
+
+    public String getVagEmbarazoAcutal() {
+        return vagEmbarazoAcutal;
+    }
+
+    public void setVagEmbarazoAcutal(String vagEmbarazoAcutal) {
+        this.vagEmbarazoAcutal = vagEmbarazoAcutal;
+    }
+
+    public String getVagSemanasGestacion() {
+        return vagSemanasGestacion;
+    }
+
+    public void setVagSemanasGestacion(String vagSemanasGestacion) {
+        this.vagSemanasGestacion = vagSemanasGestacion;
+    }
+
+    public String getVagAnticonceptivos() {
+        return vagAnticonceptivos;
+    }
+
+    public void setVagAnticonceptivos(String vagAnticonceptivos) {
+        this.vagAnticonceptivos = vagAnticonceptivos;
+    }
+
+    public String getVagCualAnticonceptivo() {
+        return vagCualAnticonceptivo;
+    }
+
+    public void setVagCualAnticonceptivo(String vagCualAnticonceptivo) {
+        this.vagCualAnticonceptivo = vagCualAnticonceptivo;
+    }
+
+    public String getVagDosisAnticoconceptivo() {
+        return vagDosisAnticoconceptivo;
+    }
+
+    public void setVagDosisAnticoconceptivo(String vagDosisAnticoconceptivo) {
+        this.vagDosisAnticoconceptivo = vagDosisAnticoconceptivo;
+    }
+
+    public String getVagTiempoAnticonceptivo() {
+        return vagTiempoAnticonceptivo;
+    }
+
+    public void setVagTiempoAnticonceptivo(String vagTiempoAnticonceptivo) {
+        this.vagTiempoAnticonceptivo = vagTiempoAnticonceptivo;
+    }
+
+    public String getVagClimaterio() {
+        return vagClimaterio;
+    }
+
+    public void setVagClimaterio(String vagClimaterio) {
+        this.vagClimaterio = vagClimaterio;
+    }
+
+    public String getVagTerapiaHormonal() {
+        return vagTerapiaHormonal;
+    }
+
+    public void setVagTerapiaHormonal(String vagTerapiaHormonal) {
+        this.vagTerapiaHormonal = vagTerapiaHormonal;
+    }
+
+    public String getVagCualTerapiaHormonal() {
+        return vagCualTerapiaHormonal;
+    }
+
+    public void setVagCualTerapiaHormonal(String vagCualTerapiaHormonal) {
+        this.vagCualTerapiaHormonal = vagCualTerapiaHormonal;
+    }
+
+    public String getVagDosisTerapiaHormonal() {
+        return vagDosisTerapiaHormonal;
+    }
+
+    public void setVagDosisTerapiaHormonal(String vagDosisTerapiaHormonal) {
+        this.vagDosisTerapiaHormonal = vagDosisTerapiaHormonal;
+    }
+
+    public String getVagTiempoTerapiaHormonal() {
+        return vagTiempoTerapiaHormonal;
+    }
+
+    public void setVagTiempoTerapiaHormonal(String vagTiempoTerapiaHormonal) {
+        this.vagTiempoTerapiaHormonal = vagTiempoTerapiaHormonal;
+    }
+    /**
+     * Bloque para la asignación de getters y setters de la cuarta
+     * ventana de un nuevo usuario, DIARIO DE ACTIVIDADES
+     */
+    private String vddaHoraDespertarse = "";
+    private String vddaMinutoDespertarse = "";
+    private String vddaDespertarse = "";
+    private String vddaHoraDesayuno = "";
+    private String vddaMinutoDesayuno = "";
+    private String vddaDesayuno = "";
+    private String vddaHoraComida = "";
+    private String vddaMinutosComida = "";
+    private String vddaComida = "";
+    private String vddaHoraCena = "";
+    private String vddaMinutosCena = "";
+    private String vddaCena = "";
+    private String vddaHoraAcostarse = "";
+    private String vddaMinutosAcostarse = "";
+    private String vddaAcostarse = "";
+    private String vddaAspectoGeneral = "";
+    private String vddaTipoEjercicio = "";
+    private String vddaFrecuenciaEjercicio = "";
+    private String vddaDuracionEjercicio = "";
+    private String vddaPresionArterial = "";
+    private String vddaCualPresionArterial = "";
+    private String vddaHoraPresionArterial = "";
+    private String vddaTabaco = "";
+    private String vddaAlcohol = "";
+    private String vddaCafe = "";
+
+    public String getVddaHoraDespertarse() {
+        return vddaHoraDespertarse;
+    }
+
+    public void setVddaHoraDespertarse(String vddaHoraDespertarse) {
+        this.vddaHoraDespertarse = vddaHoraDespertarse;
+    }
+
+    public String getVddaMinutoDespertarse() {
+        return vddaMinutoDespertarse;
+    }
+
+    public void setVddaMinutoDespertarse(String vddaMinutoDespertarse) {
+        this.vddaMinutoDespertarse = vddaMinutoDespertarse;
+    }
+
+    public String getVddaDespertarse() {
+        return vddaDespertarse;
+    }
+
+    public void setVddaDespertarse(String vddaDespertarse) {
+        this.vddaDespertarse = vddaDespertarse;
+    }
+
+    public String getVddaHoraDesayuno() {
+        return vddaHoraDesayuno;
+    }
+
+    public void setVddaHoraDesayuno(String vddaHoraDesayuno) {
+        this.vddaHoraDesayuno = vddaHoraDesayuno;
+    }
+
+    public String getVddaMinutoDesayuno() {
+        return vddaMinutoDesayuno;
+    }
+
+    public void setVddaMinutoDesayuno(String vddaMinutoDesayuno) {
+        this.vddaMinutoDesayuno = vddaMinutoDesayuno;
+    }
+
+    public String getVddaDesayuno() {
+        return vddaDesayuno;
+    }
+
+    public void setVddaDesayuno(String vddaDesayuno) {
+        this.vddaDesayuno = vddaDesayuno;
+    }
+
+    public String getVddaHoraComida() {
+        return vddaHoraComida;
+    }
+
+    public void setVddaHoraComida(String vddaHoraComida) {
+        this.vddaHoraComida = vddaHoraComida;
+    }
+
+    public String getVddaMinutosComida() {
+        return vddaMinutosComida;
+    }
+
+    public void setVddaMinutosComida(String vddaMinutosComida) {
+        this.vddaMinutosComida = vddaMinutosComida;
+    }
+
+    public String getVddaComida() {
+        return vddaComida;
+    }
+
+    public void setVddaComida(String vddaComida) {
+        this.vddaComida = vddaComida;
+    }
+
+    public String getVddaHoraCena() {
+        return vddaHoraCena;
+    }
+
+    public void setVddaHoraCena(String vddaHoraCena) {
+        this.vddaHoraCena = vddaHoraCena;
+    }
+
+    public String getVddaMinutosCena() {
+        return vddaMinutosCena;
+    }
+
+    public void setVddaMinutosCena(String vddaMinutosCena) {
+        this.vddaMinutosCena = vddaMinutosCena;
+    }
+
+    public String getVddaCena() {
+        return vddaCena;
+    }
+
+    public void setVddaCena(String vddaCena) {
+        this.vddaCena = vddaCena;
+    }
+
+    public String getVddaHoraAcostarse() {
+        return vddaHoraAcostarse;
+    }
+
+    public void setVddaHoraAcostarse(String vddaHoraAcostarse) {
+        this.vddaHoraAcostarse = vddaHoraAcostarse;
+    }
+
+    public String getVddaMinutosAcostarse() {
+        return vddaMinutosAcostarse;
+    }
+
+    public void setVddaMinutosAcostarse(String vddaMinutosAcostarse) {
+        this.vddaMinutosAcostarse = vddaMinutosAcostarse;
+    }
+
+    public String getVddaAcostarse() {
+        return vddaAcostarse;
+    }
+
+    public void setVddaAcostarse(String vddaAcostarse) {
+        this.vddaAcostarse = vddaAcostarse;
+    }
+
+    public String getVddaAspectoGeneral() {
+        return vddaAspectoGeneral;
+    }
+
+    public void setVddaAspectoGeneral(String vddaAspectoGeneral) {
+        this.vddaAspectoGeneral = vddaAspectoGeneral;
+    }
+
+    public String getVddaTipoEjercicio() {
+        return vddaTipoEjercicio;
+    }
+
+    public void setVddaTipoEjercicio(String vddaTipoEjercicio) {
+        this.vddaTipoEjercicio = vddaTipoEjercicio;
+    }
+
+    public String getVddaFrecuenciaEjercicio() {
+        return vddaFrecuenciaEjercicio;
+    }
+
+    public void setVddaFrecuenciaEjercicio(String vddaFrecuenciaEjercicio) {
+        this.vddaFrecuenciaEjercicio = vddaFrecuenciaEjercicio;
+    }
+
+    public String getVddaDuracionEjercicio() {
+        return vddaDuracionEjercicio;
+    }
+
+    public void setVddaDuracionEjercicio(String vddaDuracionEjercicio) {
+        this.vddaDuracionEjercicio = vddaDuracionEjercicio;
+    }
+
+    public String getVddaPresionArterial() {
+        return vddaPresionArterial;
+    }
+
+    public void setVddaPresionArterial(String vddaPresionArterial) {
+        this.vddaPresionArterial = vddaPresionArterial;
+    }
+
+    public String getVddaCualPresionArterial() {
+        return vddaCualPresionArterial;
+    }
+
+    public void setVddaCualPresionArterial(String vddaCualPresionArterial) {
+        this.vddaCualPresionArterial = vddaCualPresionArterial;
+    }
+
+    public String getVddaHoraPresionArterial() {
+        return vddaHoraPresionArterial;
+    }
+
+    public void setVddaHoraPresionArterial(String vddaHoraPresionArterial) {
+        this.vddaHoraPresionArterial = vddaHoraPresionArterial;
+    }
+
+    public String getVddaTabaco() {
+        return vddaTabaco;
+    }
+
+    public void setVddaTabaco(String vddaTabaco) {
+        this.vddaTabaco = vddaTabaco;
+    }
+
+    public String getVddaAlcohol() {
+        return vddaAlcohol;
+    }
+
+    public void setVddaAlcohol(String vddaAlcohol) {
+        this.vddaAlcohol = vddaAlcohol;
+    }
+
+    public String getVddaCafe() {
+        return vddaCafe;
+    }
+
+    public void setVddaCafe(String vddaCafe) {
+        this.vddaCafe = vddaCafe;
+    }
+    /**
+     * Bloque para la asignación de getters y setters de la tercera
+     * ventana de un nuevo usuario, INDICADORES DIETETICOS
+     */
+    private String vidCuantasComidas = "";
+    private String vidQuienPrepara = "";
+    private String vidSiEntreComidas = "";
+    private String vidNoEntreComidas = "";
+    private String vidQueEntreComidas = "" ;
+    private String vidComidasCasaSemana = "";
+    private String vidComidasCasaFin = "";
+    private String vidComidasFueraSemana = "";
+    private String vidComidasFueraFin = "";
+    private String vidSiModificacionAlimentos = "";
+    private String vidNoModificacionAlimentos = "";
+    private String vidRazonModificacion = "";
+    private String vidApetitoBueno = "";
+    private String vidApetitoMalo = "";
+    private String vidApetitoRegular = "";
+    private String vidLevantarseHambre = "";
+    private String vidMananaHambre = "";
+    private String vidTardeHambre = "";
+    private String vidNocheHambre = "";
+    private String vidAlimentosPreferidos = "";
+    private String vidAlimentosNoPreferidos = "";
+    private String vidAlimentosMalestar = "";
+    private String vidSiAlimentosIntolerante = "";
+    private String vidNoAlimentosIntolerante = "";
+    private String vidCualIntolerante = "";
+    private String vidApetitoVariableEDA = ""; //Estado de animo
+    private String vidNuloEDA = "";
+    private String vidMenorEDA = "";
+    private String vidMayorEDA = "";
+    private String vidSiSal = "";
+    private String vidNoSal = "";
+    private String vidMargarinaGrasa = "";
+    private String vidAceiteGrasa = "";
+    private String vidMantecaGrasa = "";
+    private String vidMantequilla = "";
+    private String vidOtroGrasa = "";
+    private String vidSiDietaEspecial = "";
+    private String vidNoDietaEspecial = "";
+    private String vidCuantasDietaEspecial = "";
+    private String vidHaceCuantoDietaEspecial = "";
+    private String vidTiempoDietaEspecial = "";
+    private String vidRazonDietaEspecial = "";
+    private String vidNadaApegoDieta = "";
+    private String vidMuyPocoAPegoDieta = "";
+    private String vidSuficienteApegoDieta = "";
+    private String vidExcepcionalApegoDieta = "";
+    private String vidNadaResultadosDieta = "";
+    private String vidMuyPocoResultadosDieta = "";
+    private String vidSuficienteResultadosDieta = "";
+    private String vidExcepcionalResultadosDieta = "";
+    private String vidSiMedicamentosPeso = "";
+    private String vidNoMedicamentosPeso = "";
+    private String vidCualMedicamentoPeso = "";
+
+    public String getVidCuantasComidas() {
+        return vidCuantasComidas;
+    }
+
+    public void setVidCuantasComidas(String vidCuantasComidas) {
+        this.vidCuantasComidas = vidCuantasComidas;
+    }
+
+    public String getVidQuienPrepara() {
+        return vidQuienPrepara;
+    }
+
+    public void setVidQuienPrepara(String vidQuienPrepara) {
+        this.vidQuienPrepara = vidQuienPrepara;
+    }
+
+    public String getVidSiEntreComidas() {
+        return vidSiEntreComidas;
+    }
+
+    public void setVidSiEntreComidas(String vidSiEntreComidas) {
+        this.vidSiEntreComidas = vidSiEntreComidas;
+    }
+
+    public String getVidNoEntreComidas() {
+        return vidNoEntreComidas;
+    }
+
+    public void setVidNoEntreComidas(String vidNoEntreComidas) {
+        this.vidNoEntreComidas = vidNoEntreComidas;
+    }
+
+    public String getVidQueEntreComidas() {
+        return vidQueEntreComidas;
+    }
+
+    public void setVidQueEntreComidas(String vidQueEntreComidas) {
+        this.vidQueEntreComidas = vidQueEntreComidas;
+    }
+
+    public String getVidComidasCasaSemana() {
+        return vidComidasCasaSemana;
+    }
+
+    public void setVidComidasCasaSemana(String vidComidasCasaSemana) {
+        this.vidComidasCasaSemana = vidComidasCasaSemana;
+    }
+
+    public String getVidComidasCasaFin() {
+        return vidComidasCasaFin;
+    }
+
+    public void setVidComidasCasaFin(String vidComidasCasaFin) {
+        this.vidComidasCasaFin = vidComidasCasaFin;
+    }
+
+    public String getVidComidasFueraSemana() {
+        return vidComidasFueraSemana;
+    }
+
+    public void setVidComidasFueraSemana(String vidComidasFueraSemana) {
+        this.vidComidasFueraSemana = vidComidasFueraSemana;
+    }
+
+    public String getVidComidasFueraFin() {
+        return vidComidasFueraFin;
+    }
+
+    public void setVidComidasFueraFin(String vidComidasFueraFin) {
+        this.vidComidasFueraFin = vidComidasFueraFin;
+    }
+
+    public String getVidSiModificacionAlimentos() {
+        return vidSiModificacionAlimentos;
+    }
+
+    public void setVidSiModificacionAlimentos(String vidSiModificacionAlimentos) {
+        this.vidSiModificacionAlimentos = vidSiModificacionAlimentos;
+    }
+
+    public String getVidNoModificacionAlimentos() {
+        return vidNoModificacionAlimentos;
+    }
+
+    public void setVidNoModificacionAlimentos(String vidNoModificacionAlimentos) {
+        this.vidNoModificacionAlimentos = vidNoModificacionAlimentos;
+    }
+
+    public String getVidRazonModificacion() {
+        return vidRazonModificacion;
+    }
+
+    public void setVidRazonModificacion(String vidRazonModificacion) {
+        this.vidRazonModificacion = vidRazonModificacion;
+    }
+
+    public String getVidApetitoBueno() {
+        return vidApetitoBueno;
+    }
+
+    public void setVidApetitoBueno(String vidApetitoBueno) {
+        this.vidApetitoBueno = vidApetitoBueno;
+    }
+
+    public String getVidApetitoMalo() {
+        return vidApetitoMalo;
+    }
+
+    public void setVidApetitoMalo(String vidApetitoMalo) {
+        this.vidApetitoMalo = vidApetitoMalo;
+    }
+
+    public String getVidApetitoRegular() {
+        return vidApetitoRegular;
+    }
+
+    public void setVidApetitoRegular(String vidApetitoRegular) {
+        this.vidApetitoRegular = vidApetitoRegular;
+    }
+
+    public String getVidLevantarseHambre() {
+        return vidLevantarseHambre;
+    }
+
+    public void setVidLevantarseHambre(String vidLevantarseHambre) {
+        this.vidLevantarseHambre = vidLevantarseHambre;
+    }
+
+    public String getVidMananaHambre() {
+        return vidMananaHambre;
+    }
+
+    public void setVidMananaHambre(String vidMananaHambre) {
+        this.vidMananaHambre = vidMananaHambre;
+    }
+
+    public String getVidTardeHambre() {
+        return vidTardeHambre;
+    }
+
+    public void setVidTardeHambre(String vidTardeHambre) {
+        this.vidTardeHambre = vidTardeHambre;
+    }
+
+    public String getVidNocheHambre() {
+        return vidNocheHambre;
+    }
+
+    public void setVidNocheHambre(String vidNocheHambre) {
+        this.vidNocheHambre = vidNocheHambre;
+    }
+
+    public String getVidAlimentosPreferidos() {
+        return vidAlimentosPreferidos;
+    }
+
+    public void setVidAlimentosPreferidos(String vidAlimentosPreferidos) {
+        this.vidAlimentosPreferidos = vidAlimentosPreferidos;
+    }
+
+    public String getVidAlimentosNoPreferidos() {
+        return vidAlimentosNoPreferidos;
+    }
+
+    public void setVidAlimentosNoPreferidos(String vidAlimentosNoPreferidos) {
+        this.vidAlimentosNoPreferidos = vidAlimentosNoPreferidos;
+    }
+
+    public String getVidAlimentosMalestar() {
+        return vidAlimentosMalestar;
+    }
+
+    public void setVidAlimentosMalestar(String vidAlimentosMalestar) {
+        this.vidAlimentosMalestar = vidAlimentosMalestar;
+    }
+
+    public String getVidSiAlimentosIntolerante() {
+        return vidSiAlimentosIntolerante;
+    }
+
+    public void setVidSiAlimentosIntolerante(String vidSiAlimentosIntolerante) {
+        this.vidSiAlimentosIntolerante = vidSiAlimentosIntolerante;
+    }
+
+    public String getVidNoAlimentosIntolerante() {
+        return vidNoAlimentosIntolerante;
+    }
+
+    public void setVidNoAlimentosIntolerante(String vidNoAlimentosIntolerante) {
+        this.vidNoAlimentosIntolerante = vidNoAlimentosIntolerante;
+    }
+
+    public String getVidCualIntolerante() {
+        return vidCualIntolerante;
+    }
+
+    public void setVidCualIntolerante(String vidCualIntolerante) {
+        this.vidCualIntolerante = vidCualIntolerante;
+    }
+
+    public String getVidApetitoVariableEDA() {
+        return vidApetitoVariableEDA;
+    }
+
+    public void setVidApetitoVariableEDA(String vidApetitoVariableEDA) {
+        this.vidApetitoVariableEDA = vidApetitoVariableEDA;
+    }
+
+    public String getVidNuloEDA() {
+        return vidNuloEDA;
+    }
+
+    public void setVidNuloEDA(String vidNuloEDA) {
+        this.vidNuloEDA = vidNuloEDA;
+    }
+
+    public String getVidMenorEDA() {
+        return vidMenorEDA;
+    }
+
+    public void setVidMenorEDA(String vidMenorEDA) {
+        this.vidMenorEDA = vidMenorEDA;
+    }
+
+    public String getVidMayorEDA() {
+        return vidMayorEDA;
+    }
+
+    public void setVidMayorEDA(String vidMayorEDA) {
+        this.vidMayorEDA = vidMayorEDA;
+    }
+
+    public String getVidSiSal() {
+        return vidSiSal;
+    }
+
+    public void setVidSiSal(String vidSiSal) {
+        this.vidSiSal = vidSiSal;
+    }
+
+    public String getVidNoSal() {
+        return vidNoSal;
+    }
+
+    public void setVidNoSal(String vidNoSal) {
+        this.vidNoSal = vidNoSal;
+    }
+
+    public String getVidMargarinaGrasa() {
+        return vidMargarinaGrasa;
+    }
+
+    public void setVidMargarinaGrasa(String vidMargarinaGrasa) {
+        this.vidMargarinaGrasa = vidMargarinaGrasa;
+    }
+
+    public String getVidAceiteGrasa() {
+        return vidAceiteGrasa;
+    }
+
+    public void setVidAceiteGrasa(String vidAceiteGrasa) {
+        this.vidAceiteGrasa = vidAceiteGrasa;
+    }
+
+    public String getVidMantecaGrasa() {
+        return vidMantecaGrasa;
+    }
+
+    public void setVidMantecaGrasa(String vidMantecaGrasa) {
+        this.vidMantecaGrasa = vidMantecaGrasa;
+    }
+
+    public String getVidMantequilla() {
+        return vidMantequilla;
+    }
+
+    public void setVidMantequilla(String vidMantequilla) {
+        this.vidMantequilla = vidMantequilla;
+    }
+
+    public String getVidOtroGrasa() {
+        return vidOtroGrasa;
+    }
+
+    public void setVidOtroGrasa(String vidOtroGrasa) {
+        this.vidOtroGrasa = vidOtroGrasa;
+    }
+
+    public String getVidSiDietaEspecial() {
+        return vidSiDietaEspecial;
+    }
+
+    public void setVidSiDietaEspecial(String vidSiDietaEspecial) {
+        this.vidSiDietaEspecial = vidSiDietaEspecial;
+    }
+
+    public String getVidNoDietaEspecial() {
+        return vidNoDietaEspecial;
+    }
+
+    public void setVidNoDietaEspecial(String vidNoDietaEspecial) {
+        this.vidNoDietaEspecial = vidNoDietaEspecial;
+    }
+
+    public String getVidCuantasDietaEspecial() {
+        return vidCuantasDietaEspecial;
+    }
+
+    public void setVidCuantasDietaEspecial(String vidCuantasDietaEspecial) {
+        this.vidCuantasDietaEspecial = vidCuantasDietaEspecial;
+    }
+
+    public String getVidHaceCuantoDietaEspecial() {
+        return vidHaceCuantoDietaEspecial;
+    }
+
+    public void setVidHaceCuantoDietaEspecial(String vidHaceCuantoDietaEspecial) {
+        this.vidHaceCuantoDietaEspecial = vidHaceCuantoDietaEspecial;
+    }
+
+    public String getVidTiempoDietaEspecial() {
+        return vidTiempoDietaEspecial;
+    }
+
+    public void setVidTiempoDietaEspecial(String vidTiempoDietaEspecial) {
+        this.vidTiempoDietaEspecial = vidTiempoDietaEspecial;
+    }
+
+    public String getVidRazonDietaEspecial() {
+        return vidRazonDietaEspecial;
+    }
+
+    public void setVidRazonDietaEspecial(String vidRazonDietaEspecial) {
+        this.vidRazonDietaEspecial = vidRazonDietaEspecial;
+    }
+
+    public String getVidNadaApegoDieta() {
+        return vidNadaApegoDieta;
+    }
+
+    public void setVidNadaApegoDieta(String vidNadaApegoDieta) {
+        this.vidNadaApegoDieta = vidNadaApegoDieta;
+    }
+
+    public String getVidMuyPocoAPegoDieta() {
+        return vidMuyPocoAPegoDieta;
+    }
+
+    public void setVidMuyPocoAPegoDieta(String vidMuyPocoAPegoDieta) {
+        this.vidMuyPocoAPegoDieta = vidMuyPocoAPegoDieta;
+    }
+
+    public String getVidSuficienteApegoDieta() {
+        return vidSuficienteApegoDieta;
+    }
+
+    public void setVidSuficienteApegoDieta(String vidSuficienteApegoDieta) {
+        this.vidSuficienteApegoDieta = vidSuficienteApegoDieta;
+    }
+
+    public String getVidExcepcionalApegoDieta() {
+        return vidExcepcionalApegoDieta;
+    }
+
+    public void setVidExcepcionalApegoDieta(String vidExcepcionalApegoDieta) {
+        this.vidExcepcionalApegoDieta = vidExcepcionalApegoDieta;
+    }
+
+    public String getVidNadaResultadosDieta() {
+        return vidNadaResultadosDieta;
+    }
+
+    public void setVidNadaResultadosDieta(String vidNadaResultadosDieta) {
+        this.vidNadaResultadosDieta = vidNadaResultadosDieta;
+    }
+
+    public String getVidMuyPocoResultadosDieta() {
+        return vidMuyPocoResultadosDieta;
+    }
+
+    public void setVidMuyPocoResultadosDieta(String vidMuyPocoResultadosDieta) {
+        this.vidMuyPocoResultadosDieta = vidMuyPocoResultadosDieta;
+    }
+
+    public String getVidSuficienteResultadosDieta() {
+        return vidSuficienteResultadosDieta;
+    }
+
+    public void setVidSuficienteResultadosDieta(String vidSuficienteResultadosDieta) {
+        this.vidSuficienteResultadosDieta = vidSuficienteResultadosDieta;
+    }
+
+    public String getVidExcepcionalResultadosDieta() {
+        return vidExcepcionalResultadosDieta;
+    }
+
+    public void setVidExcepcionalResultadosDieta(String vidExcepcionalResultadosDieta) {
+        this.vidExcepcionalResultadosDieta = vidExcepcionalResultadosDieta;
+    }
+
+    public String getVidSiMedicamentosPeso() {
+        return vidSiMedicamentosPeso;
+    }
+
+    public void setVidSiMedicamentosPeso(String vidSiMedicamentosPeso) {
+        this.vidSiMedicamentosPeso = vidSiMedicamentosPeso;
+    }
+
+    public String getVidNoMedicamentosPeso() {
+        return vidNoMedicamentosPeso;
+    }
+
+    public void setVidNoMedicamentosPeso(String vidNoMedicamentosPeso) {
+        this.vidNoMedicamentosPeso = vidNoMedicamentosPeso;
+    }
+
+    public String getVidCualMedicamentoPeso() {
+        return vidCualMedicamentoPeso;
+    }
+
+    public void setVidCualMedicamentoPeso(String vidCualMedicamentoPeso) {
+        this.vidCualMedicamentoPeso = vidCualMedicamentoPeso;
+    }
+    /**
+     * Bloque para la asignación de getters y setters de la sexta
+     * ventana de un nuevo usuario, INDICADORES ANTROPOMETICOS
+     */
+    private String viaPesoActual = "";
+    private String viaPesoHabitual = "";
+    private String viaEstatura = "";
+    private String viaPCTricipital = "";
+    private String viaPCBicipital = "";
+    private String viaPCSubescapular = "";
+    private String viaPCSuprailiaco = "";
+    private String viaCircunferenciaBrazon = "";
+    private String viaCircunferenciaCintura = "";
+    private String viaCircunferenciaCadera = "";
+    private String viaCircunferenciaAbdominal = "";
+    private String viaComplexion = "";
+    private String viaPesoTeorico = "";
+    private String viaPesoTeoricoXC = "";
+    private String viaPesoHabitualXC = "";
+    private String viaIMC = "";
+    private String viaMinimoIMC = "";
+    private String viaMaximoIMC = "";
+    private String viaGrasaCorporalXC = "";
+    private String viaGrasaCorporalTotal = "";
+    private String viaMasaLibreGrasa = "";
+    private String viaDiferenciaGrasa = "";
+    private String viaMasaMuscularTotal = "";
+    private String viaPCTricipitalPerceptil = "";
+    private String viaPCSubescapularPerceptil = "";
+    private String viaIndiceCinturaCadera = "";
+    private String viaAreaMuscularBrazo = "";
+    private String viaAguaCorporalTotal = "";
+
+    public String getViaPesoActual() {
+        return viaPesoActual;
+    }
+
+    public void setViaPesoActual(String viaPesoActual) {
+        this.viaPesoActual = viaPesoActual;
+    }
+
+    public String getViaPesoHabitual() {
+        return viaPesoHabitual;
+    }
+
+    public void setViaPesoHabitual(String viaPesoHabitual) {
+        this.viaPesoHabitual = viaPesoHabitual;
+    }
+
+    public String getViaEstatura() {
+        return viaEstatura;
+    }
+
+    public void setViaEstatura(String viaEstatura) {
+        this.viaEstatura = viaEstatura;
+    }
+
+    public String getViaPCTricipital() {
+        return viaPCTricipital;
+    }
+
+    public void setViaPCTricipital(String viaPCTricipital) {
+        this.viaPCTricipital = viaPCTricipital;
+    }
+
+    public String getViaPCBicipital() {
+        return viaPCBicipital;
+    }
+
+    public void setViaPCBicipital(String viaPCBicipital) {
+        this.viaPCBicipital = viaPCBicipital;
+    }
+
+    public String getViaPCSubescapular() {
+        return viaPCSubescapular;
+    }
+
+    public void setViaPCSubescapular(String viaPCSubescapular) {
+        this.viaPCSubescapular = viaPCSubescapular;
+    }
+
+    public String getViaPCSuprailiaco() {
+        return viaPCSuprailiaco;
+    }
+
+    public void setViaPCSuprailiaco(String viaPCSuprailiaco) {
+        this.viaPCSuprailiaco = viaPCSuprailiaco;
+    }
+
+    public String getViaCircunferenciaBrazon() {
+        return viaCircunferenciaBrazon;
+    }
+
+    public void setViaCircunferenciaBrazon(String viaCircunferenciaBrazon) {
+        this.viaCircunferenciaBrazon = viaCircunferenciaBrazon;
+    }
+
+    public String getViaCircunferenciaCintura() {
+        return viaCircunferenciaCintura;
+    }
+
+    public void setViaCircunferenciaCintura(String viaCircunferenciaCintura) {
+        this.viaCircunferenciaCintura = viaCircunferenciaCintura;
+    }
+
+    public String getViaCircunferenciaCadera() {
+        return viaCircunferenciaCadera;
+    }
+
+    public void setViaCircunferenciaCadera(String viaCircunferenciaCadera) {
+        this.viaCircunferenciaCadera = viaCircunferenciaCadera;
+    }
+
+    public String getViaCircunferenciaAbdominal() {
+        return viaCircunferenciaAbdominal;
+    }
+
+    public void setViaCircunferenciaAbdominal(String viaCircunferenciaAbdominal) {
+        this.viaCircunferenciaAbdominal = viaCircunferenciaAbdominal;
+    }
+
+    public String getViaComplexion() {
+        return viaComplexion;
+    }
+
+    public void setViaComplexion(String viaComplexion) {
+        this.viaComplexion = viaComplexion;
+    }
+
+    public String getViaPesoTeorico() {
+        return viaPesoTeorico;
+    }
+
+    public void setViaPesoTeorico(String viaPesoTeorico) {
+        this.viaPesoTeorico = viaPesoTeorico;
+    }
+
+    public String getViaPesoTeoricoXC() {
+        return viaPesoTeoricoXC;
+    }
+
+    public void setViaPesoTeoricoXC(String viaPesoTeoricoXC) {
+        this.viaPesoTeoricoXC = viaPesoTeoricoXC;
+    }
+
+    public String getViaPesoHabitualXC() {
+        return viaPesoHabitualXC;
+    }
+
+    public void setViaPesoHabitualXC(String viaPesoHabitualXC) {
+        this.viaPesoHabitualXC = viaPesoHabitualXC;
+    }
+
+    public String getViaIMC() {
+        return viaIMC;
+    }
+
+    public void setViaIMC(String viaIMC) {
+        this.viaIMC = viaIMC;
+    }
+
+    public String getViaMinimoIMC() {
+        return viaMinimoIMC;
+    }
+
+    public void setViaMinimoIMC(String viaMinimoIMC) {
+        this.viaMinimoIMC = viaMinimoIMC;
+    }
+
+    public String getViaMaximoIMC() {
+        return viaMaximoIMC;
+    }
+
+    public void setViaMaximoIMC(String viaMaximoIMC) {
+        this.viaMaximoIMC = viaMaximoIMC;
+    }
+
+    public String getViaGrasaCorporalXC() {
+        return viaGrasaCorporalXC;
+    }
+
+    public void setViaGrasaCorporalXC(String viaGrasaCorporalXC) {
+        this.viaGrasaCorporalXC = viaGrasaCorporalXC;
+    }
+
+    public String getViaGrasaCorporalTotal() {
+        return viaGrasaCorporalTotal;
+    }
+
+    public void setViaGrasaCorporalTotal(String viaGrasaCorporalTotal) {
+        this.viaGrasaCorporalTotal = viaGrasaCorporalTotal;
+    }
+
+    public String getViaMasaLibreGrasa() {
+        return viaMasaLibreGrasa;
+    }
+
+    public void setViaMasaLibreGrasa(String viaMasaLibreGrasa) {
+        this.viaMasaLibreGrasa = viaMasaLibreGrasa;
+    }
+
+    public String getViaDiferenciaGrasa() {
+        return viaDiferenciaGrasa;
+    }
+
+    public void setViaDiferenciaGrasa(String viaDiferenciaGrasa) {
+        this.viaDiferenciaGrasa = viaDiferenciaGrasa;
+    }
+
+    public String getViaMasaMuscularTotal() {
+        return viaMasaMuscularTotal;
+    }
+
+    public void setViaMasaMuscularTotal(String viaMasaMuscularTotal) {
+        this.viaMasaMuscularTotal = viaMasaMuscularTotal;
+    }
+
+    public String getViaPCTricipitalPerceptil() {
+        return viaPCTricipitalPerceptil;
+    }
+
+    public void setViaPCTricipitalPerceptil(String viaPCTricipitalPerceptil) {
+        this.viaPCTricipitalPerceptil = viaPCTricipitalPerceptil;
+    }
+
+    public String getViaPCSubescapularPerceptil() {
+        return viaPCSubescapularPerceptil;
+    }
+
+    public void setViaPCSubescapularPerceptil(String viaPCSubescapularPerceptil) {
+        this.viaPCSubescapularPerceptil = viaPCSubescapularPerceptil;
+    }
+
+    public String getViaIndiceCinturaCadera() {
+        return viaIndiceCinturaCadera;
+    }
+
+    public void setViaIndiceCinturaCadera(String viaIndiceCinturaCadera) {
+        this.viaIndiceCinturaCadera = viaIndiceCinturaCadera;
+    }
+
+    public String getViaAreaMuscularBrazo() {
+        return viaAreaMuscularBrazo;
+    }
+
+    public void setViaAreaMuscularBrazo(String viaAreaMuscularBrazo) {
+        this.viaAreaMuscularBrazo = viaAreaMuscularBrazo;
+    }
+
+    public String getViaAguaCorporalTotal() {
+        return viaAguaCorporalTotal;
+    }
+
+    public void setViaAguaCorporalTotal(String viaAguaCorporalTotal) {
+        this.viaAguaCorporalTotal = viaAguaCorporalTotal;
+    }
+    
     /**
      * Creates new form nuevoPacienteFrame
      */
@@ -67,39 +1482,43 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgBajarPeso = new javax.swing.ButtonGroup();
         rbgApegoDieta = new javax.swing.ButtonGroup();
         rbgResultadosDieta = new javax.swing.ButtonGroup();
+        rbgReemplazoHormonal = new javax.swing.ButtonGroup();
+        rbgClimaterio = new javax.swing.ButtonGroup();
+        rbgGrasaUtilizada = new javax.swing.ButtonGroup();
+        rbgIDdietaEspecial = new javax.swing.ButtonGroup();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         panel = new javax.swing.JTabbedPane();
         panelDatosPersonales = new javax.swing.JPanel();
         jlNombre = new javax.swing.JLabel();
         dpNombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jlApellidos = new javax.swing.JLabel();
         dpApellidos = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jlSexo = new javax.swing.JLabel();
         dpSexo = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        jlEdad = new javax.swing.JLabel();
         cbEdad = new javax.swing.JComboBox<>();
         jlNacimiento = new javax.swing.JLabel();
         dpNacimiento = new javax.swing.JTextField();
         jlDomicilio = new javax.swing.JLabel();
         dpDomicilio = new javax.swing.JTextField();
         dpCP = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jlCPostal = new javax.swing.JLabel();
         jlCiudad = new javax.swing.JLabel();
         dpCiudad = new javax.swing.JTextField();
         jlID = new javax.swing.JLabel();
         dpIDExpediente = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        jlEmail = new javax.swing.JLabel();
         dpEmail = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        jlEscolaridad = new javax.swing.JLabel();
         dpEscolaridad = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
+        jlEstadoCivil = new javax.swing.JLabel();
         dpEstadoCivil = new javax.swing.JComboBox<>();
         jlTelefono = new javax.swing.JLabel();
         dpTelefono = new javax.swing.JTextField();
         dpGuardar = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         panelAntecedentes = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        jlDiarrea = new javax.swing.JLabel();
         rbSiDiarrea = new javax.swing.JRadioButton();
         rbNoDiarrea = new javax.swing.JRadioButton();
         jlEstrenimiento = new javax.swing.JLabel();
@@ -127,7 +1546,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbSiDentadura = new javax.swing.JRadioButton();
         rbNoDentadura = new javax.swing.JRadioButton();
         jlOtros = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfOtros = new javax.swing.JTextField();
         jlObservaciones = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -170,243 +1589,242 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         dpGuardar1 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         panelGinecologico = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel19 = new javax.swing.JLabel();
+        jlEmbarazoActual = new javax.swing.JLabel();
+        siEmbarazoActual = new javax.swing.JRadioButton();
+        noEmbarazoActual = new javax.swing.JRadioButton();
+        jlSemanasGestacion = new javax.swing.JLabel();
         tfSDG = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        tfCualMedicamento3 = new javax.swing.JTextField();
+        jlAnticonceptivos = new javax.swing.JLabel();
+        siAnticonceptivosOrales = new javax.swing.JRadioButton();
+        noAnticonceptivos = new javax.swing.JRadioButton();
+        tfDosisAnticonceptivos = new javax.swing.JTextField();
         jlCuantoTiempo1 = new javax.swing.JLabel();
-        tfCuantoTiempo1 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        tfCuantoTiempo2 = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jLabel24 = new javax.swing.JLabel();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jLabel25 = new javax.swing.JLabel();
-        tfCuantoTiempo3 = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        tfCualMedicamento4 = new javax.swing.JTextField();
-        jlCuantoTiempo2 = new javax.swing.JLabel();
+        tfDosisTerapiaHormonal = new javax.swing.JTextField();
+        jlvagDosis = new javax.swing.JLabel();
+        jlCualAnticonceptivo = new javax.swing.JLabel();
+        tfCualTerapiaHormonal = new javax.swing.JTextField();
+        jlClimaterio = new javax.swing.JLabel();
+        siClimaterio = new javax.swing.JRadioButton();
+        noClimaterio = new javax.swing.JRadioButton();
+        jlTerapiaHormonal = new javax.swing.JLabel();
+        siTerapiaHormonal = new javax.swing.JRadioButton();
+        noTerapiaHornomal = new javax.swing.JRadioButton();
+        jlCualTerapia = new javax.swing.JLabel();
+        tfvagTiempoTerapiaHormonal = new javax.swing.JTextField();
+        jlvagCualTerapiaHormonal = new javax.swing.JLabel();
+        tfVagCualAnticonceptivo = new javax.swing.JTextField();
+        jlvagTiempoTerapiaHormonal = new javax.swing.JLabel();
         dpGuardar2 = new javax.swing.JButton();
+        tfvagTiempoAnticonceptivo = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         panelActiviadades = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jlDiarioActividades = new javax.swing.JLabel();
+        jlHora = new javax.swing.JLabel();
+        jlAlimento = new javax.swing.JLabel();
+        cbHoraDespertarse = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel31 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        cbMinutoDespertarse = new javax.swing.JComboBox<>();
+        jlDespertarse = new javax.swing.JLabel();
+        tfDespertarse = new javax.swing.JTextField();
+        jlSignos = new javax.swing.JLabel();
+        jlAspectoGeneral = new javax.swing.JLabel();
+        cbHoraDesayuno = new javax.swing.JComboBox<>();
+        cbMinutoDesayuno = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jlDesayuno = new javax.swing.JLabel();
+        tfDesayuno = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        taAspectoGeneral = new javax.swing.JTextArea();
         jLabel36 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jLabel37 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        cbHoraComida = new javax.swing.JComboBox<>();
+        cbMinutoComida = new javax.swing.JComboBox<>();
+        jlComida = new javax.swing.JLabel();
+        tfComida = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jLabel39 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        cbHoraCena = new javax.swing.JComboBox<>();
+        cbMinutoCena = new javax.swing.JComboBox<>();
+        jlCena = new javax.swing.JLabel();
+        tfCena = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
-        jComboBox11 = new javax.swing.JComboBox<>();
-        jLabel41 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jComboBox12 = new javax.swing.JComboBox<>();
-        jLabel44 = new javax.swing.JLabel();
-        jComboBox13 = new javax.swing.JComboBox<>();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jLabel47 = new javax.swing.JLabel();
+        cbHoraDormir = new javax.swing.JComboBox<>();
+        cbMinutoDormir = new javax.swing.JComboBox<>();
+        jlDormir = new javax.swing.JLabel();
+        tfDormir = new javax.swing.JTextField();
+        jlEjercicio = new javax.swing.JLabel();
+        jlTipo = new javax.swing.JLabel();
+        cbTipoActividad = new javax.swing.JComboBox<>();
+        jlFrecuencia = new javax.swing.JLabel();
+        cbFrecuenciaActividad = new javax.swing.JComboBox<>();
+        jlPreisonArterial = new javax.swing.JLabel();
+        jlPresionArterial = new javax.swing.JLabel();
+        siPresionArterial = new javax.swing.JRadioButton();
+        noPresionArterial = new javax.swing.JRadioButton();
+        jlDuracionActividad = new javax.swing.JLabel();
         jComboBox14 = new javax.swing.JComboBox<>();
-        jLabel48 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel49 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jComboBox15 = new javax.swing.JComboBox<>();
-        jLabel52 = new javax.swing.JLabel();
-        jComboBox16 = new javax.swing.JComboBox<>();
-        jLabel53 = new javax.swing.JLabel();
-        jComboBox17 = new javax.swing.JComboBox<>();
+        jlCualPresionArterial = new javax.swing.JLabel();
+        tfCualPresionArterial = new javax.swing.JTextField();
+        jlHoraPresion = new javax.swing.JLabel();
+        tfHoraPresion = new javax.swing.JTextField();
+        jlConsumoFrecuencia = new javax.swing.JLabel();
+        jlTabaco = new javax.swing.JLabel();
+        cbTabaco = new javax.swing.JComboBox<>();
+        jlAlcohol = new javax.swing.JLabel();
+        cbAlcohol = new javax.swing.JComboBox<>();
+        jlCafe = new javax.swing.JLabel();
+        cbCafe = new javax.swing.JComboBox<>();
         dpGuardar3 = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
         panelIndicadores = new javax.swing.JPanel();
-        jLabel55 = new javax.swing.JLabel();
+        jlCuantasComidasDia = new javax.swing.JLabel();
         tfComidasDia = new javax.swing.JTextField();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        tfComidasDia1 = new javax.swing.JTextField();
-        tfComidasDia2 = new javax.swing.JTextField();
-        tfComidasDia3 = new javax.swing.JTextField();
-        tfComidasDia4 = new javax.swing.JTextField();
-        jLabel60 = new javax.swing.JLabel();
-        tfComidasDia5 = new javax.swing.JTextField();
-        jLabel61 = new javax.swing.JLabel();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
+        jlEntreSemana = new javax.swing.JLabel();
+        jlFinSemana = new javax.swing.JLabel();
+        jlComidasCasa = new javax.swing.JLabel();
+        jlComidasFuera = new javax.swing.JLabel();
+        tfComidaCasaSemana = new javax.swing.JTextField();
+        tfComidaCasaFin = new javax.swing.JTextField();
+        tfComidasFueraSemana = new javax.swing.JTextField();
+        tfComidasFueraFin = new javax.swing.JTextField();
+        jlQuienPrepara = new javax.swing.JLabel();
+        tfQuienPrepara = new javax.swing.JTextField();
+        jlEntreComidas = new javax.swing.JLabel();
+        siEntreComidas = new javax.swing.JRadioButton();
+        noEntreComidas = new javax.swing.JRadioButton();
         jLabel62 = new javax.swing.JLabel();
         tfComidasDia6 = new javax.swing.JTextField();
-        jLabel63 = new javax.swing.JLabel();
-        jRadioButton13 = new javax.swing.JRadioButton();
-        jRadioButton14 = new javax.swing.JRadioButton();
-        jLabel64 = new javax.swing.JLabel();
-        tfComidasDia7 = new javax.swing.JTextField();
-        jLabel65 = new javax.swing.JLabel();
-        jRadioButton15 = new javax.swing.JRadioButton();
-        jRadioButton16 = new javax.swing.JRadioButton();
-        jRadioButton17 = new javax.swing.JRadioButton();
-        jLabel66 = new javax.swing.JLabel();
-        jRadioButton18 = new javax.swing.JRadioButton();
-        jRadioButton19 = new javax.swing.JRadioButton();
-        jRadioButton20 = new javax.swing.JRadioButton();
-        jRadioButton21 = new javax.swing.JRadioButton();
-        jLabel67 = new javax.swing.JLabel();
-        tfComidasDia8 = new javax.swing.JTextField();
-        jLabel68 = new javax.swing.JLabel();
-        tfComidasDia9 = new javax.swing.JTextField();
-        jLabel69 = new javax.swing.JLabel();
-        tfComidasDia10 = new javax.swing.JTextField();
-        jLabel70 = new javax.swing.JLabel();
-        jRadioButton22 = new javax.swing.JRadioButton();
-        jRadioButton23 = new javax.swing.JRadioButton();
-        jLabel71 = new javax.swing.JLabel();
-        tfComidasDia11 = new javax.swing.JTextField();
-        jLabel72 = new javax.swing.JLabel();
-        jRadioButton24 = new javax.swing.JRadioButton();
-        jRadioButton25 = new javax.swing.JRadioButton();
-        jLabel73 = new javax.swing.JLabel();
-        jRadioButton26 = new javax.swing.JRadioButton();
-        jRadioButton27 = new javax.swing.JRadioButton();
-        jRadioButton28 = new javax.swing.JRadioButton();
-        jLabel74 = new javax.swing.JLabel();
-        jRadioButton29 = new javax.swing.JRadioButton();
-        jRadioButton30 = new javax.swing.JRadioButton();
-        jLabel75 = new javax.swing.JLabel();
-        jRadioButton31 = new javax.swing.JRadioButton();
-        jRadioButton32 = new javax.swing.JRadioButton();
-        jRadioButton33 = new javax.swing.JRadioButton();
-        jRadioButton34 = new javax.swing.JRadioButton();
-        jLabel76 = new javax.swing.JLabel();
-        tfComidasDia12 = new javax.swing.JTextField();
-        jLabel77 = new javax.swing.JLabel();
-        jRadioButton35 = new javax.swing.JRadioButton();
-        jRadioButton36 = new javax.swing.JRadioButton();
-        jLabel78 = new javax.swing.JLabel();
-        tfComidasDia13 = new javax.swing.JTextField();
-        jLabel79 = new javax.swing.JLabel();
-        tfComidasDia14 = new javax.swing.JTextField();
-        jLabel80 = new javax.swing.JLabel();
-        tfComidasDia15 = new javax.swing.JTextField();
-        jLabel81 = new javax.swing.JLabel();
-        tfComidasDia16 = new javax.swing.JTextField();
-        jLabel82 = new javax.swing.JLabel();
-        jLabel83 = new javax.swing.JLabel();
-        jLabel84 = new javax.swing.JLabel();
-        jLabel85 = new javax.swing.JLabel();
-        tfComidasDia17 = new javax.swing.JTextField();
-        jRadioButton37 = new javax.swing.JRadioButton();
-        jRadioButton38 = new javax.swing.JRadioButton();
-        jRadioButton39 = new javax.swing.JRadioButton();
-        jRadioButton40 = new javax.swing.JRadioButton();
-        jRadioButton41 = new javax.swing.JRadioButton();
-        jRadioButton42 = new javax.swing.JRadioButton();
-        jRadioButton43 = new javax.swing.JRadioButton();
-        jRadioButton44 = new javax.swing.JRadioButton();
+        jlModificacionDieta = new javax.swing.JLabel();
+        siModificacionAlimentos = new javax.swing.JRadioButton();
+        noModificacionAlimentos = new javax.swing.JRadioButton();
+        jlRazonModificacion = new javax.swing.JLabel();
+        tfRazonModifiacion = new javax.swing.JTextField();
+        jlApetito = new javax.swing.JLabel();
+        buenoApetito = new javax.swing.JRadioButton();
+        maloApetito = new javax.swing.JRadioButton();
+        regularAPetito = new javax.swing.JRadioButton();
+        jlHoraHambre = new javax.swing.JLabel();
+        levantarseHambre = new javax.swing.JRadioButton();
+        mañanaHambre = new javax.swing.JRadioButton();
+        TardeHambre = new javax.swing.JRadioButton();
+        NocheHambre = new javax.swing.JRadioButton();
+        jlAlimentosPreferidos = new javax.swing.JLabel();
+        tfAlimentosPreferidos = new javax.swing.JTextField();
+        jlAliementosNoPreferidos = new javax.swing.JLabel();
+        tfAlimentosNoPreferidos = new javax.swing.JTextField();
+        jlAlimentosMalestar = new javax.swing.JLabel();
+        tfAlimentosMalestar = new javax.swing.JTextField();
+        jlComoVaria = new javax.swing.JLabel();
+        siAlergico = new javax.swing.JRadioButton();
+        noAlergico = new javax.swing.JRadioButton();
+        jlCualAlergico = new javax.swing.JLabel();
+        tfCualAlergico = new javax.swing.JTextField();
+        jlConsumoEDA = new javax.swing.JLabel();
+        siVariacion = new javax.swing.JRadioButton();
+        noVariacion = new javax.swing.JRadioButton();
+        jlAlergico = new javax.swing.JLabel();
+        nulaVariacion = new javax.swing.JRadioButton();
+        menorVariacion = new javax.swing.JRadioButton();
+        mayorVariacion = new javax.swing.JRadioButton();
+        jlAgregarSal = new javax.swing.JLabel();
+        siSal = new javax.swing.JRadioButton();
+        noSal = new javax.swing.JRadioButton();
+        jlGrasaUtilizada = new javax.swing.JLabel();
+        margarinaGrasa = new javax.swing.JRadioButton();
+        aceiteVegetalGrasa = new javax.swing.JRadioButton();
+        mantecaGrasa = new javax.swing.JRadioButton();
+        mantequillaGrasa = new javax.swing.JRadioButton();
+        jlOtroGrasa = new javax.swing.JLabel();
+        tfOtroGrasa = new javax.swing.JTextField();
+        jlDietaEspecial = new javax.swing.JLabel();
+        siMedicamentoBajarPeso = new javax.swing.JRadioButton();
+        noMedicamentoBajarPeso = new javax.swing.JRadioButton();
+        jlCuantasDietas = new javax.swing.JLabel();
+        tfCuantasDietas = new javax.swing.JTextField();
+        jHaceCuantoDieta = new javax.swing.JLabel();
+        tfHaceCuantoDieta = new javax.swing.JTextField();
+        jlCuantoTiempoDieta = new javax.swing.JLabel();
+        tfCuantoTiempoDieta = new javax.swing.JTextField();
+        jlRazonDIetaEspecial = new javax.swing.JLabel();
+        tfRazonDietaEspecial = new javax.swing.JTextField();
+        jlCuantoAPegoDieta = new javax.swing.JLabel();
+        jlResultadosEsperadosDieta = new javax.swing.JLabel();
+        jlAlimentosParaBajarPeso = new javax.swing.JLabel();
+        jlCualMedicamentoBajarPeso = new javax.swing.JLabel();
+        tfCualMedicamentoBajarPeso = new javax.swing.JTextField();
+        nadaAPego = new javax.swing.JRadioButton();
+        muyPocoAPego = new javax.swing.JRadioButton();
+        SuficienteApego = new javax.swing.JRadioButton();
+        excepcionalApego = new javax.swing.JRadioButton();
+        nadaResultadosDieta = new javax.swing.JRadioButton();
+        muyPocoResultadosDieta = new javax.swing.JRadioButton();
+        suficienteResultadosDieta = new javax.swing.JRadioButton();
+        excepcionalResultadosDieta = new javax.swing.JRadioButton();
+        siDietaEspecial = new javax.swing.JRadioButton();
+        noDietaEspecial = new javax.swing.JRadioButton();
         dpGuardar4 = new javax.swing.JButton();
         jLabel86 = new javax.swing.JLabel();
         panelIndicadoresAntropo = new javax.swing.JPanel();
-        jLabel87 = new javax.swing.JLabel();
-        jLabel88 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel89 = new javax.swing.JLabel();
-        tfPesoActualKG = new javax.swing.JTextField();
-        jLabel90 = new javax.swing.JLabel();
-        jLabel91 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jLabel92 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jLabel93 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jLabel94 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
-        jLabel95 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jLabel96 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
-        jLabel97 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        jLabel98 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
-        jLabel99 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        jlMedicion = new javax.swing.JLabel();
+        jlPesoActual = new javax.swing.JLabel();
+        tfPesoHabitual = new javax.swing.JTextField();
+        jlPesoHabitual = new javax.swing.JLabel();
+        tfPesoActual = new javax.swing.JTextField();
+        jlDato = new javax.swing.JLabel();
+        jlEstatura = new javax.swing.JLabel();
+        tfEstatura = new javax.swing.JTextField();
+        jlPliegueCutaneoTricipital = new javax.swing.JLabel();
+        tfPliegueCutaneoTricipital = new javax.swing.JTextField();
+        jlPliegueCutaneoBicipital = new javax.swing.JLabel();
+        tfPliegueCutaneoBicipital = new javax.swing.JTextField();
+        jPliegueCutaneoSubescapular = new javax.swing.JLabel();
+        tfPliegueCutaneoSubescapular = new javax.swing.JTextField();
+        jPliegueCutaneoSuprailiaco = new javax.swing.JLabel();
+        tfPliegueCutaneoSuprailiaco = new javax.swing.JTextField();
+        jlCircunferenciaBrazo = new javax.swing.JLabel();
+        tfCircunferenciaBrazo = new javax.swing.JTextField();
+        jlCircunferenciaCintura = new javax.swing.JLabel();
+        tfCircunferenciaCintura = new javax.swing.JTextField();
+        jlCircunferenciaCadera = new javax.swing.JLabel();
+        tfCircunferenciaCadera = new javax.swing.JTextField();
+        jlCircunferenciaAbdominal = new javax.swing.JLabel();
+        tfCircunferenciaAbdominal = new javax.swing.JTextField();
         jLabel100 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jLabel103 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
-        jLabel104 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jLabel105 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jLabel106 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
-        jLabel107 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jLabel108 = new javax.swing.JLabel();
-        jLabel109 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField27 = new javax.swing.JTextField();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
-        jLabel113 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
-        jLabel114 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
-        jLabel115 = new javax.swing.JLabel();
-        jTextField31 = new javax.swing.JTextField();
-        jLabel116 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
-        jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
-        jLabel122 = new javax.swing.JLabel();
-        jTextField33 = new javax.swing.JTextField();
-        jTextField34 = new javax.swing.JTextField();
-        jTextField35 = new javax.swing.JTextField();
-        jTextField36 = new javax.swing.JTextField();
-        jTextField37 = new javax.swing.JTextField();
-        jTextField38 = new javax.swing.JTextField();
+        jlComplexion = new javax.swing.JLabel();
+        tfComplexion = new javax.swing.JTextField();
+        jlPesoTeorico = new javax.swing.JLabel();
+        tfPesoTeorico = new javax.swing.JTextField();
+        jlPesoTeoricoXC = new javax.swing.JLabel();
+        tfPesoTeoricoXC = new javax.swing.JTextField();
+        jlPesoHabitualXC = new javax.swing.JLabel();
+        tfPesoHabitualXC = new javax.swing.JTextField();
+        JIMC = new javax.swing.JLabel();
+        tfIMC = new javax.swing.JTextField();
+        jlPesoMinimoIMC = new javax.swing.JLabel();
+        tfPesoMinimoIMC = new javax.swing.JTextField();
+        jlMedicion2 = new javax.swing.JLabel();
+        jlDato2 = new javax.swing.JLabel();
+        jlPesoMaximo = new javax.swing.JLabel();
+        tfPesoMaximo = new javax.swing.JTextField();
+        tfGrasaCorporal = new javax.swing.JTextField();
+        jlGrasaCorporal = new javax.swing.JLabel();
+        jlGrasaCorporalKG = new javax.swing.JLabel();
+        tfGrasaCorporalKG = new javax.swing.JTextField();
+        jlMasaLigreGrasaKG = new javax.swing.JLabel();
+        tfMasaLibreGrasa = new javax.swing.JTextField();
+        jlDiferenciaGrasaKG = new javax.swing.JLabel();
+        tfDiferenciaGrasa = new javax.swing.JTextField();
+        jlMasaMuscularTotal = new javax.swing.JLabel();
+        tfMasaMuscularTotal = new javax.swing.JTextField();
+        jlPliegueCutaneoPerceptil = new javax.swing.JLabel();
+        tfPliegueCutaneoPerceptil = new javax.swing.JTextField();
+        jlPliegueCutaneosubescapular = new javax.swing.JLabel();
+        jlIndiceCinturaCadera = new javax.swing.JLabel();
+        jlAreaMuscularBrazo = new javax.swing.JLabel();
+        jlAguaCorporalTotal = new javax.swing.JLabel();
+        tfPliegueCutaneoSubescapularPerceptil = new javax.swing.JTextField();
+        tfIndiceCaderaCintura = new javax.swing.JTextField();
+        tfAreaMuscularBrazo = new javax.swing.JTextField();
+        tfAguaCorporalTotal = new javax.swing.JTextField();
         dpGuardar5 = new javax.swing.JButton();
         jLabel123 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -443,9 +1861,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelDatosPersonales.add(dpNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 78, 200, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel3.setText("Apellidos");
-        panelDatosPersonales.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 81, -1, -1));
+        jlApellidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlApellidos.setText("Apellidos");
+        panelDatosPersonales.add(jlApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 81, -1, -1));
 
         dpApellidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -464,18 +1882,18 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelDatosPersonales.add(dpApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 78, 200, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel5.setText("Sexo");
-        panelDatosPersonales.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, -1, -1));
+        jlSexo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlSexo.setText("Sexo");
+        panelDatosPersonales.add(jlSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, -1, -1));
 
         dpSexo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Femenino", "Masculino" }));
         dpSexo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDatosPersonales.add(dpSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 150, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel6.setText("Edad");
-        panelDatosPersonales.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 125, -1, -1));
+        jlEdad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEdad.setText("Edad");
+        panelDatosPersonales.add(jlEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 125, -1, -1));
 
         cbEdad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110" }));
@@ -540,9 +1958,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelDatosPersonales.add(dpCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 150, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel9.setText("C. Postal");
-        panelDatosPersonales.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, -1, -1));
+        jlCPostal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCPostal.setText("C. Postal");
+        panelDatosPersonales.add(jlCPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, -1, -1));
 
         jlCiudad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlCiudad.setText("Ciudad");
@@ -586,9 +2004,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelDatosPersonales.add(dpIDExpediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 283, -1));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel11.setText("E-mail");
-        panelDatosPersonales.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, -1, -1));
+        jlEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEmail.setText("E-mail");
+        panelDatosPersonales.add(jlEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, -1, -1));
 
         dpEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -607,18 +2025,18 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelDatosPersonales.add(dpEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 555, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel12.setText("Escolaridad");
-        panelDatosPersonales.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, -1));
+        jlEscolaridad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEscolaridad.setText("Escolaridad");
+        panelDatosPersonales.add(jlEscolaridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, -1));
 
         dpEscolaridad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpEscolaridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Sin estudios", "Preescolar", "Primaria", "Secundaria", "Carrera Técnica", "Bachillerato", "Licenciatura", "Maestría", "Doctorado", " ", " " }));
         dpEscolaridad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDatosPersonales.add(dpEscolaridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 150, -1));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel13.setText("Estado Civil");
-        panelDatosPersonales.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, -1, -1));
+        jlEstadoCivil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEstadoCivil.setText("Estado Civil");
+        panelDatosPersonales.add(jlEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, -1, -1));
 
         dpEstadoCivil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Soltero/a", "Comprometido/a", "Relación (novio/a)", "Casado/a", "Union libre", "Separado/a", "Divorciado/a", "Viudo/a", " ", " " }));
@@ -667,9 +2085,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         panelAntecedentes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel16.setText("Diarrea");
-        panelAntecedentes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jlDiarrea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDiarrea.setText("Diarrea");
+        panelAntecedentes.add(jlDiarrea, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         rbSiDiarrea.setBackground(new java.awt.Color(255, 255, 255));
         rbgDiarrea.add(rbSiDiarrea);
@@ -815,8 +2233,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         jlOtros.setText("Otros");
         panelAntecedentes.add(jlOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 151, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelAntecedentes.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 148, 638, -1));
+        tfOtros.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelAntecedentes.add(tfOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 148, 638, -1));
 
         jlObservaciones.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlObservaciones.setText("Observaciones");
@@ -1019,151 +2437,151 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         panelGinecologico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel17.setText("¿Embarazo actual?");
-        panelGinecologico.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jlEmbarazoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEmbarazoActual.setText("¿Embarazo actual?");
+        panelGinecologico.add(jlEmbarazoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        rbgEmbarazo.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton1.setText("Si");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        siEmbarazoActual.setBackground(new java.awt.Color(255, 255, 255));
+        rbgEmbarazo.add(siEmbarazoActual);
+        siEmbarazoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siEmbarazoActual.setText("Si");
+        siEmbarazoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                siEmbarazoActualActionPerformed(evt);
             }
         });
-        panelGinecologico.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 86, -1, -1));
+        panelGinecologico.add(siEmbarazoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 86, -1, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        rbgEmbarazo.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton2.setText("No");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        noEmbarazoActual.setBackground(new java.awt.Color(255, 255, 255));
+        rbgEmbarazo.add(noEmbarazoActual);
+        noEmbarazoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noEmbarazoActual.setText("No");
+        noEmbarazoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                noEmbarazoActualActionPerformed(evt);
             }
         });
-        panelGinecologico.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 86, -1, -1));
+        panelGinecologico.add(noEmbarazoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 86, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel19.setText("Semanas de gestación");
-        panelGinecologico.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 90, -1, -1));
+        jlSemanasGestacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlSemanasGestacion.setText("Semanas de gestación");
+        panelGinecologico.add(jlSemanasGestacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 90, -1, -1));
 
         tfSDG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfSDG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         panelGinecologico.add(tfSDG, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 87, 198, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel20.setText("¿Usa anticonceptivos orales?");
-        panelGinecologico.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 137, -1, -1));
+        jlAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAnticonceptivos.setText("¿Usa anticonceptivos orales?");
+        panelGinecologico.add(jlAnticonceptivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 137, -1, -1));
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        rbgAnticonceptivos.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton3.setText("Si");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        siAnticonceptivosOrales.setBackground(new java.awt.Color(255, 255, 255));
+        rbgAnticonceptivos.add(siAnticonceptivosOrales);
+        siAnticonceptivosOrales.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siAnticonceptivosOrales.setText("Si");
+        siAnticonceptivosOrales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                siAnticonceptivosOralesActionPerformed(evt);
             }
         });
-        panelGinecologico.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 133, -1, -1));
+        panelGinecologico.add(siAnticonceptivosOrales, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 133, -1, -1));
 
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
-        rbgAnticonceptivos.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton4.setText("No");
-        panelGinecologico.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 133, -1, -1));
+        noAnticonceptivos.setBackground(new java.awt.Color(255, 255, 255));
+        rbgAnticonceptivos.add(noAnticonceptivos);
+        noAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noAnticonceptivos.setText("No");
+        panelGinecologico.add(noAnticonceptivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 133, -1, -1));
 
-        tfCualMedicamento3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelGinecologico.add(tfCualMedicamento3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 243, -1));
+        tfDosisAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelGinecologico.add(tfDosisAnticonceptivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 243, -1));
 
         jlCuantoTiempo1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlCuantoTiempo1.setText("¿Hace cuanto tiempo?");
         panelGinecologico.add(jlCuantoTiempo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
 
-        tfCuantoTiempo1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelGinecologico.add(tfCuantoTiempo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 320, 250, -1));
+        tfDosisTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelGinecologico.add(tfDosisTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 320, 250, -1));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel21.setText("Dosis");
-        panelGinecologico.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
+        jlvagDosis.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlvagDosis.setText("Dosis");
+        panelGinecologico.add(jlvagDosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel22.setText("¿Cual?");
-        panelGinecologico.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 137, -1, -1));
+        jlCualAnticonceptivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCualAnticonceptivo.setText("¿Cual?");
+        panelGinecologico.add(jlCualAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 137, -1, -1));
 
-        tfCuantoTiempo2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfCuantoTiempo2.addActionListener(new java.awt.event.ActionListener() {
+        tfCualTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualTerapiaHormonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCuantoTiempo2ActionPerformed(evt);
+                tfCualTerapiaHormonalActionPerformed(evt);
             }
         });
-        panelGinecologico.add(tfCuantoTiempo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 200, -1));
+        panelGinecologico.add(tfCualTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 200, -1));
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel23.setText("Climaterio");
-        panelGinecologico.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 228, -1, -1));
+        jlClimaterio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlClimaterio.setText("Climaterio");
+        panelGinecologico.add(jlClimaterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 228, -1, -1));
 
-        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
-        rbgEmbarazo.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton5.setText("Si");
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        siClimaterio.setBackground(new java.awt.Color(255, 255, 255));
+        rbgClimaterio.add(siClimaterio);
+        siClimaterio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siClimaterio.setText("Si");
+        siClimaterio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                siClimaterioActionPerformed(evt);
             }
         });
-        panelGinecologico.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 224, -1, -1));
+        panelGinecologico.add(siClimaterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 224, -1, -1));
 
-        jRadioButton6.setBackground(new java.awt.Color(255, 255, 255));
-        rbgEmbarazo.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton6.setText("No");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        noClimaterio.setBackground(new java.awt.Color(255, 255, 255));
+        rbgClimaterio.add(noClimaterio);
+        noClimaterio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noClimaterio.setText("No");
+        noClimaterio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                noClimaterioActionPerformed(evt);
             }
         });
-        panelGinecologico.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 224, -1, -1));
+        panelGinecologico.add(noClimaterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 224, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel24.setText("¿Terapia de reemplazo hormonal?");
-        panelGinecologico.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 279, -1, -1));
+        jlTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlTerapiaHormonal.setText("¿Terapia de reemplazo hormonal?");
+        panelGinecologico.add(jlTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 279, -1, -1));
 
-        jRadioButton7.setBackground(new java.awt.Color(255, 255, 255));
-        rbgAnticonceptivos.add(jRadioButton7);
-        jRadioButton7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton7.setText("Si");
-        panelGinecologico.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 275, -1, -1));
+        siTerapiaHormonal.setBackground(new java.awt.Color(255, 255, 255));
+        rbgReemplazoHormonal.add(siTerapiaHormonal);
+        siTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siTerapiaHormonal.setText("Si");
+        panelGinecologico.add(siTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 275, -1, -1));
 
-        jRadioButton8.setBackground(new java.awt.Color(255, 255, 255));
-        rbgAnticonceptivos.add(jRadioButton8);
-        jRadioButton8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton8.setText("No");
-        panelGinecologico.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 275, -1, -1));
+        noTerapiaHornomal.setBackground(new java.awt.Color(255, 255, 255));
+        rbgReemplazoHormonal.add(noTerapiaHornomal);
+        noTerapiaHornomal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noTerapiaHornomal.setText("No");
+        panelGinecologico.add(noTerapiaHornomal, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 275, -1, -1));
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel25.setText("¿Cual?");
-        panelGinecologico.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 279, -1, -1));
+        jlCualTerapia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCualTerapia.setText("¿Cual?");
+        panelGinecologico.add(jlCualTerapia, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 279, -1, -1));
 
-        tfCuantoTiempo3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfCuantoTiempo3.addActionListener(new java.awt.event.ActionListener() {
+        tfvagTiempoTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfvagTiempoTerapiaHormonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCuantoTiempo3ActionPerformed(evt);
+                tfvagTiempoTerapiaHormonalActionPerformed(evt);
             }
         });
-        panelGinecologico.add(tfCuantoTiempo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, 200, -1));
+        panelGinecologico.add(tfvagTiempoTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, 200, -1));
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel26.setText("Dosis");
-        panelGinecologico.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, -1, -1));
+        jlvagCualTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlvagCualTerapiaHormonal.setText("Dosis");
+        panelGinecologico.add(jlvagCualTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, -1, -1));
 
-        tfCualMedicamento4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelGinecologico.add(tfCualMedicamento4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 200, -1));
+        tfVagCualAnticonceptivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelGinecologico.add(tfVagCualAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 200, -1));
 
-        jlCuantoTiempo2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jlCuantoTiempo2.setText("¿Hace cuanto tiempo?");
-        panelGinecologico.add(jlCuantoTiempo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
+        jlvagTiempoTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlvagTiempoTerapiaHormonal.setText("¿Hace cuanto tiempo?");
+        panelGinecologico.add(jlvagTiempoTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
 
         dpGuardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
         dpGuardar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1178,6 +2596,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelGinecologico.add(dpGuardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, -1, -1));
 
+        tfvagTiempoAnticonceptivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelGinecologico.add(tfvagTiempoAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 200, -1));
+
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_979x606.png"))); // NOI18N
         panelGinecologico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 610));
 
@@ -1187,67 +2608,67 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.setPreferredSize(new java.awt.Dimension(980, 610));
         panelActiviadades.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel1.setText("Diario de actividades");
-        panelActiviadades.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jlDiarioActividades.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDiarioActividades.setText("Diario de actividades");
+        panelActiviadades.add(jlDiarioActividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel28.setText("Hora");
-        panelActiviadades.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, -1, -1));
+        jlHora.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlHora.setText("Hora");
+        panelActiviadades.add(jlHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, -1, -1));
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel29.setText("Alimento");
-        panelActiviadades.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 49, -1, -1));
+        jlAlimento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAlimento.setText("Alimento");
+        panelActiviadades.add(jlAlimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 49, -1, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        panelActiviadades.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, -1, -1));
+        cbHoraDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraDespertarse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        panelActiviadades.add(cbHoraDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel30.setText(":");
         panelActiviadades.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 78, -1, -1));
 
-        jComboBox3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        panelActiviadades.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 75, -1, -1));
+        cbMinutoDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoDespertarse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        panelActiviadades.add(cbMinutoDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 75, -1, -1));
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel31.setText("Despertarse");
-        panelActiviadades.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 78, -1, -1));
+        jlDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDespertarse.setText("Despertarse");
+        panelActiviadades.add(jlDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 78, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 75, 279, -1));
+        tfDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 75, 279, -1));
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel32.setText("Signos");
-        panelActiviadades.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 49, -1, -1));
+        jlSignos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlSignos.setText("Signos");
+        panelActiviadades.add(jlSignos, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 49, -1, -1));
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel33.setText("Aspecto General (cabello, ojos, piel, uñas, labios, encías, etc.)");
-        panelActiviadades.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 78, -1, -1));
+        jlAspectoGeneral.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAspectoGeneral.setText("Aspecto General (cabello, ojos, piel, uñas, labios, encías, etc.)");
+        panelActiviadades.add(jlAspectoGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 78, -1, -1));
 
-        jComboBox4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        panelActiviadades.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 119, -1, -1));
+        cbHoraDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraDesayuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        panelActiviadades.add(cbHoraDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 119, -1, -1));
 
-        jComboBox5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        panelActiviadades.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 119, -1, -1));
+        cbMinutoDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoDesayuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        panelActiviadades.add(cbMinutoDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 119, -1, -1));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel34.setText(":");
         panelActiviadades.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 122, -1, -1));
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel35.setText("Desayuno");
-        panelActiviadades.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 122, -1, -1));
+        jlDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDesayuno.setText("Desayuno");
+        panelActiviadades.add(jlDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 122, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 119, 279, -1));
+        tfDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 119, 279, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        taAspectoGeneral.setColumns(20);
+        taAspectoGeneral.setRows(5);
+        jScrollPane2.setViewportView(taAspectoGeneral);
 
         panelActiviadades.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 119, 453, 169));
 
@@ -1255,169 +2676,169 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         jLabel36.setText(":");
         panelActiviadades.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 166, -1, -1));
 
-        jComboBox6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        panelActiviadades.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 163, -1, -1));
+        cbHoraComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        panelActiviadades.add(cbHoraComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 163, -1, -1));
 
-        jComboBox7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        panelActiviadades.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 163, -1, -1));
+        cbMinutoComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        panelActiviadades.add(cbMinutoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 163, -1, -1));
 
-        jLabel37.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel37.setText("Comida");
-        panelActiviadades.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 166, -1, -1));
+        jlComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlComida.setText("Comida");
+        panelActiviadades.add(jlComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 166, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 163, 279, -1));
+        tfComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 163, 279, -1));
 
         jLabel38.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel38.setText(":");
         panelActiviadades.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
-        jComboBox8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        panelActiviadades.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 207, -1, -1));
+        cbHoraCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraCena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        panelActiviadades.add(cbHoraCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 207, -1, -1));
 
-        jComboBox9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        panelActiviadades.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 207, -1, -1));
+        cbMinutoCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoCena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        panelActiviadades.add(cbMinutoCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 207, -1, -1));
 
-        jLabel39.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel39.setText("Cena");
-        panelActiviadades.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 210, -1, -1));
+        jlCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCena.setText("Cena");
+        panelActiviadades.add(jlCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 210, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 207, 279, -1));
+        tfCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 207, 279, -1));
 
         jLabel40.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel40.setText(":");
         panelActiviadades.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 254, -1, -1));
 
-        jComboBox10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        panelActiviadades.add(jComboBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 251, -1, -1));
+        cbHoraDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraDormir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        panelActiviadades.add(cbHoraDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 251, -1, -1));
 
-        jComboBox11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        panelActiviadades.add(jComboBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 251, -1, -1));
+        cbMinutoDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoDormir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        panelActiviadades.add(cbMinutoDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 251, -1, -1));
 
-        jLabel41.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel41.setText("Dormir");
-        panelActiviadades.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 254, -1, -1));
+        jlDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDormir.setText("Dormir");
+        panelActiviadades.add(jlDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 254, -1, -1));
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 251, 279, -1));
+        tfDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 251, 279, -1));
 
-        jLabel42.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel42.setText("Ejercicio");
-        panelActiviadades.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 306, -1, -1));
+        jlEjercicio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEjercicio.setText("Ejercicio");
+        panelActiviadades.add(jlEjercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 306, -1, -1));
 
-        jLabel43.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel43.setText("Tipo");
-        panelActiviadades.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        jlTipo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlTipo.setText("Tipo");
+        panelActiviadades.add(jlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
-        jComboBox12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
-        jComboBox12.addActionListener(new java.awt.event.ActionListener() {
+        cbTipoActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbTipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
+        cbTipoActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox12ActionPerformed(evt);
+                cbTipoActividadActionPerformed(evt);
             }
         });
-        panelActiviadades.add(jComboBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 337, -1, -1));
+        panelActiviadades.add(cbTipoActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 337, -1, -1));
 
-        jLabel44.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel44.setText("Frecuencia");
-        panelActiviadades.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 340, -1, -1));
+        jlFrecuencia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlFrecuencia.setText("Frecuencia");
+        panelActiviadades.add(jlFrecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 340, -1, -1));
 
-        jComboBox13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre", " " }));
-        panelActiviadades.add(jComboBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 337, -1, -1));
+        cbFrecuenciaActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbFrecuenciaActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre", " " }));
+        panelActiviadades.add(cbFrecuenciaActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 337, -1, -1));
 
-        jLabel45.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel45.setText("Presión arterial");
-        panelActiviadades.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 306, -1, -1));
+        jlPreisonArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPreisonArterial.setText("Presión arterial");
+        panelActiviadades.add(jlPreisonArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 306, -1, -1));
 
-        jLabel46.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel46.setText("¿Conoce su presión arterial?");
-        panelActiviadades.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 340, -1, -1));
+        jlPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPresionArterial.setText("¿Conoce su presión arterial?");
+        panelActiviadades.add(jlPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 340, -1, -1));
 
-        jRadioButton9.setBackground(new java.awt.Color(153, 217, 234));
-        rbgPresionArterial.add(jRadioButton9);
-        jRadioButton9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton9.setText("Si");
-        panelActiviadades.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(698, 336, -1, -1));
+        siPresionArterial.setBackground(new java.awt.Color(153, 217, 234));
+        rbgPresionArterial.add(siPresionArterial);
+        siPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siPresionArterial.setText("Si");
+        panelActiviadades.add(siPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(698, 336, -1, -1));
 
-        jRadioButton10.setBackground(new java.awt.Color(153, 217, 234));
-        rbgPresionArterial.add(jRadioButton10);
-        jRadioButton10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton10.setText("No");
-        jRadioButton10.setToolTipText("");
-        panelActiviadades.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(737, 336, -1, -1));
+        noPresionArterial.setBackground(new java.awt.Color(153, 217, 234));
+        rbgPresionArterial.add(noPresionArterial);
+        noPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noPresionArterial.setText("No");
+        noPresionArterial.setToolTipText("");
+        panelActiviadades.add(noPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(737, 336, -1, -1));
 
-        jLabel47.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel47.setText("Duración");
-        panelActiviadades.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 377, -1, -1));
+        jlDuracionActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDuracionActividad.setText("Duración");
+        panelActiviadades.add(jlDuracionActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 377, -1, -1));
 
         jComboBox14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
         panelActiviadades.add(jComboBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 374, -1, -1));
 
-        jLabel48.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel48.setText("¿Cuál es?");
-        panelActiviadades.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 377, -1, -1));
+        jlCualPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCualPresionArterial.setText("¿Cuál es?");
+        panelActiviadades.add(jlCualPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 377, -1, -1));
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 374, 182, -1));
+        tfCualPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfCualPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 374, 182, -1));
 
-        jLabel49.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel49.setText("Hora");
-        panelActiviadades.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(786, 377, -1, -1));
+        jlHoraPresion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlHoraPresion.setText("Hora");
+        panelActiviadades.add(jlHoraPresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(786, 377, -1, -1));
 
-        jTextField8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelActiviadades.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 374, 144, -1));
+        tfHoraPresion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelActiviadades.add(tfHoraPresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 374, 144, -1));
 
-        jLabel50.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel50.setText("Consumo de frecuencia y cantidad");
-        panelActiviadades.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 418, -1, -1));
+        jlConsumoFrecuencia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlConsumoFrecuencia.setText("Consumo de frecuencia y cantidad");
+        panelActiviadades.add(jlConsumoFrecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 418, -1, -1));
 
-        jLabel51.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel51.setText("Tabaco");
-        panelActiviadades.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 452, -1, -1));
+        jlTabaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlTabaco.setText("Tabaco");
+        panelActiviadades.add(jlTabaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 452, -1, -1));
 
-        jComboBox15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
-        jComboBox15.addActionListener(new java.awt.event.ActionListener() {
+        cbTabaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbTabaco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbTabaco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox15ActionPerformed(evt);
+                cbTabacoActionPerformed(evt);
             }
         });
-        panelActiviadades.add(jComboBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 449, -1, -1));
+        panelActiviadades.add(cbTabaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 449, -1, -1));
 
-        jLabel52.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel52.setText("Alcochol");
-        panelActiviadades.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 452, -1, -1));
+        jlAlcohol.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAlcohol.setText("Alcochol");
+        panelActiviadades.add(jlAlcohol, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 452, -1, -1));
 
-        jComboBox16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
-        jComboBox16.addActionListener(new java.awt.event.ActionListener() {
+        cbAlcohol.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbAlcohol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbAlcohol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox16ActionPerformed(evt);
+                cbAlcoholActionPerformed(evt);
             }
         });
-        panelActiviadades.add(jComboBox16, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 449, -1, -1));
+        panelActiviadades.add(cbAlcohol, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 449, -1, -1));
 
-        jLabel53.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel53.setText("Café");
-        panelActiviadades.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 489, -1, -1));
+        jlCafe.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCafe.setText("Café");
+        panelActiviadades.add(jlCafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 489, -1, -1));
 
-        jComboBox17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
-        jComboBox17.addActionListener(new java.awt.event.ActionListener() {
+        cbCafe.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbCafe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbCafe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox17ActionPerformed(evt);
+                cbCafeActionPerformed(evt);
             }
         });
-        panelActiviadades.add(jComboBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 486, -1, -1));
+        panelActiviadades.add(cbCafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 486, -1, -1));
 
         dpGuardar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
         dpGuardar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1440,69 +2861,69 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadores.setPreferredSize(new java.awt.Dimension(980, 610));
         panelIndicadores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel55.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel55.setText("¿Cuántas comidas hace al día?");
-        panelIndicadores.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
+        jlCuantasComidasDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCuantasComidasDia.setText("¿Cuántas comidas hace al día?");
+        panelIndicadores.add(jlCuantasComidasDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
 
         tfComidasDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfComidasDia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         panelIndicadores.add(tfComidasDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 11, 124, -1));
 
-        jLabel56.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel56.setText("Entre semana");
-        panelIndicadores.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jlEntreSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEntreSemana.setText("Entre semana");
+        panelIndicadores.add(jlEntreSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel57.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel57.setText("Fin de semana");
-        panelIndicadores.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jlFinSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlFinSemana.setText("Fin de semana");
+        panelIndicadores.add(jlFinSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jLabel58.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel58.setText("Comidas en casa");
-        panelIndicadores.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+        jlComidasCasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlComidasCasa.setText("Comidas en casa");
+        panelIndicadores.add(jlComidasCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
-        jLabel59.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel59.setText("Comidas fuera");
-        panelIndicadores.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
+        jlComidasFuera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlComidasFuera.setText("Comidas fuera");
+        panelIndicadores.add(jlComidasFuera, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
-        tfComidasDia1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 94, -1));
+        tfComidaCasaSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfComidaCasaSemana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfComidaCasaSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 94, -1));
 
-        tfComidasDia2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 94, -1));
+        tfComidaCasaFin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfComidaCasaFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfComidaCasaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 94, -1));
 
-        tfComidasDia3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 94, -1));
+        tfComidasFueraSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfComidasFueraSemana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfComidasFueraSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 94, -1));
 
-        tfComidasDia4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 94, -1));
+        tfComidasFueraFin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfComidasFueraFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfComidasFueraFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 94, -1));
 
-        jLabel60.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel60.setText("¿Quién prepara sus alimentos?");
-        panelIndicadores.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 14, -1, -1));
+        jlQuienPrepara.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlQuienPrepara.setText("¿Quién prepara sus alimentos?");
+        panelIndicadores.add(jlQuienPrepara, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 14, -1, -1));
 
-        tfComidasDia5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia5, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 11, 166, -1));
+        tfQuienPrepara.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfQuienPrepara.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfQuienPrepara, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 11, 166, -1));
 
-        jLabel61.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel61.setText("¿Come entre comidas?");
-        panelIndicadores.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 14, -1, -1));
+        jlEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEntreComidas.setText("¿Come entre comidas?");
+        panelIndicadores.add(jlEntreComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 14, -1, -1));
 
-        jRadioButton11.setBackground(new java.awt.Color(255, 255, 255));
-        rbgEntreComidas.add(jRadioButton11);
-        jRadioButton11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton11.setText("Si");
-        panelIndicadores.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(875, 10, -1, -1));
+        siEntreComidas.setBackground(new java.awt.Color(255, 255, 255));
+        rbgEntreComidas.add(siEntreComidas);
+        siEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siEntreComidas.setText("Si");
+        panelIndicadores.add(siEntreComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(875, 10, -1, -1));
 
-        jRadioButton12.setBackground(new java.awt.Color(153, 217, 234));
-        rbgEntreComidas.add(jRadioButton12);
-        jRadioButton12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton12.setText("No");
-        panelIndicadores.add(jRadioButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 10, -1, -1));
+        noEntreComidas.setBackground(new java.awt.Color(153, 217, 234));
+        rbgEntreComidas.add(noEntreComidas);
+        noEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noEntreComidas.setText("No");
+        panelIndicadores.add(noEntreComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 10, -1, -1));
 
         jLabel62.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel62.setText("¿Qué come entre comidas?");
@@ -1512,333 +2933,345 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         tfComidasDia6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         panelIndicadores.add(tfComidasDia6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 400, -1));
 
-        jLabel63.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel63.setText("¿Ha modificado su alimentación en los últimos 6 meses (trabajo, estudio, etc)?");
-        panelIndicadores.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
-
-        jRadioButton13.setBackground(new java.awt.Color(153, 217, 234));
-        rbgModificacionAlimentos.add(jRadioButton13);
-        jRadioButton13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton13.setText("Si");
-        panelIndicadores.add(jRadioButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, -1, -1));
-
-        jRadioButton14.setBackground(new java.awt.Color(153, 217, 234));
-        rbgModificacionAlimentos.add(jRadioButton14);
-        jRadioButton14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton14.setText("No");
-        panelIndicadores.add(jRadioButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, -1, -1));
-
-        jLabel64.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel64.setText("¿Porqué ha modificado su alimentación?");
-        panelIndicadores.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
-
-        tfComidasDia7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 345, -1));
-
-        jLabel65.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel65.setText("Su apetito es:");
-        panelIndicadores.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-
-        jRadioButton15.setBackground(new java.awt.Color(255, 255, 255));
-        rbgApetito.add(jRadioButton15);
-        jRadioButton15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton15.setText("Bueno");
-        panelIndicadores.add(jRadioButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
-
-        jRadioButton16.setBackground(new java.awt.Color(255, 255, 255));
-        rbgApetito.add(jRadioButton16);
-        jRadioButton16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton16.setText("Malo");
-        panelIndicadores.add(jRadioButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
-
-        jRadioButton17.setBackground(new java.awt.Color(255, 255, 255));
-        rbgApetito.add(jRadioButton17);
-        jRadioButton17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton17.setText("Regular");
-        panelIndicadores.add(jRadioButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
-
-        jLabel66.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel66.setText("¿A qué hora tiene más hambre?");
-        panelIndicadores.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
-
-        jRadioButton18.setBackground(new java.awt.Color(255, 255, 255));
-        rbgHoraHambre.add(jRadioButton18);
-        jRadioButton18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton18.setText("Levantarse");
-        panelIndicadores.add(jRadioButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, -1, -1));
-
-        jRadioButton19.setBackground(new java.awt.Color(255, 255, 255));
-        rbgHoraHambre.add(jRadioButton19);
-        jRadioButton19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton19.setText("Mañana");
-        panelIndicadores.add(jRadioButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
-
-        jRadioButton20.setBackground(new java.awt.Color(153, 217, 234));
-        rbgHoraHambre.add(jRadioButton20);
-        jRadioButton20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton20.setText("Tarde");
-        panelIndicadores.add(jRadioButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, -1, -1));
-
-        jRadioButton21.setBackground(new java.awt.Color(153, 217, 234));
-        rbgHoraHambre.add(jRadioButton21);
-        jRadioButton21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton21.setText("Noche");
-        panelIndicadores.add(jRadioButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, -1, -1));
-
-        jLabel67.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel67.setText("Alimentos preferidos:");
-        panelIndicadores.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-
-        tfComidasDia8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 798, -1));
-
-        jLabel68.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel68.setText("Alimentos que NO agradan:");
-        panelIndicadores.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
-
-        tfComidasDia9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 758, -1));
-
-        jLabel69.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel69.setText("Alimentos que causan malestar:");
-        panelIndicadores.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-
-        tfComidasDia10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 734, -1));
-
-        jLabel70.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel70.setText("¿Cómo?");
-        panelIndicadores.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
-
-        jRadioButton22.setBackground(new java.awt.Color(255, 255, 255));
-        rbgIntolerante.add(jRadioButton22);
-        jRadioButton22.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton22.setText("Si");
-        panelIndicadores.add(jRadioButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
-
-        jRadioButton23.setBackground(new java.awt.Color(255, 255, 255));
-        rbgIntolerante.add(jRadioButton23);
-        jRadioButton23.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton23.setText("No");
-        panelIndicadores.add(jRadioButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
-
-        jLabel71.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel71.setText("¿Cuál (es)?");
-        panelIndicadores.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
-
-        tfComidasDia11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 484, -1));
-
-        jLabel72.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel72.setText("¿Su consumo varía cuando está triste, nervioso o ansioso?");
-        panelIndicadores.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
-
-        jRadioButton24.setBackground(new java.awt.Color(153, 217, 234));
-        rbgVariacionAlimentacion.add(jRadioButton24);
-        jRadioButton24.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton24.setText("Si");
-        panelIndicadores.add(jRadioButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
-
-        jRadioButton25.setBackground(new java.awt.Color(153, 217, 234));
-        rbgVariacionAlimentacion.add(jRadioButton25);
-        jRadioButton25.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton25.setText("No");
-        panelIndicadores.add(jRadioButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
-
-        jLabel73.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel73.setText("¿Es alérgico o intolerante a algun alimento?");
-        panelIndicadores.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
-
-        jRadioButton26.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton26);
-        jRadioButton26.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton26.setText("Nula");
-        panelIndicadores.add(jRadioButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, -1));
-
-        jRadioButton27.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton27);
-        jRadioButton27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton27.setText("Menor");
-        panelIndicadores.add(jRadioButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, -1));
-
-        jRadioButton28.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton28);
-        jRadioButton28.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton28.setText("Mayor");
-        panelIndicadores.add(jRadioButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 320, -1, -1));
-
-        jLabel74.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel74.setText("¿Agrega sal a la comida ya preparada?");
-        panelIndicadores.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
-
-        jRadioButton29.setBackground(new java.awt.Color(153, 217, 234));
-        rbgSal.add(jRadioButton29);
-        jRadioButton29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton29.setText("Si");
-        panelIndicadores.add(jRadioButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
-
-        jRadioButton30.setBackground(new java.awt.Color(153, 217, 234));
-        rbgSal.add(jRadioButton30);
-        jRadioButton30.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton30.setText("No");
-        panelIndicadores.add(jRadioButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
-
-        jLabel75.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel75.setText("¿Grasa utilizada en casa?");
-        panelIndicadores.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
-
-        jRadioButton31.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton31);
-        jRadioButton31.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton31.setText("Margarina");
-        panelIndicadores.add(jRadioButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
-
-        jRadioButton32.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton32);
-        jRadioButton32.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton32.setText("Aceite vegetal");
-        panelIndicadores.add(jRadioButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
-
-        jRadioButton33.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton33);
-        jRadioButton33.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton33.setText("Manteca");
-        panelIndicadores.add(jRadioButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
-
-        jRadioButton34.setBackground(new java.awt.Color(153, 217, 234));
-        rbgComportamientoAlimentacion.add(jRadioButton34);
-        jRadioButton34.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton34.setText("Mantequilla");
-        panelIndicadores.add(jRadioButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, -1));
-
-        jLabel76.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel76.setText("Otro");
-        panelIndicadores.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
-
-        tfComidasDia12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 169, -1));
-
-        jLabel77.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel77.setText("¿Ha llevado alguna dieta especial?");
-        panelIndicadores.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
-
-        jRadioButton35.setBackground(new java.awt.Color(153, 217, 234));
-        rbgBajarPeso.add(jRadioButton35);
-        jRadioButton35.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton35.setText("Si");
-        panelIndicadores.add(jRadioButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, -1, -1));
-
-        jRadioButton36.setBackground(new java.awt.Color(153, 217, 234));
-        rbgBajarPeso.add(jRadioButton36);
-        jRadioButton36.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton36.setText("No");
-        panelIndicadores.add(jRadioButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, -1, -1));
-
-        jLabel78.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel78.setText("¿Cuántas?");
-        panelIndicadores.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
-
-        tfComidasDia13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 65, -1));
-
-        jLabel79.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel79.setText("¿Hace cuanto?");
-        panelIndicadores.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
-
-        tfComidasDia14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 215, -1));
-
-        jLabel80.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel80.setText("¿Por cuánto tiempo?");
-        panelIndicadores.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
-
-        tfComidasDia15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia15, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 156, -1));
-
-        jLabel81.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel81.setText("¿Por qué razón?");
-        panelIndicadores.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, -1, -1));
-
-        tfComidasDia16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 356, -1));
-
-        jLabel82.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel82.setText("¿Qué tanto se apegó a ella?");
-        panelIndicadores.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
-
-        jLabel83.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel83.setText("¿Obtuvo los resultados esperados?");
-        panelIndicadores.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, -1, -1));
-
-        jLabel84.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel84.setText("¿Ha utilizado medicamentos para bajar de peso?");
-        panelIndicadores.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
-
-        jLabel85.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel85.setText("¿Cuál (es)?");
-        panelIndicadores.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 560, -1, -1));
-
-        tfComidasDia17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia17.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia17, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, 299, -1));
-
-        jRadioButton37.setBackground(new java.awt.Color(153, 217, 234));
-        rbgApegoDieta.add(jRadioButton37);
-        jRadioButton37.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton37.setText("Nada");
-        panelIndicadores.add(jRadioButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
-
-        jRadioButton38.setBackground(new java.awt.Color(153, 217, 234));
-        rbgApegoDieta.add(jRadioButton38);
-        jRadioButton38.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton38.setText("Muy poco");
-        panelIndicadores.add(jRadioButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, -1));
-
-        jRadioButton39.setBackground(new java.awt.Color(153, 217, 234));
-        rbgApegoDieta.add(jRadioButton39);
-        jRadioButton39.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton39.setText("Suficiente");
-        panelIndicadores.add(jRadioButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, -1, -1));
-
-        jRadioButton40.setBackground(new java.awt.Color(153, 217, 234));
-        rbgApegoDieta.add(jRadioButton40);
-        jRadioButton40.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton40.setText("Excepcional");
-        panelIndicadores.add(jRadioButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 500, -1, -1));
-
-        jRadioButton41.setBackground(new java.awt.Color(153, 217, 234));
-        rbgResultadosDieta.add(jRadioButton41);
-        jRadioButton41.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton41.setText("Nada");
-        panelIndicadores.add(jRadioButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, -1, -1));
-
-        jRadioButton42.setBackground(new java.awt.Color(153, 217, 234));
-        rbgResultadosDieta.add(jRadioButton42);
-        jRadioButton42.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton42.setText("Muy poco");
-        panelIndicadores.add(jRadioButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, -1, -1));
-
-        jRadioButton43.setBackground(new java.awt.Color(153, 217, 234));
-        rbgResultadosDieta.add(jRadioButton43);
-        jRadioButton43.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton43.setText("Suficiente");
-        panelIndicadores.add(jRadioButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 530, -1, -1));
-
-        jRadioButton44.setBackground(new java.awt.Color(153, 217, 234));
-        rbgResultadosDieta.add(jRadioButton44);
-        jRadioButton44.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jRadioButton44.setText("Excepcional");
-        panelIndicadores.add(jRadioButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
+        jlModificacionDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlModificacionDieta.setText("¿Ha modificado su alimentación en los últimos 6 meses (trabajo, estudio, etc)?");
+        panelIndicadores.add(jlModificacionDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
+
+        siModificacionAlimentos.setBackground(new java.awt.Color(153, 217, 234));
+        rbgModificacionAlimentos.add(siModificacionAlimentos);
+        siModificacionAlimentos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siModificacionAlimentos.setText("Si");
+        panelIndicadores.add(siModificacionAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, -1, -1));
+
+        noModificacionAlimentos.setBackground(new java.awt.Color(153, 217, 234));
+        rbgModificacionAlimentos.add(noModificacionAlimentos);
+        noModificacionAlimentos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noModificacionAlimentos.setText("No");
+        panelIndicadores.add(noModificacionAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, -1, -1));
+
+        jlRazonModificacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlRazonModificacion.setText("¿Porqué ha modificado su alimentación?");
+        panelIndicadores.add(jlRazonModificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+
+        tfRazonModifiacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfRazonModifiacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfRazonModifiacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 345, -1));
+
+        jlApetito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlApetito.setText("Su apetito es:");
+        panelIndicadores.add(jlApetito, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        buenoApetito.setBackground(new java.awt.Color(255, 255, 255));
+        rbgApetito.add(buenoApetito);
+        buenoApetito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        buenoApetito.setText("Bueno");
+        panelIndicadores.add(buenoApetito, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+
+        maloApetito.setBackground(new java.awt.Color(255, 255, 255));
+        rbgApetito.add(maloApetito);
+        maloApetito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        maloApetito.setText("Malo");
+        panelIndicadores.add(maloApetito, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+
+        regularAPetito.setBackground(new java.awt.Color(255, 255, 255));
+        rbgApetito.add(regularAPetito);
+        regularAPetito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        regularAPetito.setText("Regular");
+        panelIndicadores.add(regularAPetito, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+
+        jlHoraHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlHoraHambre.setText("¿A qué hora tiene más hambre?");
+        panelIndicadores.add(jlHoraHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+
+        levantarseHambre.setBackground(new java.awt.Color(255, 255, 255));
+        rbgHoraHambre.add(levantarseHambre);
+        levantarseHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        levantarseHambre.setText("Levantarse");
+        panelIndicadores.add(levantarseHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, -1, -1));
+
+        mañanaHambre.setBackground(new java.awt.Color(255, 255, 255));
+        rbgHoraHambre.add(mañanaHambre);
+        mañanaHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        mañanaHambre.setText("Mañana");
+        panelIndicadores.add(mañanaHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
+
+        TardeHambre.setBackground(new java.awt.Color(153, 217, 234));
+        rbgHoraHambre.add(TardeHambre);
+        TardeHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        TardeHambre.setText("Tarde");
+        panelIndicadores.add(TardeHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, -1, -1));
+
+        NocheHambre.setBackground(new java.awt.Color(153, 217, 234));
+        rbgHoraHambre.add(NocheHambre);
+        NocheHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        NocheHambre.setText("Noche");
+        panelIndicadores.add(NocheHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, -1, -1));
+
+        jlAlimentosPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAlimentosPreferidos.setText("Alimentos preferidos:");
+        panelIndicadores.add(jlAlimentosPreferidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        tfAlimentosPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfAlimentosPreferidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfAlimentosPreferidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 798, -1));
+
+        jlAliementosNoPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAliementosNoPreferidos.setText("Alimentos que NO agradan:");
+        panelIndicadores.add(jlAliementosNoPreferidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+
+        tfAlimentosNoPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfAlimentosNoPreferidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfAlimentosNoPreferidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 758, -1));
+
+        jlAlimentosMalestar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAlimentosMalestar.setText("Alimentos que causan malestar:");
+        panelIndicadores.add(jlAlimentosMalestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        tfAlimentosMalestar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfAlimentosMalestar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfAlimentosMalestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 734, -1));
+
+        jlComoVaria.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlComoVaria.setText("¿Cómo?");
+        panelIndicadores.add(jlComoVaria, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
+
+        siAlergico.setBackground(new java.awt.Color(255, 255, 255));
+        rbgIntolerante.add(siAlergico);
+        siAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siAlergico.setText("Si");
+        panelIndicadores.add(siAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
+
+        noAlergico.setBackground(new java.awt.Color(255, 255, 255));
+        rbgIntolerante.add(noAlergico);
+        noAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noAlergico.setText("No");
+        panelIndicadores.add(noAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
+
+        jlCualAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCualAlergico.setText("¿Cuál (es)?");
+        panelIndicadores.add(jlCualAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
+
+        tfCualAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualAlergico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfCualAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 484, -1));
+
+        jlConsumoEDA.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlConsumoEDA.setText("¿Su consumo varía cuando está triste, nervioso o ansioso?");
+        panelIndicadores.add(jlConsumoEDA, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+
+        siVariacion.setBackground(new java.awt.Color(153, 217, 234));
+        rbgVariacionAlimentacion.add(siVariacion);
+        siVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siVariacion.setText("Si");
+        panelIndicadores.add(siVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
+
+        noVariacion.setBackground(new java.awt.Color(153, 217, 234));
+        rbgVariacionAlimentacion.add(noVariacion);
+        noVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noVariacion.setText("No");
+        panelIndicadores.add(noVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
+
+        jlAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAlergico.setText("¿Es alérgico o intolerante a algun alimento?");
+        panelIndicadores.add(jlAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+
+        nulaVariacion.setBackground(new java.awt.Color(153, 217, 234));
+        rbgComportamientoAlimentacion.add(nulaVariacion);
+        nulaVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nulaVariacion.setText("Nula");
+        panelIndicadores.add(nulaVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, -1));
+
+        menorVariacion.setBackground(new java.awt.Color(153, 217, 234));
+        rbgComportamientoAlimentacion.add(menorVariacion);
+        menorVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        menorVariacion.setText("Menor");
+        panelIndicadores.add(menorVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, -1));
+
+        mayorVariacion.setBackground(new java.awt.Color(153, 217, 234));
+        rbgComportamientoAlimentacion.add(mayorVariacion);
+        mayorVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        mayorVariacion.setText("Mayor");
+        panelIndicadores.add(mayorVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 320, -1, -1));
+
+        jlAgregarSal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAgregarSal.setText("¿Agrega sal a la comida ya preparada?");
+        panelIndicadores.add(jlAgregarSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        siSal.setBackground(new java.awt.Color(153, 217, 234));
+        rbgSal.add(siSal);
+        siSal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siSal.setText("Si");
+        panelIndicadores.add(siSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
+
+        noSal.setBackground(new java.awt.Color(153, 217, 234));
+        rbgSal.add(noSal);
+        noSal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noSal.setText("No");
+        panelIndicadores.add(noSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
+
+        jlGrasaUtilizada.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlGrasaUtilizada.setText("¿Grasa utilizada en casa?");
+        panelIndicadores.add(jlGrasaUtilizada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+
+        margarinaGrasa.setBackground(new java.awt.Color(153, 217, 234));
+        rbgGrasaUtilizada.add(margarinaGrasa);
+        margarinaGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        margarinaGrasa.setText("Margarina");
+        panelIndicadores.add(margarinaGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
+
+        aceiteVegetalGrasa.setBackground(new java.awt.Color(153, 217, 234));
+        rbgGrasaUtilizada.add(aceiteVegetalGrasa);
+        aceiteVegetalGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        aceiteVegetalGrasa.setText("Aceite vegetal");
+        panelIndicadores.add(aceiteVegetalGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+
+        mantecaGrasa.setBackground(new java.awt.Color(153, 217, 234));
+        rbgGrasaUtilizada.add(mantecaGrasa);
+        mantecaGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        mantecaGrasa.setText("Manteca");
+        panelIndicadores.add(mantecaGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+
+        mantequillaGrasa.setBackground(new java.awt.Color(153, 217, 234));
+        rbgGrasaUtilizada.add(mantequillaGrasa);
+        mantequillaGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        mantequillaGrasa.setText("Mantequilla");
+        panelIndicadores.add(mantequillaGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, -1));
+
+        jlOtroGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlOtroGrasa.setText("Otro");
+        panelIndicadores.add(jlOtroGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
+
+        tfOtroGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfOtroGrasa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfOtroGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 169, -1));
+
+        jlDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDietaEspecial.setText("¿Ha llevado alguna dieta especial?");
+        panelIndicadores.add(jlDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
+
+        siMedicamentoBajarPeso.setBackground(new java.awt.Color(153, 217, 234));
+        rbgBajarPeso.add(siMedicamentoBajarPeso);
+        siMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siMedicamentoBajarPeso.setText("Si");
+        panelIndicadores.add(siMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, -1, -1));
+
+        noMedicamentoBajarPeso.setBackground(new java.awt.Color(153, 217, 234));
+        rbgBajarPeso.add(noMedicamentoBajarPeso);
+        noMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noMedicamentoBajarPeso.setText("No");
+        panelIndicadores.add(noMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, -1, -1));
+
+        jlCuantasDietas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCuantasDietas.setText("¿Cuántas?");
+        panelIndicadores.add(jlCuantasDietas, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
+
+        tfCuantasDietas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCuantasDietas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfCuantasDietas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 65, -1));
+
+        jHaceCuantoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jHaceCuantoDieta.setText("¿Hace cuanto?");
+        panelIndicadores.add(jHaceCuantoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
+
+        tfHaceCuantoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfHaceCuantoDieta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfHaceCuantoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 215, -1));
+
+        jlCuantoTiempoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCuantoTiempoDieta.setText("¿Por cuánto tiempo?");
+        panelIndicadores.add(jlCuantoTiempoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
+
+        tfCuantoTiempoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCuantoTiempoDieta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfCuantoTiempoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 156, -1));
+
+        jlRazonDIetaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlRazonDIetaEspecial.setText("¿Por qué razón?");
+        panelIndicadores.add(jlRazonDIetaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, -1, -1));
+
+        tfRazonDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfRazonDietaEspecial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfRazonDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 356, -1));
+
+        jlCuantoAPegoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCuantoAPegoDieta.setText("¿Qué tanto se apegó a ella?");
+        panelIndicadores.add(jlCuantoAPegoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
+
+        jlResultadosEsperadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlResultadosEsperadosDieta.setText("¿Obtuvo los resultados esperados?");
+        panelIndicadores.add(jlResultadosEsperadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, -1, -1));
+
+        jlAlimentosParaBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAlimentosParaBajarPeso.setText("¿Ha utilizado medicamentos para bajar de peso?");
+        panelIndicadores.add(jlAlimentosParaBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
+
+        jlCualMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCualMedicamentoBajarPeso.setText("¿Cuál (es)?");
+        panelIndicadores.add(jlCualMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 560, -1, -1));
+
+        tfCualMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualMedicamentoBajarPeso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        panelIndicadores.add(tfCualMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, 299, -1));
+
+        nadaAPego.setBackground(new java.awt.Color(153, 217, 234));
+        rbgApegoDieta.add(nadaAPego);
+        nadaAPego.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nadaAPego.setText("Nada");
+        panelIndicadores.add(nadaAPego, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
+
+        muyPocoAPego.setBackground(new java.awt.Color(153, 217, 234));
+        rbgApegoDieta.add(muyPocoAPego);
+        muyPocoAPego.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        muyPocoAPego.setText("Muy poco");
+        panelIndicadores.add(muyPocoAPego, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, -1));
+
+        SuficienteApego.setBackground(new java.awt.Color(153, 217, 234));
+        rbgApegoDieta.add(SuficienteApego);
+        SuficienteApego.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        SuficienteApego.setText("Suficiente");
+        panelIndicadores.add(SuficienteApego, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, -1, -1));
+
+        excepcionalApego.setBackground(new java.awt.Color(153, 217, 234));
+        rbgApegoDieta.add(excepcionalApego);
+        excepcionalApego.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        excepcionalApego.setText("Excepcional");
+        panelIndicadores.add(excepcionalApego, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 500, -1, -1));
+
+        nadaResultadosDieta.setBackground(new java.awt.Color(153, 217, 234));
+        rbgResultadosDieta.add(nadaResultadosDieta);
+        nadaResultadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nadaResultadosDieta.setText("Nada");
+        panelIndicadores.add(nadaResultadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, -1, -1));
+
+        muyPocoResultadosDieta.setBackground(new java.awt.Color(153, 217, 234));
+        rbgResultadosDieta.add(muyPocoResultadosDieta);
+        muyPocoResultadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        muyPocoResultadosDieta.setText("Muy poco");
+        panelIndicadores.add(muyPocoResultadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, -1, -1));
+
+        suficienteResultadosDieta.setBackground(new java.awt.Color(153, 217, 234));
+        rbgResultadosDieta.add(suficienteResultadosDieta);
+        suficienteResultadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        suficienteResultadosDieta.setText("Suficiente");
+        panelIndicadores.add(suficienteResultadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 530, -1, -1));
+
+        excepcionalResultadosDieta.setBackground(new java.awt.Color(153, 217, 234));
+        rbgResultadosDieta.add(excepcionalResultadosDieta);
+        excepcionalResultadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        excepcionalResultadosDieta.setText("Excepcional");
+        panelIndicadores.add(excepcionalResultadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
+
+        siDietaEspecial.setBackground(new java.awt.Color(153, 217, 234));
+        rbgIDdietaEspecial.add(siDietaEspecial);
+        siDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siDietaEspecial.setText("Si");
+        panelIndicadores.add(siDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, -1, -1));
+
+        noDietaEspecial.setBackground(new java.awt.Color(153, 217, 234));
+        rbgIDdietaEspecial.add(noDietaEspecial);
+        noDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noDietaEspecial.setText("No");
+        panelIndicadores.add(noDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
 
         dpGuardar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
         dpGuardar4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -1861,90 +3294,90 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.setPreferredSize(new java.awt.Dimension(980, 610));
         panelIndicadoresAntropo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel87.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel87.setText("Medición (unidad)");
-        panelIndicadoresAntropo.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jlMedicion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlMedicion.setText("Medición (unidad)");
+        panelIndicadoresAntropo.add(jlMedicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jLabel88.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel88.setText("Peso actual (kg)");
-        panelIndicadoresAntropo.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 45, -1, -1));
+        jlPesoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoActual.setText("Peso actual (kg)");
+        panelIndicadoresAntropo.add(jlPesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 45, -1, -1));
 
-        jTextField9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 74, 137, -1));
+        tfPesoHabitual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoHabitual, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 74, 137, -1));
 
-        jLabel89.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel89.setText("Peso habitual (kg)");
-        panelIndicadoresAntropo.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
+        jlPesoHabitual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoHabitual.setText("Peso habitual (kg)");
+        panelIndicadoresAntropo.add(jlPesoHabitual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
 
-        tfPesoActualKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(tfPesoActualKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 42, 137, -1));
+        tfPesoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 42, 137, -1));
 
-        jLabel90.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel90.setText("Dato (unidad)");
-        panelIndicadoresAntropo.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 11, 101, -1));
+        jlDato.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDato.setText("Dato (unidad)");
+        panelIndicadoresAntropo.add(jlDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 11, 101, -1));
 
-        jLabel91.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel91.setText("Estatura (m)");
-        panelIndicadoresAntropo.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 109, -1, -1));
+        jlEstatura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlEstatura.setText("Estatura (m)");
+        panelIndicadoresAntropo.add(jlEstatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 109, -1, -1));
 
-        jTextField11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 106, 137, -1));
+        tfEstatura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfEstatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 106, 137, -1));
 
-        jLabel92.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel92.setText("Pliege Cutáneo Tricipital (mm)");
-        panelIndicadoresAntropo.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, -1, -1));
+        jlPliegueCutaneoTricipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPliegueCutaneoTricipital.setText("Pliege Cutáneo Tricipital (mm)");
+        panelIndicadoresAntropo.add(jlPliegueCutaneoTricipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, -1, -1));
 
-        jTextField12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 138, 137, -1));
+        tfPliegueCutaneoTricipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPliegueCutaneoTricipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 138, 137, -1));
 
-        jLabel93.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel93.setText("Pliege Cutáneo Bicipital (mm)");
-        panelIndicadoresAntropo.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 173, -1, -1));
+        jlPliegueCutaneoBicipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPliegueCutaneoBicipital.setText("Pliege Cutáneo Bicipital (mm)");
+        panelIndicadoresAntropo.add(jlPliegueCutaneoBicipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 173, -1, -1));
 
-        jTextField13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 170, 137, -1));
+        tfPliegueCutaneoBicipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPliegueCutaneoBicipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 170, 137, -1));
 
-        jLabel94.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel94.setText("Pliege Cutáneo Subescapular(mm)");
-        panelIndicadoresAntropo.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 205, -1, -1));
+        jPliegueCutaneoSubescapular.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jPliegueCutaneoSubescapular.setText("Pliege Cutáneo Subescapular(mm)");
+        panelIndicadoresAntropo.add(jPliegueCutaneoSubescapular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 205, -1, -1));
 
-        jTextField14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 202, 137, -1));
+        tfPliegueCutaneoSubescapular.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPliegueCutaneoSubescapular, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 202, 137, -1));
 
-        jLabel95.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel95.setText("Pliege Cutáneo Suprailiaco (mm)");
-        panelIndicadoresAntropo.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 237, -1, -1));
+        jPliegueCutaneoSuprailiaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jPliegueCutaneoSuprailiaco.setText("Pliege Cutáneo Suprailiaco (mm)");
+        panelIndicadoresAntropo.add(jPliegueCutaneoSuprailiaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 237, -1, -1));
 
-        jTextField15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 234, 137, -1));
+        tfPliegueCutaneoSuprailiaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPliegueCutaneoSuprailiaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 234, 137, -1));
 
-        jLabel96.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel96.setText("Circunferencia de brazo (cm)");
-        panelIndicadoresAntropo.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 269, -1, -1));
+        jlCircunferenciaBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCircunferenciaBrazo.setText("Circunferencia de brazo (cm)");
+        panelIndicadoresAntropo.add(jlCircunferenciaBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 269, -1, -1));
 
-        jTextField16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 266, 137, -1));
+        tfCircunferenciaBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfCircunferenciaBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 266, 137, -1));
 
-        jLabel97.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel97.setText("Circunferencia de cintura (cm)");
-        panelIndicadoresAntropo.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 301, -1, -1));
+        jlCircunferenciaCintura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCircunferenciaCintura.setText("Circunferencia de cintura (cm)");
+        panelIndicadoresAntropo.add(jlCircunferenciaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 301, -1, -1));
 
-        jTextField17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 298, 137, -1));
+        tfCircunferenciaCintura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfCircunferenciaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 298, 137, -1));
 
-        jLabel98.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel98.setText("Circunferencia de cadera (cm)");
-        panelIndicadoresAntropo.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 333, -1, -1));
+        jlCircunferenciaCadera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCircunferenciaCadera.setText("Circunferencia de cadera (cm)");
+        panelIndicadoresAntropo.add(jlCircunferenciaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 333, -1, -1));
 
-        jTextField18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 330, 137, -1));
+        tfCircunferenciaCadera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfCircunferenciaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 330, 137, -1));
 
-        jLabel99.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel99.setText("Circunferencia abdominal (cm)");
-        panelIndicadoresAntropo.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 365, -1, -1));
+        jlCircunferenciaAbdominal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlCircunferenciaAbdominal.setText("Circunferencia abdominal (cm)");
+        panelIndicadoresAntropo.add(jlCircunferenciaAbdominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 365, -1, -1));
 
-        jTextField19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 362, 137, -1));
+        tfCircunferenciaAbdominal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfCircunferenciaAbdominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 362, 137, -1));
 
         jLabel100.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel100.setText("Medición (unidad)");
@@ -1954,151 +3387,137 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         jLabel101.setText("Dato (unidad)");
         panelIndicadoresAntropo.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 397, 132, -1));
 
-        jLabel102.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel102.setText("Complexión");
-        panelIndicadoresAntropo.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 429, -1, -1));
+        jlComplexion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlComplexion.setText("Complexión");
+        panelIndicadoresAntropo.add(jlComplexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 429, -1, -1));
 
-        jTextField20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 426, 142, -1));
+        tfComplexion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfComplexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 426, 142, -1));
 
-        jLabel103.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel103.setText("Peso teórico (kg)");
-        panelIndicadoresAntropo.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 461, -1, -1));
+        jlPesoTeorico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoTeorico.setText("Peso teórico (kg)");
+        panelIndicadoresAntropo.add(jlPesoTeorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 461, -1, -1));
 
-        jTextField21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 458, 142, -1));
+        tfPesoTeorico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoTeorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 458, 142, -1));
 
-        jLabel104.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel104.setText("Peso teórico (%)");
-        panelIndicadoresAntropo.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 493, -1, -1));
+        jlPesoTeoricoXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoTeoricoXC.setText("Peso teórico (%)");
+        panelIndicadoresAntropo.add(jlPesoTeoricoXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 493, -1, -1));
 
-        jTextField22.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 490, 142, -1));
+        tfPesoTeoricoXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoTeoricoXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 490, 142, -1));
 
-        jLabel105.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel105.setText("Peso habitual (%)");
-        panelIndicadoresAntropo.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 525, -1, -1));
+        jlPesoHabitualXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoHabitualXC.setText("Peso habitual (%)");
+        panelIndicadoresAntropo.add(jlPesoHabitualXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 525, -1, -1));
 
-        jTextField23.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 522, 142, -1));
+        tfPesoHabitualXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoHabitualXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 522, 142, -1));
 
-        jLabel106.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel106.setText("Indice de masa corportal (kg/m2)");
-        panelIndicadoresAntropo.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 557, -1, -1));
+        JIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        JIMC.setText("Indice de masa corportal (kg/m2)");
+        panelIndicadoresAntropo.add(JIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 557, -1, -1));
 
-        jTextField24.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 554, 142, -1));
+        tfIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 554, 142, -1));
 
-        jLabel107.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel107.setText("Peso mínimo por IMC (kg)");
-        panelIndicadoresAntropo.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 589, -1, -1));
+        jlPesoMinimoIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoMinimoIMC.setText("Peso mínimo por IMC (kg)");
+        panelIndicadoresAntropo.add(jlPesoMinimoIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 589, -1, -1));
 
-        jTextField25.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 586, 142, -1));
+        tfPesoMinimoIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoMinimoIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 586, 142, -1));
 
-        jLabel108.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel108.setText("Medición (unidad)");
-        panelIndicadoresAntropo.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 11, -1, -1));
+        jlMedicion2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlMedicion2.setText("Medición (unidad)");
+        panelIndicadoresAntropo.add(jlMedicion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 11, -1, -1));
 
-        jLabel109.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel109.setText("Dato (unidad)");
-        panelIndicadoresAntropo.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 11, 101, -1));
+        jlDato2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDato2.setText("Dato (unidad)");
+        panelIndicadoresAntropo.add(jlDato2, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 11, 101, -1));
 
-        jLabel110.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel110.setText("Peso máximo por IMC (kg)");
-        panelIndicadoresAntropo.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 40, -1, -1));
+        jlPesoMaximo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoMaximo.setText("Peso máximo por IMC (kg)");
+        panelIndicadoresAntropo.add(jlPesoMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 40, -1, -1));
 
-        jTextField26.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 37, 142, -1));
+        tfPesoMaximo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPesoMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 37, 142, -1));
 
-        jTextField27.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField27.addActionListener(new java.awt.event.ActionListener() {
+        tfGrasaCorporal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfGrasaCorporal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField27ActionPerformed(evt);
+                tfGrasaCorporalActionPerformed(evt);
             }
         });
-        panelIndicadoresAntropo.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 74, 142, -1));
+        panelIndicadoresAntropo.add(tfGrasaCorporal, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 74, 142, -1));
 
-        jLabel111.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel111.setText("Grasa corporal (%)");
-        panelIndicadoresAntropo.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 74, -1, -1));
+        jlGrasaCorporal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlGrasaCorporal.setText("Grasa corporal (%)");
+        panelIndicadoresAntropo.add(jlGrasaCorporal, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 74, -1, -1));
 
-        jLabel112.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel112.setText("Grasa corporal total (kg)");
-        panelIndicadoresAntropo.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 109, -1, -1));
+        jlGrasaCorporalKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlGrasaCorporalKG.setText("Grasa corporal total (kg)");
+        panelIndicadoresAntropo.add(jlGrasaCorporalKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 109, -1, -1));
 
-        jTextField28.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 106, 142, -1));
+        tfGrasaCorporalKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfGrasaCorporalKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 106, 142, -1));
 
-        jLabel113.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel113.setText("Masa libre de grasa (kg)");
-        panelIndicadoresAntropo.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 141, -1, -1));
+        jlMasaLigreGrasaKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlMasaLigreGrasaKG.setText("Masa libre de grasa (kg)");
+        panelIndicadoresAntropo.add(jlMasaLigreGrasaKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 141, -1, -1));
 
-        jTextField29.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField29, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 138, 142, -1));
+        tfMasaLibreGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfMasaLibreGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 138, 142, -1));
 
-        jLabel114.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel114.setText("Diferencia de grasa (kg)");
-        panelIndicadoresAntropo.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 173, -1, -1));
+        jlDiferenciaGrasaKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlDiferenciaGrasaKG.setText("Diferencia de grasa (kg)");
+        panelIndicadoresAntropo.add(jlDiferenciaGrasaKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 173, -1, -1));
 
-        jTextField30.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField30, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 170, 142, -1));
+        tfDiferenciaGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfDiferenciaGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 170, 142, -1));
 
-        jLabel115.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel115.setText("Masa muscular total (kg)");
-        panelIndicadoresAntropo.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 205, -1, -1));
+        jlMasaMuscularTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlMasaMuscularTotal.setText("Masa muscular total (kg)");
+        panelIndicadoresAntropo.add(jlMasaMuscularTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 205, -1, -1));
 
-        jTextField31.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField31, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 202, 142, -1));
+        tfMasaMuscularTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfMasaMuscularTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 202, 142, -1));
 
-        jLabel116.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel116.setText("Pliegue cutáneo tricipital (perceptil)");
-        panelIndicadoresAntropo.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 237, -1, -1));
+        jlPliegueCutaneoPerceptil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPliegueCutaneoPerceptil.setText("Pliegue cutáneo tricipital (perceptil)");
+        panelIndicadoresAntropo.add(jlPliegueCutaneoPerceptil, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 237, -1, -1));
 
-        jTextField32.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField32, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 234, 142, -1));
+        tfPliegueCutaneoPerceptil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPliegueCutaneoPerceptil, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 234, 142, -1));
 
-        jLabel117.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel117.setText("Pliegue cutáneo subescapular (perceptil)");
-        panelIndicadoresAntropo.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 269, -1, -1));
+        jlPliegueCutaneosubescapular.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPliegueCutaneosubescapular.setText("Pliegue cutáneo subescapular (perceptil)");
+        panelIndicadoresAntropo.add(jlPliegueCutaneosubescapular, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 269, -1, -1));
 
-        jLabel118.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel118.setText("Índice cintura-cadera (cm)");
-        panelIndicadoresAntropo.add(jLabel118, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 301, -1, -1));
+        jlIndiceCinturaCadera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlIndiceCinturaCadera.setText("Índice cintura-cadera (cm)");
+        panelIndicadoresAntropo.add(jlIndiceCinturaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 301, -1, -1));
 
-        jLabel119.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel119.setText("Circunferencia abdominal (cm)");
-        panelIndicadoresAntropo.add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 333, -1, -1));
+        jlAreaMuscularBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAreaMuscularBrazo.setText("Área muscular de brazo (cm2)");
+        panelIndicadoresAntropo.add(jlAreaMuscularBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, -1, -1));
 
-        jLabel120.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel120.setText("Área muscular de brazo (cm2)");
-        panelIndicadoresAntropo.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 365, -1, -1));
+        jlAguaCorporalTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAguaCorporalTotal.setText("Agua corporal total (lt)");
+        panelIndicadoresAntropo.add(jlAguaCorporalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, -1, -1));
 
-        jLabel121.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel121.setText("Agua corporal total (lt)");
-        panelIndicadoresAntropo.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 397, -1, -1));
+        tfPliegueCutaneoSubescapularPerceptil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfPliegueCutaneoSubescapularPerceptil, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 266, 142, -1));
 
-        jLabel122.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel122.setText("Agua corporal total (lt)");
-        panelIndicadoresAntropo.add(jLabel122, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 429, -1, -1));
+        tfIndiceCaderaCintura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfIndiceCaderaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 298, 142, -1));
 
-        jTextField33.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField33, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 266, 142, -1));
+        tfAreaMuscularBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfAreaMuscularBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 340, 142, -1));
 
-        jTextField34.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField34, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 298, 142, -1));
-
-        jTextField35.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField35, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 330, 142, -1));
-
-        jTextField36.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField36, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 362, 142, -1));
-
-        jTextField37.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField37, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 394, 142, -1));
-
-        jTextField38.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(jTextField38, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 426, 142, -1));
+        tfAguaCorporalTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        panelIndicadoresAntropo.add(tfAguaCorporalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 142, -1));
 
         dpGuardar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
         dpGuardar5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2174,53 +3593,53 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dpGuardar3ActionPerformed
 
-    private void jComboBox17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox17ActionPerformed
+    private void cbCafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCafeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox17ActionPerformed
+    }//GEN-LAST:event_cbCafeActionPerformed
 
-    private void jComboBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox16ActionPerformed
+    private void cbAlcoholActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlcoholActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox16ActionPerformed
+    }//GEN-LAST:event_cbAlcoholActionPerformed
 
-    private void jComboBox15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox15ActionPerformed
+    private void cbTabacoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTabacoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox15ActionPerformed
+    }//GEN-LAST:event_cbTabacoActionPerformed
 
-    private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
+    private void cbTipoActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActividadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox12ActionPerformed
+    }//GEN-LAST:event_cbTipoActividadActionPerformed
 
     private void dpGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dpGuardar2ActionPerformed
 
-    private void tfCuantoTiempo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCuantoTiempo3ActionPerformed
+    private void tfvagTiempoTerapiaHormonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfvagTiempoTerapiaHormonalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCuantoTiempo3ActionPerformed
+    }//GEN-LAST:event_tfvagTiempoTerapiaHormonalActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void noClimaterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noClimaterioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_noClimaterioActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void siClimaterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siClimaterioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_siClimaterioActionPerformed
 
-    private void tfCuantoTiempo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCuantoTiempo2ActionPerformed
+    private void tfCualTerapiaHormonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCualTerapiaHormonalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfCuantoTiempo2ActionPerformed
+    }//GEN-LAST:event_tfCualTerapiaHormonalActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void siAnticonceptivosOralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siAnticonceptivosOralesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_siAnticonceptivosOralesActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void noEmbarazoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noEmbarazoActualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_noEmbarazoActualActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void siEmbarazoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siEmbarazoActualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_siEmbarazoActualActionPerformed
 
     private void dpGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar1ActionPerformed
         // TODO add your handling code here:
@@ -2228,7 +3647,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void dpGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardarActionPerformed
         // TODO add your handling code here:
-
+        String nombre = dpNombre.getText(), apellidos = dpApellidos.getText(), sexo = (String) dpSexo.getSelectedItem();
+        String nac = dpNacimiento.getText(), edad = (String) cbEdad.getSelectedItem(), cp = dpCP.getText();
+        String domicilio  = dpDomicilio.getText(), escolaridad = (String) dpEscolaridad.getSelectedItem(), ciudad = dpCiudad.getText();
+        String estadoC = (String) dpEstadoCivil.getSelectedItem(), telefono = dpTelefono.getText();
+        String dpID = dpIDExpediente.getText(), email = dpEmail.getText();
+        int resp = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información del usuario?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (resp == 0) {
+            consultasMysql ingreso = new consultasMysql();
+            try {
+                if (ingreso.insertarNuevoPaciente(dpID, nombre, apellidos, sexo, nac, edad,domicilio, cp, ciudad, escolaridad, estadoC, telefono, email) == 0) {
+                    JOptionPane.showMessageDialog(null, "Datos guardados exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al guardar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_dpGuardarActionPerformed
 
     private void dpTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpTelefonoActionPerformed
@@ -2341,13 +3776,13 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         seleccionarTexto.focusGained(evt);
     }//GEN-LAST:event_dpNombreFocusGained
 
-    private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
+    private void tfGrasaCorporalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfGrasaCorporalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField27ActionPerformed
+    }//GEN-LAST:event_tfGrasaCorporalActionPerformed
 
     private void dpGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar5ActionPerformed
         // TODO add your handling code here:
-        String pesoActual = tfPesoActualKG.getText();
+        String pesoActual = tfPesoActual.getText();
         pesoActual = pesoActual+"@";
         encriptacion encript = new encriptacion();
         String encr = encript.encriptar(pesoActual);
@@ -2359,7 +3794,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         int valor = 48 + rnd.nextInt(118);
         System.out.println(valor);
     }//GEN-LAST:event_dpGuardar5ActionPerformed
-
+    private void guardarInfoGeneral(){
+        System.out.println("Clic en guardar");
+    }
     /**
      * @param args the command line arguments
      */
@@ -2396,7 +3833,28 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JIMC;
+    private javax.swing.JRadioButton NocheHambre;
+    private javax.swing.JRadioButton SuficienteApego;
+    private javax.swing.JRadioButton TardeHambre;
+    private javax.swing.JRadioButton aceiteVegetalGrasa;
+    private javax.swing.JRadioButton buenoApetito;
+    private javax.swing.JComboBox<String> cbAlcohol;
+    private javax.swing.JComboBox<String> cbCafe;
     private javax.swing.JComboBox<String> cbEdad;
+    private javax.swing.JComboBox<String> cbFrecuenciaActividad;
+    private javax.swing.JComboBox<String> cbHoraCena;
+    private javax.swing.JComboBox<String> cbHoraComida;
+    private javax.swing.JComboBox<String> cbHoraDesayuno;
+    private javax.swing.JComboBox<String> cbHoraDespertarse;
+    private javax.swing.JComboBox<String> cbHoraDormir;
+    private javax.swing.JComboBox<String> cbMinutoCena;
+    private javax.swing.JComboBox<String> cbMinutoComida;
+    private javax.swing.JComboBox<String> cbMinutoDesayuno;
+    private javax.swing.JComboBox<String> cbMinutoDespertarse;
+    private javax.swing.JComboBox<String> cbMinutoDormir;
+    private javax.swing.JComboBox<String> cbTabaco;
+    private javax.swing.JComboBox<String> cbTipoActividad;
     private javax.swing.JTextField dpApellidos;
     private javax.swing.JTextField dpCP;
     private javax.swing.JTextField dpCiudad;
@@ -2415,261 +3873,188 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField dpNombre;
     private javax.swing.JComboBox<String> dpSexo;
     private javax.swing.JTextField dpTelefono;
-    private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox13;
+    private javax.swing.JRadioButton excepcionalApego;
+    private javax.swing.JRadioButton excepcionalResultadosDieta;
     private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JComboBox<String> jComboBox15;
-    private javax.swing.JComboBox<String> jComboBox16;
-    private javax.swing.JComboBox<String> jComboBox17;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jHaceCuantoDieta;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
-    private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton14;
-    private javax.swing.JRadioButton jRadioButton15;
-    private javax.swing.JRadioButton jRadioButton16;
-    private javax.swing.JRadioButton jRadioButton17;
-    private javax.swing.JRadioButton jRadioButton18;
-    private javax.swing.JRadioButton jRadioButton19;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton20;
-    private javax.swing.JRadioButton jRadioButton21;
-    private javax.swing.JRadioButton jRadioButton22;
-    private javax.swing.JRadioButton jRadioButton23;
-    private javax.swing.JRadioButton jRadioButton24;
-    private javax.swing.JRadioButton jRadioButton25;
-    private javax.swing.JRadioButton jRadioButton26;
-    private javax.swing.JRadioButton jRadioButton27;
-    private javax.swing.JRadioButton jRadioButton28;
-    private javax.swing.JRadioButton jRadioButton29;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton30;
-    private javax.swing.JRadioButton jRadioButton31;
-    private javax.swing.JRadioButton jRadioButton32;
-    private javax.swing.JRadioButton jRadioButton33;
-    private javax.swing.JRadioButton jRadioButton34;
-    private javax.swing.JRadioButton jRadioButton35;
-    private javax.swing.JRadioButton jRadioButton36;
-    private javax.swing.JRadioButton jRadioButton37;
-    private javax.swing.JRadioButton jRadioButton38;
-    private javax.swing.JRadioButton jRadioButton39;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton40;
-    private javax.swing.JRadioButton jRadioButton41;
-    private javax.swing.JRadioButton jRadioButton42;
-    private javax.swing.JRadioButton jRadioButton43;
-    private javax.swing.JRadioButton jRadioButton44;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JLabel jPliegueCutaneoSubescapular;
+    private javax.swing.JLabel jPliegueCutaneoSuprailiaco;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel jlAgregarSal;
+    private javax.swing.JLabel jlAguaCorporalTotal;
+    private javax.swing.JLabel jlAlcohol;
+    private javax.swing.JLabel jlAlergico;
+    private javax.swing.JLabel jlAliementosNoPreferidos;
+    private javax.swing.JLabel jlAlimento;
+    private javax.swing.JLabel jlAlimentosMalestar;
+    private javax.swing.JLabel jlAlimentosParaBajarPeso;
+    private javax.swing.JLabel jlAlimentosPreferidos;
     private javax.swing.JLabel jlAnalgesicos;
     private javax.swing.JLabel jlAntiacidos;
+    private javax.swing.JLabel jlAnticonceptivos;
+    private javax.swing.JLabel jlApellidos;
+    private javax.swing.JLabel jlApetito;
+    private javax.swing.JLabel jlAreaMuscularBrazo;
+    private javax.swing.JLabel jlAspectoGeneral;
+    private javax.swing.JLabel jlCPostal;
+    private javax.swing.JLabel jlCafe;
+    private javax.swing.JLabel jlCena;
+    private javax.swing.JLabel jlCircunferenciaAbdominal;
+    private javax.swing.JLabel jlCircunferenciaBrazo;
+    private javax.swing.JLabel jlCircunferenciaCadera;
+    private javax.swing.JLabel jlCircunferenciaCintura;
     private javax.swing.JLabel jlCiudad;
+    private javax.swing.JLabel jlClimaterio;
     private javax.swing.JLabel jlColitis;
+    private javax.swing.JLabel jlComida;
+    private javax.swing.JLabel jlComidasCasa;
+    private javax.swing.JLabel jlComidasFuera;
+    private javax.swing.JLabel jlComoVaria;
+    private javax.swing.JLabel jlComplexion;
+    private javax.swing.JLabel jlConsumoEDA;
+    private javax.swing.JLabel jlConsumoFrecuencia;
+    private javax.swing.JLabel jlCualAlergico;
+    private javax.swing.JLabel jlCualAnticonceptivo;
     private javax.swing.JLabel jlCualED;
     private javax.swing.JLabel jlCualEI;
     private javax.swing.JLabel jlCualMedicamento;
     private javax.swing.JLabel jlCualMedicamento1;
+    private javax.swing.JLabel jlCualMedicamentoBajarPeso;
+    private javax.swing.JLabel jlCualPresionArterial;
+    private javax.swing.JLabel jlCualTerapia;
+    private javax.swing.JLabel jlCuantasComidasDia;
+    private javax.swing.JLabel jlCuantasDietas;
+    private javax.swing.JLabel jlCuantoAPegoDieta;
     private javax.swing.JLabel jlCuantoTiempo;
     private javax.swing.JLabel jlCuantoTiempo1;
-    private javax.swing.JLabel jlCuantoTiempo2;
+    private javax.swing.JLabel jlCuantoTiempoDieta;
+    private javax.swing.JLabel jlDato;
+    private javax.swing.JLabel jlDato2;
     private javax.swing.JLabel jlDentadura;
+    private javax.swing.JLabel jlDesayuno;
+    private javax.swing.JLabel jlDespertarse;
+    private javax.swing.JLabel jlDiarioActividades;
+    private javax.swing.JLabel jlDiarrea;
+    private javax.swing.JLabel jlDietaEspecial;
+    private javax.swing.JLabel jlDiferenciaGrasaKG;
     private javax.swing.JLabel jlDiureticos;
     private javax.swing.JLabel jlDomicilio;
+    private javax.swing.JLabel jlDormir;
     private javax.swing.JLabel jlDosis;
     private javax.swing.JLabel jlDosis2;
+    private javax.swing.JLabel jlDuracionActividad;
     private javax.swing.JLabel jlEDiagnosticada;
+    private javax.swing.JLabel jlEdad;
+    private javax.swing.JLabel jlEjercicio;
+    private javax.swing.JLabel jlEmail;
+    private javax.swing.JLabel jlEmbarazoActual;
     private javax.swing.JLabel jlEnfemedadImportante;
+    private javax.swing.JLabel jlEntreComidas;
+    private javax.swing.JLabel jlEntreSemana;
+    private javax.swing.JLabel jlEscolaridad;
+    private javax.swing.JLabel jlEstadoCivil;
+    private javax.swing.JLabel jlEstatura;
     private javax.swing.JLabel jlEstrenimiento;
+    private javax.swing.JLabel jlFinSemana;
+    private javax.swing.JLabel jlFrecuencia;
     private javax.swing.JLabel jlGastritis;
+    private javax.swing.JLabel jlGrasaCorporal;
+    private javax.swing.JLabel jlGrasaCorporalKG;
+    private javax.swing.JLabel jlGrasaUtilizada;
+    private javax.swing.JLabel jlHora;
+    private javax.swing.JLabel jlHoraHambre;
+    private javax.swing.JLabel jlHoraPresion;
     private javax.swing.JLabel jlID;
+    private javax.swing.JLabel jlIndiceCinturaCadera;
+    private javax.swing.JLabel jlMasaLigreGrasaKG;
+    private javax.swing.JLabel jlMasaMuscularTotal;
     private javax.swing.JLabel jlMedicamenti;
     private javax.swing.JLabel jlMedicamenti1;
+    private javax.swing.JLabel jlMedicion;
+    private javax.swing.JLabel jlMedicion2;
+    private javax.swing.JLabel jlModificacionDieta;
     private javax.swing.JLabel jlNacimiento;
     private javax.swing.JLabel jlNausea;
     private javax.swing.JLabel jlNombre;
     private javax.swing.JLabel jlObservaciones;
+    private javax.swing.JLabel jlOtroGrasa;
     private javax.swing.JLabel jlOtros;
+    private javax.swing.JLabel jlPesoActual;
+    private javax.swing.JLabel jlPesoHabitual;
+    private javax.swing.JLabel jlPesoHabitualXC;
+    private javax.swing.JLabel jlPesoMaximo;
+    private javax.swing.JLabel jlPesoMinimoIMC;
+    private javax.swing.JLabel jlPesoTeorico;
+    private javax.swing.JLabel jlPesoTeoricoXC;
     private javax.swing.JLabel jlPirosis;
+    private javax.swing.JLabel jlPliegueCutaneoBicipital;
+    private javax.swing.JLabel jlPliegueCutaneoPerceptil;
+    private javax.swing.JLabel jlPliegueCutaneoTricipital;
+    private javax.swing.JLabel jlPliegueCutaneosubescapular;
+    private javax.swing.JLabel jlPreisonArterial;
+    private javax.swing.JLabel jlPresionArterial;
+    private javax.swing.JLabel jlQuienPrepara;
+    private javax.swing.JLabel jlRazonDIetaEspecial;
+    private javax.swing.JLabel jlRazonModificacion;
+    private javax.swing.JLabel jlResultadosEsperadosDieta;
+    private javax.swing.JLabel jlSemanasGestacion;
+    private javax.swing.JLabel jlSexo;
+    private javax.swing.JLabel jlSignos;
+    private javax.swing.JLabel jlTabaco;
     private javax.swing.JLabel jlTelefono;
+    private javax.swing.JLabel jlTerapiaHormonal;
+    private javax.swing.JLabel jlTipo;
     private javax.swing.JLabel jlUlcera;
     private javax.swing.JLabel jlVomito;
+    private javax.swing.JLabel jlvagCualTerapiaHormonal;
+    private javax.swing.JLabel jlvagDosis;
+    private javax.swing.JLabel jlvagTiempoTerapiaHormonal;
+    private javax.swing.JRadioButton levantarseHambre;
+    private javax.swing.JRadioButton maloApetito;
+    private javax.swing.JRadioButton mantecaGrasa;
+    private javax.swing.JRadioButton mantequillaGrasa;
+    private javax.swing.JRadioButton margarinaGrasa;
+    private javax.swing.JRadioButton mayorVariacion;
+    private javax.swing.JRadioButton mañanaHambre;
+    private javax.swing.JRadioButton menorVariacion;
+    private javax.swing.JRadioButton muyPocoAPego;
+    private javax.swing.JRadioButton muyPocoResultadosDieta;
+    private javax.swing.JRadioButton nadaAPego;
+    private javax.swing.JRadioButton nadaResultadosDieta;
+    private javax.swing.JRadioButton noAlergico;
+    private javax.swing.JRadioButton noAnticonceptivos;
+    private javax.swing.JRadioButton noClimaterio;
+    private javax.swing.JRadioButton noDietaEspecial;
+    private javax.swing.JRadioButton noEmbarazoActual;
+    private javax.swing.JRadioButton noEntreComidas;
+    private javax.swing.JRadioButton noMedicamentoBajarPeso;
+    private javax.swing.JRadioButton noModificacionAlimentos;
+    private javax.swing.JRadioButton noPresionArterial;
+    private javax.swing.JRadioButton noSal;
+    private javax.swing.JRadioButton noTerapiaHornomal;
+    private javax.swing.JRadioButton noVariacion;
+    private javax.swing.JRadioButton nulaVariacion;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel panelActiviadades;
     private javax.swing.JPanel panelAntecedentes;
@@ -2718,6 +4103,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup rbgApetito;
     private javax.swing.ButtonGroup rbgBajarPeso;
     private javax.swing.ButtonGroup rbgCirugia;
+    private javax.swing.ButtonGroup rbgClimaterio;
     private javax.swing.ButtonGroup rbgColitis;
     private javax.swing.ButtonGroup rbgComportamientoAlimentacion;
     private javax.swing.ButtonGroup rbgDentadura;
@@ -2729,7 +4115,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup rbgEntreComidas;
     private javax.swing.ButtonGroup rbgEstrenimiento;
     private javax.swing.ButtonGroup rbgGastritis;
+    private javax.swing.ButtonGroup rbgGrasaUtilizada;
     private javax.swing.ButtonGroup rbgHoraHambre;
+    private javax.swing.ButtonGroup rbgIDdietaEspecial;
     private javax.swing.ButtonGroup rbgIntolerante;
     private javax.swing.ButtonGroup rbgLaxantes;
     private javax.swing.ButtonGroup rbgMedicamento;
@@ -2737,42 +4125,94 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup rbgNausea;
     private javax.swing.ButtonGroup rbgPirosis;
     private javax.swing.ButtonGroup rbgPresionArterial;
+    private javax.swing.ButtonGroup rbgReemplazoHormonal;
     private javax.swing.ButtonGroup rbgResultadosDieta;
     private javax.swing.ButtonGroup rbgSal;
     private javax.swing.ButtonGroup rbgUlcera;
     private javax.swing.ButtonGroup rbgVariacionAlimentacion;
     private javax.swing.ButtonGroup rbgVomito;
+    private javax.swing.JRadioButton regularAPetito;
     private javax.swing.ButtonGroup rgbEDiagnosticada;
+    private javax.swing.JRadioButton siAlergico;
+    private javax.swing.JRadioButton siAnticonceptivosOrales;
+    private javax.swing.JRadioButton siClimaterio;
+    private javax.swing.JRadioButton siDietaEspecial;
+    private javax.swing.JRadioButton siEmbarazoActual;
+    private javax.swing.JRadioButton siEntreComidas;
+    private javax.swing.JRadioButton siMedicamentoBajarPeso;
+    private javax.swing.JRadioButton siModificacionAlimentos;
+    private javax.swing.JRadioButton siPresionArterial;
+    private javax.swing.JRadioButton siSal;
+    private javax.swing.JRadioButton siTerapiaHormonal;
+    private javax.swing.JRadioButton siVariacion;
+    private javax.swing.JRadioButton suficienteResultadosDieta;
+    private javax.swing.JTextArea taAspectoGeneral;
+    private javax.swing.JTextField tfAguaCorporalTotal;
+    private javax.swing.JTextField tfAlimentosMalestar;
+    private javax.swing.JTextField tfAlimentosNoPreferidos;
+    private javax.swing.JTextField tfAlimentosPreferidos;
+    private javax.swing.JTextField tfAreaMuscularBrazo;
+    private javax.swing.JTextField tfCena;
+    private javax.swing.JTextField tfCircunferenciaAbdominal;
+    private javax.swing.JTextField tfCircunferenciaBrazo;
+    private javax.swing.JTextField tfCircunferenciaCadera;
+    private javax.swing.JTextField tfCircunferenciaCintura;
     private javax.swing.JTextField tfCirugia;
+    private javax.swing.JTextField tfComida;
+    private javax.swing.JTextField tfComidaCasaFin;
+    private javax.swing.JTextField tfComidaCasaSemana;
     private javax.swing.JTextField tfComidasDia;
-    private javax.swing.JTextField tfComidasDia1;
-    private javax.swing.JTextField tfComidasDia10;
-    private javax.swing.JTextField tfComidasDia11;
-    private javax.swing.JTextField tfComidasDia12;
-    private javax.swing.JTextField tfComidasDia13;
-    private javax.swing.JTextField tfComidasDia14;
-    private javax.swing.JTextField tfComidasDia15;
-    private javax.swing.JTextField tfComidasDia16;
-    private javax.swing.JTextField tfComidasDia17;
-    private javax.swing.JTextField tfComidasDia2;
-    private javax.swing.JTextField tfComidasDia3;
-    private javax.swing.JTextField tfComidasDia4;
-    private javax.swing.JTextField tfComidasDia5;
     private javax.swing.JTextField tfComidasDia6;
-    private javax.swing.JTextField tfComidasDia7;
-    private javax.swing.JTextField tfComidasDia8;
-    private javax.swing.JTextField tfComidasDia9;
+    private javax.swing.JTextField tfComidasFueraFin;
+    private javax.swing.JTextField tfComidasFueraSemana;
+    private javax.swing.JTextField tfComplexion;
+    private javax.swing.JTextField tfCualAlergico;
     private javax.swing.JTextField tfCualED;
     private javax.swing.JTextField tfCualEI;
     private javax.swing.JTextField tfCualMedicamento;
     private javax.swing.JTextField tfCualMedicamento1;
-    private javax.swing.JTextField tfCualMedicamento3;
-    private javax.swing.JTextField tfCualMedicamento4;
+    private javax.swing.JTextField tfCualMedicamentoBajarPeso;
+    private javax.swing.JTextField tfCualPresionArterial;
+    private javax.swing.JTextField tfCualTerapiaHormonal;
+    private javax.swing.JTextField tfCuantasDietas;
     private javax.swing.JTextField tfCuantoTiempo;
-    private javax.swing.JTextField tfCuantoTiempo1;
-    private javax.swing.JTextField tfCuantoTiempo2;
-    private javax.swing.JTextField tfCuantoTiempo3;
-    private javax.swing.JTextField tfPesoActualKG;
+    private javax.swing.JTextField tfCuantoTiempoDieta;
+    private javax.swing.JTextField tfDesayuno;
+    private javax.swing.JTextField tfDespertarse;
+    private javax.swing.JTextField tfDiferenciaGrasa;
+    private javax.swing.JTextField tfDormir;
+    private javax.swing.JTextField tfDosisAnticonceptivos;
+    private javax.swing.JTextField tfDosisTerapiaHormonal;
+    private javax.swing.JTextField tfEstatura;
+    private javax.swing.JTextField tfGrasaCorporal;
+    private javax.swing.JTextField tfGrasaCorporalKG;
+    private javax.swing.JTextField tfHaceCuantoDieta;
+    private javax.swing.JTextField tfHoraPresion;
+    private javax.swing.JTextField tfIMC;
+    private javax.swing.JTextField tfIndiceCaderaCintura;
+    private javax.swing.JTextField tfMasaLibreGrasa;
+    private javax.swing.JTextField tfMasaMuscularTotal;
+    private javax.swing.JTextField tfOtroGrasa;
+    private javax.swing.JTextField tfOtros;
+    private javax.swing.JTextField tfPesoActual;
+    private javax.swing.JTextField tfPesoHabitual;
+    private javax.swing.JTextField tfPesoHabitualXC;
+    private javax.swing.JTextField tfPesoMaximo;
+    private javax.swing.JTextField tfPesoMinimoIMC;
+    private javax.swing.JTextField tfPesoTeorico;
+    private javax.swing.JTextField tfPesoTeoricoXC;
+    private javax.swing.JTextField tfPliegueCutaneoBicipital;
+    private javax.swing.JTextField tfPliegueCutaneoPerceptil;
+    private javax.swing.JTextField tfPliegueCutaneoSubescapular;
+    private javax.swing.JTextField tfPliegueCutaneoSubescapularPerceptil;
+    private javax.swing.JTextField tfPliegueCutaneoSuprailiaco;
+    private javax.swing.JTextField tfPliegueCutaneoTricipital;
+    private javax.swing.JTextField tfQuienPrepara;
+    private javax.swing.JTextField tfRazonDietaEspecial;
+    private javax.swing.JTextField tfRazonModifiacion;
     private javax.swing.JTextField tfSDG;
+    private javax.swing.JTextField tfVagCualAnticonceptivo;
+    private javax.swing.JTextField tfvagTiempoAnticonceptivo;
+    private javax.swing.JTextField tfvagTiempoTerapiaHormonal;
     // End of variables declaration//GEN-END:variables
 }

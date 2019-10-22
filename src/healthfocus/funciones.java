@@ -17,6 +17,12 @@ public class funciones {
         return !variable.equals("");
     }
     
+    /**
+     *
+     * @param variable
+     * @param tipo
+     * @return
+     */
     public boolean tipoNumero(String variable, int tipo){
         boolean bandera = false;
         switch(tipo){
@@ -39,24 +45,46 @@ public class funciones {
         return bandera;
     }
     
-    
+    /**
+     *
+     * @param variable
+     * @return
+     */
     public boolean tipoString(String variable){
         Pattern p = Pattern.compile("[a-zA-Z#.]");
         Matcher m = p.matcher(variable);
         return m.find();
     }
     
+    /**
+     * Aplicado a los campos "Domicilio", recibiendo el dato
+     * y evaluando que dentro no se encuentren caracteres
+     * que no sean manejados por cotejamiento de la base de datos
+     * como tambien para evitar la incrustación de código
+     * @param variable
+     * @return
+     */
     public boolean tipoDomicilio(String variable){
         Pattern p = Pattern.compile("[a-záÁéÉíÍóÓúÚA-Z#.,]");
         Matcher m = p.matcher(variable);
         return m.find();
     }
     
+    /**
+     *
+     * @param variable
+     * @return
+     */
     public boolean tipoCiudad(String variable){
         Pattern p = Pattern.compile("[a-zA-Z#.,]");
         Matcher m = p.matcher(variable);
         return m.find();
     }
+
+    /**
+     *
+     * @param variable
+     */
     public void tipo(String variable){
         System.out.println(variable);
     }
