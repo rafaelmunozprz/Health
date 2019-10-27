@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
  * @author Kevin
  */
 public class loginFrame extends javax.swing.JFrame {
-
+    private String usuario ;
+    private String password ;
+    public static String user;
     /**
      * Creates new form loginFrame
      */
@@ -26,7 +28,6 @@ public class loginFrame extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/icons/headerIcon.png")).getImage());
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +51,7 @@ public class loginFrame extends javax.swing.JFrame {
 
         loginUser.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         loginUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        loginUser.setText("207448228");
+        loginUser.setText("207448229");
         loginUser.setSelectedTextColor(new java.awt.Color(121, 209, 195));
         loginUser.setSelectionColor(new java.awt.Color(201, 253, 215));
         loginUser.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +78,7 @@ public class loginFrame extends javax.swing.JFrame {
 
         loginPass.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         loginPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        loginPass.setText("123456789");
+        loginPass.setText("kevin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,13 +90,12 @@ public class loginFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(userLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(loginUser, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(loginUser, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(passLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(loginPass, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(loginButton)
@@ -127,16 +127,17 @@ public class loginFrame extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
 
-        String usuario = loginUser.getText();
-        String password = loginPass.getText();
+        usuario = loginUser.getText();
+        password = loginPass.getText();
         consultasMysql ingreso = new consultasMysql();
+        user = loginUser.getText();
         try {
 
             //Si el método comprobar Usuario retorna 1 es porque el usuario si existe
             if (ingreso.comprobarUsuario(usuario, password) == 1) {
                 accionesFrame acciones=new accionesFrame();
                 acciones.setVisible(true);
-                this.dispose();
+                this.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -184,8 +185,8 @@ public class loginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton loginButton;
-    private javax.swing.JPasswordField loginPass;
-    private javax.swing.JTextField loginUser;
+    public static javax.swing.JPasswordField loginPass;
+    public static javax.swing.JTextField loginUser;
     private javax.swing.JLabel passLabel;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables

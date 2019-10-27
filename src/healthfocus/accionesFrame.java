@@ -12,7 +12,8 @@ import javax.swing.ImageIcon;
  * @author Kevin
  */
 public class accionesFrame extends javax.swing.JFrame {
-
+    
+    
     /**
      * Creates new form accionesFrame
      */
@@ -20,8 +21,11 @@ public class accionesFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/icons/headerIcon.png")).getImage());
+        loginFrame lf = new loginFrame();
+        System.out.println(lf.user);
+        lf.dispose();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

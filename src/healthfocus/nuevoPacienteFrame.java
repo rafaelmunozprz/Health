@@ -7,6 +7,7 @@ package healthfocus;
 
 import java.sql.SQLException;
 import java.util.Random;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -16,12 +17,13 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author Kevin
  */
 public class nuevoPacienteFrame extends javax.swing.JFrame {
+
     selectorTexto seleccionarTexto = new selectorTexto();
     funciones funcion = new funciones();
-    
+
     /**
-     * Bloque para la asignación de getters y setters de la la primer
-     * ventana de un nuevo usuario, DATOS PERSONALES
+     * Bloque para la asignación de getters y setters de la la primer ventana de
+     * un nuevo usuario, DATOS PERSONALES
      */
     private String vdpNombre = "";
     private String vdpApellidos = "";
@@ -131,10 +133,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     public void setVdpEmail(String vdpEmail) {
         this.vdpEmail = vdpEmail;
     }
-    
+
     /**
-     * Bloque para la asignación de getters y setters de la segunda
-     * ventana de un nuevo usuario, ANTECEDENTES SALUD Y ENFERMEDAD
+     * Bloque para la asignación de getters y setters de la segunda ventana de
+     * un nuevo usuario, ANTECEDENTES SALUD Y ENFERMEDAD
      */
     private String vasediarrea = "";
     private String vaseestrenimiento = "";
@@ -361,10 +363,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     public void setVaseotros(String vaseotros) {
         this.vaseotros = vaseotros;
     }
-    
+
     /**
-     * Bloque para la asignación de getters y setters de la tercera
-     * ventana de un nuevo usuario, ASEPECTOS GINECOLOGICOS
+     * Bloque para la asignación de getters y setters de la tercera ventana de
+     * un nuevo usuario, ASEPECTOS GINECOLOGICOS
      */
     private String vagEmbarazoAcutal = "";
     private String vagSemanasGestacion = "";
@@ -466,8 +468,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vagTiempoTerapiaHormonal = vagTiempoTerapiaHormonal;
     }
     /**
-     * Bloque para la asignación de getters y setters de la cuarta
-     * ventana de un nuevo usuario, DIARIO DE ACTIVIDADES
+     * Bloque para la asignación de getters y setters de la cuarta ventana de un
+     * nuevo usuario, DIARIO DE ACTIVIDADES
      */
     private String vddaHoraDespertarse = "";
     private String vddaMinutoDespertarse = "";
@@ -695,14 +697,14 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vddaCafe = vddaCafe;
     }
     /**
-     * Bloque para la asignación de getters y setters de la tercera
-     * ventana de un nuevo usuario, INDICADORES DIETETICOS
+     * Bloque para la asignación de getters y setters de la tercera ventana de
+     * un nuevo usuario, INDICADORES DIETETICOS
      */
     private String vidCuantasComidas = "";
     private String vidQuienPrepara = "";
     private String vidSiEntreComidas = "";
     private String vidNoEntreComidas = "";
-    private String vidQueEntreComidas = "" ;
+    private String vidQueEntreComidas = "";
     private String vidComidasCasaSemana = "";
     private String vidComidasCasaFin = "";
     private String vidComidasFueraSemana = "";
@@ -1176,8 +1178,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vidCualMedicamentoPeso = vidCualMedicamentoPeso;
     }
     /**
-     * Bloque para la asignación de getters y setters de la sexta
-     * ventana de un nuevo usuario, INDICADORES ANTROPOMETICOS
+     * Bloque para la asignación de getters y setters de la sexta ventana de un
+     * nuevo usuario, INDICADORES ANTROPOMETICOS
      */
     private String viaPesoActual = "";
     private String viaPesoHabitual = "";
@@ -1431,7 +1433,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     public void setViaAguaCorporalTotal(String viaAguaCorporalTotal) {
         this.viaAguaCorporalTotal = viaAguaCorporalTotal;
     }
-    
+
     /**
      * Creates new form nuevoPacienteFrame
      */
@@ -1549,7 +1551,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         tfOtros = new javax.swing.JTextField();
         jlObservaciones = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taObservaciones = new javax.swing.JTextArea();
         jlEDiagnosticada = new javax.swing.JLabel();
         rbSiED = new javax.swing.JRadioButton();
         rbNoED = new javax.swing.JRadioButton();
@@ -1566,24 +1568,24 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         jlCualMedicamento = new javax.swing.JLabel();
         tfCualMedicamento = new javax.swing.JTextField();
         jlDosis = new javax.swing.JLabel();
-        tfCualMedicamento1 = new javax.swing.JTextField();
+        tfDosisMedicamento = new javax.swing.JTextField();
         jlCuantoTiempo = new javax.swing.JLabel();
         tfCuantoTiempo = new javax.swing.JTextField();
         jlDosis2 = new javax.swing.JLabel();
-        rbSiDiarrea1 = new javax.swing.JRadioButton();
-        rbNoDiarrea1 = new javax.swing.JRadioButton();
+        rbSiLaxante = new javax.swing.JRadioButton();
+        rbNoLaxante = new javax.swing.JRadioButton();
         jlDiureticos = new javax.swing.JLabel();
-        rbSiDiarrea2 = new javax.swing.JRadioButton();
-        rbNoDiarrea2 = new javax.swing.JRadioButton();
-        rbNoDiarrea3 = new javax.swing.JRadioButton();
-        rbSiDiarrea3 = new javax.swing.JRadioButton();
+        rbSiDiureticos = new javax.swing.JRadioButton();
+        rbNoDiureticos = new javax.swing.JRadioButton();
+        rbNoAnalgesicos = new javax.swing.JRadioButton();
+        rbSiAnalgesicos = new javax.swing.JRadioButton();
         jlAnalgesicos = new javax.swing.JLabel();
-        rbNoDiarrea4 = new javax.swing.JRadioButton();
-        rbSiDiarrea4 = new javax.swing.JRadioButton();
+        rbNoAC = new javax.swing.JRadioButton();
+        rbSiAC = new javax.swing.JRadioButton();
         jlAntiacidos = new javax.swing.JLabel();
         jlMedicamenti1 = new javax.swing.JLabel();
-        rbSiMedicamento1 = new javax.swing.JRadioButton();
-        rbNoMedicamento1 = new javax.swing.JRadioButton();
+        rbSiCirugia = new javax.swing.JRadioButton();
+        rbNoCirugia = new javax.swing.JRadioButton();
         jlCualMedicamento1 = new javax.swing.JLabel();
         tfCirugia = new javax.swing.JTextField();
         dpGuardar1 = new javax.swing.JButton();
@@ -1615,7 +1617,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         tfVagCualAnticonceptivo = new javax.swing.JTextField();
         jlvagTiempoTerapiaHormonal = new javax.swing.JLabel();
         dpGuardar2 = new javax.swing.JButton();
-        tfvagTiempoAnticonceptivo = new javax.swing.JTextField();
+        tfVagTiempoAnticonceptivo = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         panelActiviadades = new javax.swing.JPanel();
         jlDiarioActividades = new javax.swing.JLabel();
@@ -1660,7 +1662,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         siPresionArterial = new javax.swing.JRadioButton();
         noPresionArterial = new javax.swing.JRadioButton();
         jlDuracionActividad = new javax.swing.JLabel();
-        jComboBox14 = new javax.swing.JComboBox<>();
+        cbDuracionActividad = new javax.swing.JComboBox<>();
         jlCualPresionArterial = new javax.swing.JLabel();
         tfCualPresionArterial = new javax.swing.JTextField();
         jlHoraPresion = new javax.swing.JLabel();
@@ -2240,10 +2242,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         jlObservaciones.setText("Observaciones");
         panelAntecedentes.add(jlObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 197, -1, 14));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taObservaciones.setColumns(20);
+        taObservaciones.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        taObservaciones.setRows(5);
+        jScrollPane1.setViewportView(taObservaciones);
 
         panelAntecedentes.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 217, 702, -1));
 
@@ -2255,12 +2257,27 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rgbEDiagnosticada.add(rbSiED);
         rbSiED.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         rbSiED.setText("Si");
+        rbSiED.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbSiEDStateChanged(evt);
+            }
+        });
+        rbSiED.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbSiEDFocusGained(evt);
+            }
+        });
         panelAntecedentes.add(rbSiED, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 341, -1, -1));
 
         rbNoED.setBackground(new java.awt.Color(153, 217, 234));
         rgbEDiagnosticada.add(rbNoED);
         rbNoED.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         rbNoED.setText("No");
+        rbNoED.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbNoEDFocusGained(evt);
+            }
+        });
         panelAntecedentes.add(rbNoED, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 341, -1, -1));
 
         jlCualED.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2268,6 +2285,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelAntecedentes.add(jlCualED, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 344, -1, -1));
 
         tfCualED.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualED.setEnabled(false);
         panelAntecedentes.add(tfCualED, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 341, 255, -1));
 
         jlEnfemedadImportante.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2278,12 +2296,22 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgEnfermedadImportante.add(rbSiEI);
         rbSiEI.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         rbSiEI.setText("Si");
+        rbSiEI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbSiEIFocusGained(evt);
+            }
+        });
         panelAntecedentes.add(rbSiEI, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 388, -1, -1));
 
         rbNoEI.setBackground(new java.awt.Color(153, 217, 234));
         rbgEnfermedadImportante.add(rbNoEI);
         rbNoEI.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         rbNoEI.setText("No");
+        rbNoEI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbNoEIFocusGained(evt);
+            }
+        });
         panelAntecedentes.add(rbNoEI, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 388, -1, -1));
 
         jlCualEI.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2291,6 +2319,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelAntecedentes.add(jlCualEI, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 388, -1, -1));
 
         tfCualEI.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualEI.setEnabled(false);
         panelAntecedentes.add(tfCualEI, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 385, 255, -1));
 
         jlMedicamenti.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2301,12 +2330,22 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgMedicamento.add(rbSiMedicamento);
         rbSiMedicamento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         rbSiMedicamento.setText("Si");
+        rbSiMedicamento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbSiMedicamentoFocusGained(evt);
+            }
+        });
         panelAntecedentes.add(rbSiMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 435, -1, -1));
 
         rbNoMedicamento.setBackground(new java.awt.Color(153, 217, 234));
         rbgMedicamento.add(rbNoMedicamento);
         rbNoMedicamento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         rbNoMedicamento.setText("No");
+        rbNoMedicamento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbNoMedicamentoFocusGained(evt);
+            }
+        });
         panelAntecedentes.add(rbNoMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 435, -1, -1));
 
         jlCualMedicamento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2314,81 +2353,84 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelAntecedentes.add(jlCualMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 439, -1, -1));
 
         tfCualMedicamento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualMedicamento.setEnabled(false);
         panelAntecedentes.add(tfCualMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 436, 255, -1));
 
         jlDosis.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlDosis.setText("Dosis");
         panelAntecedentes.add(jlDosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 485, -1, -1));
 
-        tfCualMedicamento1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelAntecedentes.add(tfCualMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 482, 243, -1));
+        tfDosisMedicamento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDosisMedicamento.setEnabled(false);
+        panelAntecedentes.add(tfDosisMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 482, 243, -1));
 
         jlCuantoTiempo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlCuantoTiempo.setText("¿Hace cuanto tiempo?");
         panelAntecedentes.add(jlCuantoTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 485, -1, -1));
 
         tfCuantoTiempo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCuantoTiempo.setEnabled(false);
         panelAntecedentes.add(tfCuantoTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 482, 257, -1));
 
         jlDosis2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlDosis2.setText("Laxantes");
         panelAntecedentes.add(jlDosis2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, -1, -1));
 
-        rbSiDiarrea1.setBackground(new java.awt.Color(153, 217, 234));
-        rbgLaxantes.add(rbSiDiarrea1);
-        rbSiDiarrea1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbSiDiarrea1.setText("Si");
-        panelAntecedentes.add(rbSiDiarrea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 526, -1, -1));
+        rbSiLaxante.setBackground(new java.awt.Color(153, 217, 234));
+        rbgLaxantes.add(rbSiLaxante);
+        rbSiLaxante.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiLaxante.setText("Si");
+        panelAntecedentes.add(rbSiLaxante, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 526, -1, -1));
 
-        rbNoDiarrea1.setBackground(new java.awt.Color(153, 217, 234));
-        rbgLaxantes.add(rbNoDiarrea1);
-        rbNoDiarrea1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbNoDiarrea1.setText("No");
-        panelAntecedentes.add(rbNoDiarrea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 526, -1, -1));
+        rbNoLaxante.setBackground(new java.awt.Color(153, 217, 234));
+        rbgLaxantes.add(rbNoLaxante);
+        rbNoLaxante.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoLaxante.setText("No");
+        panelAntecedentes.add(rbNoLaxante, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 526, -1, -1));
 
         jlDiureticos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlDiureticos.setText("Diuréticos");
         panelAntecedentes.add(jlDiureticos, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 530, -1, -1));
 
-        rbSiDiarrea2.setBackground(new java.awt.Color(153, 217, 234));
-        rbgDiureticos.add(rbSiDiarrea2);
-        rbSiDiarrea2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbSiDiarrea2.setText("Si");
-        panelAntecedentes.add(rbSiDiarrea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 526, -1, -1));
+        rbSiDiureticos.setBackground(new java.awt.Color(153, 217, 234));
+        rbgDiureticos.add(rbSiDiureticos);
+        rbSiDiureticos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiDiureticos.setText("Si");
+        panelAntecedentes.add(rbSiDiureticos, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 526, -1, -1));
 
-        rbNoDiarrea2.setBackground(new java.awt.Color(153, 217, 234));
-        rbgDiureticos.add(rbNoDiarrea2);
-        rbNoDiarrea2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbNoDiarrea2.setText("No");
-        panelAntecedentes.add(rbNoDiarrea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 526, -1, -1));
+        rbNoDiureticos.setBackground(new java.awt.Color(153, 217, 234));
+        rbgDiureticos.add(rbNoDiureticos);
+        rbNoDiureticos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoDiureticos.setText("No");
+        panelAntecedentes.add(rbNoDiureticos, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 526, -1, -1));
 
-        rbNoDiarrea3.setBackground(new java.awt.Color(153, 217, 234));
-        rbgAnalgesicos.add(rbNoDiarrea3);
-        rbNoDiarrea3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbNoDiarrea3.setText("No");
-        panelAntecedentes.add(rbNoDiarrea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 526, -1, -1));
+        rbNoAnalgesicos.setBackground(new java.awt.Color(153, 217, 234));
+        rbgAnalgesicos.add(rbNoAnalgesicos);
+        rbNoAnalgesicos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoAnalgesicos.setText("No");
+        panelAntecedentes.add(rbNoAnalgesicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 526, -1, -1));
 
-        rbSiDiarrea3.setBackground(new java.awt.Color(153, 217, 234));
-        rbgAnalgesicos.add(rbSiDiarrea3);
-        rbSiDiarrea3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbSiDiarrea3.setText("Si");
-        panelAntecedentes.add(rbSiDiarrea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 526, -1, -1));
+        rbSiAnalgesicos.setBackground(new java.awt.Color(153, 217, 234));
+        rbgAnalgesicos.add(rbSiAnalgesicos);
+        rbSiAnalgesicos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiAnalgesicos.setText("Si");
+        panelAntecedentes.add(rbSiAnalgesicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 526, -1, -1));
 
         jlAnalgesicos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlAnalgesicos.setText("Analgésicos");
         panelAntecedentes.add(jlAnalgesicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 530, -1, -1));
 
-        rbNoDiarrea4.setBackground(new java.awt.Color(153, 217, 234));
-        rbgAntiacidos.add(rbNoDiarrea4);
-        rbNoDiarrea4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbNoDiarrea4.setText("No");
-        panelAntecedentes.add(rbNoDiarrea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 526, -1, -1));
+        rbNoAC.setBackground(new java.awt.Color(153, 217, 234));
+        rbgAntiacidos.add(rbNoAC);
+        rbNoAC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoAC.setText("No");
+        panelAntecedentes.add(rbNoAC, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 526, -1, -1));
 
-        rbSiDiarrea4.setBackground(new java.awt.Color(153, 217, 234));
-        rbgAntiacidos.add(rbSiDiarrea4);
-        rbSiDiarrea4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbSiDiarrea4.setText("Si");
-        panelAntecedentes.add(rbSiDiarrea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 526, -1, -1));
+        rbSiAC.setBackground(new java.awt.Color(153, 217, 234));
+        rbgAntiacidos.add(rbSiAC);
+        rbSiAC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiAC.setText("Si");
+        panelAntecedentes.add(rbSiAC, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 526, -1, -1));
 
         jlAntiacidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlAntiacidos.setText("Antiácidos");
@@ -2398,23 +2440,34 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         jlMedicamenti1.setText("¿Le han practicado alguna cirugía?");
         panelAntecedentes.add(jlMedicamenti1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 577, -1, -1));
 
-        rbSiMedicamento1.setBackground(new java.awt.Color(153, 217, 234));
-        rbgCirugia.add(rbSiMedicamento1);
-        rbSiMedicamento1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbSiMedicamento1.setText("Si");
-        panelAntecedentes.add(rbSiMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 573, -1, -1));
+        rbSiCirugia.setBackground(new java.awt.Color(153, 217, 234));
+        rbgCirugia.add(rbSiCirugia);
+        rbSiCirugia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiCirugia.setText("Si");
+        rbSiCirugia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbSiCirugiaFocusGained(evt);
+            }
+        });
+        panelAntecedentes.add(rbSiCirugia, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 573, -1, -1));
 
-        rbNoMedicamento1.setBackground(new java.awt.Color(153, 217, 234));
-        rbgCirugia.add(rbNoMedicamento1);
-        rbNoMedicamento1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        rbNoMedicamento1.setText("No");
-        panelAntecedentes.add(rbNoMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 573, -1, -1));
+        rbNoCirugia.setBackground(new java.awt.Color(153, 217, 234));
+        rbgCirugia.add(rbNoCirugia);
+        rbNoCirugia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoCirugia.setText("No");
+        rbNoCirugia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rbNoCirugiaFocusGained(evt);
+            }
+        });
+        panelAntecedentes.add(rbNoCirugia, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 573, -1, -1));
 
         jlCualMedicamento1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlCualMedicamento1.setText("¿Cuál?");
         panelAntecedentes.add(jlCualMedicamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 577, -1, -1));
 
         tfCirugia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCirugia.setEnabled(false);
         panelAntecedentes.add(tfCirugia, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 574, 262, -1));
 
         dpGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
@@ -2445,6 +2498,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgEmbarazo.add(siEmbarazoActual);
         siEmbarazoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siEmbarazoActual.setText("Si");
+        siEmbarazoActual.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siEmbarazoActualFocusGained(evt);
+            }
+        });
         siEmbarazoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siEmbarazoActualActionPerformed(evt);
@@ -2456,6 +2514,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgEmbarazo.add(noEmbarazoActual);
         noEmbarazoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         noEmbarazoActual.setText("No");
+        noEmbarazoActual.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noEmbarazoActualFocusGained(evt);
+            }
+        });
         noEmbarazoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noEmbarazoActualActionPerformed(evt);
@@ -2469,6 +2532,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfSDG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfSDG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSDG.setEnabled(false);
         panelGinecologico.add(tfSDG, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 87, 198, -1));
 
         jlAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2479,6 +2543,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgAnticonceptivos.add(siAnticonceptivosOrales);
         siAnticonceptivosOrales.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siAnticonceptivosOrales.setText("Si");
+        siAnticonceptivosOrales.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siAnticonceptivosOralesFocusGained(evt);
+            }
+        });
         siAnticonceptivosOrales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siAnticonceptivosOralesActionPerformed(evt);
@@ -2490,9 +2559,15 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgAnticonceptivos.add(noAnticonceptivos);
         noAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         noAnticonceptivos.setText("No");
+        noAnticonceptivos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noAnticonceptivosFocusGained(evt);
+            }
+        });
         panelGinecologico.add(noAnticonceptivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 133, -1, -1));
 
         tfDosisAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDosisAnticonceptivos.setEnabled(false);
         panelGinecologico.add(tfDosisAnticonceptivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 243, -1));
 
         jlCuantoTiempo1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2500,6 +2575,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelGinecologico.add(jlCuantoTiempo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
 
         tfDosisTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDosisTerapiaHormonal.setEnabled(false);
         panelGinecologico.add(tfDosisTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 320, 250, -1));
 
         jlvagDosis.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2511,6 +2587,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelGinecologico.add(jlCualAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 137, -1, -1));
 
         tfCualTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualTerapiaHormonal.setEnabled(false);
         tfCualTerapiaHormonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCualTerapiaHormonalActionPerformed(evt);
@@ -2552,12 +2629,22 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgReemplazoHormonal.add(siTerapiaHormonal);
         siTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siTerapiaHormonal.setText("Si");
+        siTerapiaHormonal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siTerapiaHormonalFocusGained(evt);
+            }
+        });
         panelGinecologico.add(siTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 275, -1, -1));
 
         noTerapiaHornomal.setBackground(new java.awt.Color(255, 255, 255));
         rbgReemplazoHormonal.add(noTerapiaHornomal);
         noTerapiaHornomal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         noTerapiaHornomal.setText("No");
+        noTerapiaHornomal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noTerapiaHornomalFocusGained(evt);
+            }
+        });
         panelGinecologico.add(noTerapiaHornomal, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 275, -1, -1));
 
         jlCualTerapia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2565,6 +2652,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelGinecologico.add(jlCualTerapia, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 279, -1, -1));
 
         tfvagTiempoTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfvagTiempoTerapiaHormonal.setEnabled(false);
         tfvagTiempoTerapiaHormonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfvagTiempoTerapiaHormonalActionPerformed(evt);
@@ -2577,6 +2665,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelGinecologico.add(jlvagCualTerapiaHormonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 325, -1, -1));
 
         tfVagCualAnticonceptivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfVagCualAnticonceptivo.setEnabled(false);
         panelGinecologico.add(tfVagCualAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 200, -1));
 
         jlvagTiempoTerapiaHormonal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2596,8 +2685,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         });
         panelGinecologico.add(dpGuardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, -1, -1));
 
-        tfvagTiempoAnticonceptivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelGinecologico.add(tfvagTiempoAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 200, -1));
+        tfVagTiempoAnticonceptivo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfVagTiempoAnticonceptivo.setEnabled(false);
+        panelGinecologico.add(tfVagTiempoAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 200, -1));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_979x606.png"))); // NOI18N
         panelGinecologico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 610));
@@ -2637,6 +2727,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 78, -1, -1));
 
         tfDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDespertarse.setText("Si la acción no se realiza dejar 00:00");
+        tfDespertarse.setEnabled(false);
         panelActiviadades.add(tfDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 75, 279, -1));
 
         jlSignos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2664,6 +2756,13 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 122, -1, -1));
 
         tfDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDesayuno.setText("Si la acción no se realiza dejar 00:00");
+        tfDesayuno.setEnabled(false);
+        tfDesayuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDesayunoActionPerformed(evt);
+            }
+        });
         panelActiviadades.add(tfDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 119, 279, -1));
 
         taAspectoGeneral.setColumns(20);
@@ -2689,6 +2788,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 166, -1, -1));
 
         tfComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfComida.setText("Si la acción no se realiza dejar 00:00");
+        tfComida.setEnabled(false);
         panelActiviadades.add(tfComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 163, 279, -1));
 
         jLabel38.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2708,6 +2809,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 210, -1, -1));
 
         tfCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCena.setText("Si la acción no se realiza dejar 00:00");
+        tfCena.setEnabled(false);
         panelActiviadades.add(tfCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 207, 279, -1));
 
         jLabel40.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2727,6 +2830,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 254, -1, -1));
 
         tfDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDormir.setText("Si la acción no se realiza dejar 00:00");
+        tfDormir.setEnabled(false);
         panelActiviadades.add(tfDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 251, 279, -1));
 
         jlEjercicio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2738,20 +2843,25 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         cbTipoActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cbTipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
+        cbTipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
+        cbTipoActividad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTipoActividadItemStateChanged(evt);
+            }
+        });
         cbTipoActividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActividadActionPerformed(evt);
             }
         });
-        panelActiviadades.add(cbTipoActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 337, -1, -1));
+        panelActiviadades.add(cbTipoActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 337, 120, -1));
 
         jlFrecuencia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlFrecuencia.setText("Frecuencia");
         panelActiviadades.add(jlFrecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 340, -1, -1));
 
         cbFrecuenciaActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cbFrecuenciaActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre", " " }));
+        cbFrecuenciaActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
         panelActiviadades.add(cbFrecuenciaActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 337, -1, -1));
 
         jlPreisonArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2766,6 +2876,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgPresionArterial.add(siPresionArterial);
         siPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siPresionArterial.setText("Si");
+        siPresionArterial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siPresionArterialFocusGained(evt);
+            }
+        });
         panelActiviadades.add(siPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(698, 336, -1, -1));
 
         noPresionArterial.setBackground(new java.awt.Color(153, 217, 234));
@@ -2773,21 +2888,27 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         noPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         noPresionArterial.setText("No");
         noPresionArterial.setToolTipText("");
+        noPresionArterial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noPresionArterialFocusGained(evt);
+            }
+        });
         panelActiviadades.add(noPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(737, 336, -1, -1));
 
         jlDuracionActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlDuracionActividad.setText("Duración");
         panelActiviadades.add(jlDuracionActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 377, -1, -1));
 
-        jComboBox14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
-        panelActiviadades.add(jComboBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 374, -1, -1));
+        cbDuracionActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbDuracionActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Sin actividad", "< 30 Minutos", "< 60 minutos", "< 90 minutos", "< 120 minutos", "< 150 minutos", "< 180 minutos", "> 180 minutos" }));
+        panelActiviadades.add(cbDuracionActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 374, -1, -1));
 
         jlCualPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlCualPresionArterial.setText("¿Cuál es?");
         panelActiviadades.add(jlCualPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 377, -1, -1));
 
         tfCualPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCualPresionArterial.setEnabled(false);
         panelActiviadades.add(tfCualPresionArterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 374, 182, -1));
 
         jlHoraPresion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2795,6 +2916,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlHoraPresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(786, 377, -1, -1));
 
         tfHoraPresion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfHoraPresion.setEnabled(false);
         panelActiviadades.add(tfHoraPresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 374, 144, -1));
 
         jlConsumoFrecuencia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2806,7 +2928,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlTabaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 452, -1, -1));
 
         cbTabaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cbTabaco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbTabaco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
         cbTabaco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTabacoActionPerformed(evt);
@@ -2819,7 +2941,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlAlcohol, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 452, -1, -1));
 
         cbAlcohol.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cbAlcohol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbAlcohol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
         cbAlcohol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbAlcoholActionPerformed(evt);
@@ -2832,7 +2954,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(jlCafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 489, -1, -1));
 
         cbCafe.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        cbCafe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbCafe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
         cbCafe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCafeActionPerformed(evt);
@@ -3591,6 +3713,75 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void dpGuardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar3ActionPerformed
         // TODO add your handling code here:
+        int banderavdda = 0;
+        /**
+         * Validación de variable Presion Arterial
+         */
+        if(siPresionArterial.isSelected()||noPresionArterial.isSelected()){
+            if(siPresionArterial.isSelected()){
+                setVddaPresionArterial("Con presion arterial");
+            }else{
+                setVddaPresionArterial("Sin presion arterial");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Presión Arterial", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Validacion cual presion arterial
+         */
+        if (tfCualPresionArterial.getText().equals("")) {
+            if(funcion.tipoString(tfCualPresionArterial.getText())){
+                setVddaCualPresionArterial(tfCualPresionArterial.getText());
+            }else{
+                setVddaCualPresionArterial("Sin presion arterial");
+            }
+        } else {
+            banderavdda = banderavdda + 1;
+            tfCualPresionArterial.setText("");
+            JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuanta presión arterial?\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Validacion hora presion arterial
+         */
+        if (tfHoraPresion.getText().equals("")) {
+            if(funcion.tipoString(tfHoraPresion.getText())){
+                setVddaHoraPresionArterial(tfHoraPresion.getText());
+            }else{
+                setVddaHoraPresionArterial("Sin hora presion arterial");
+            }
+        } else {
+            banderavdda = banderavdda + 1;
+            tfHoraPresion.setText("");
+            JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Hora presión arterial\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Validación de variable tabaco
+         */
+        if(cbTabaco.getSelectedItem().equals("...")){
+            JOptionPane.showMessageDialog(null, "Asignar valor a la opción \"Tabaco\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            String vTabaco = (String) cbTabaco.getSelectedItem();
+            setVddaTabaco(vTabaco);
+        }
+        /**
+         * Validación de variable alcochol
+         */
+        if(cbAlcohol.getSelectedItem().equals("...")){
+            JOptionPane.showMessageDialog(null, "Asignar valor a la opción \"Alcohol\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            String vAlcochol = (String) cbAlcohol.getSelectedItem();
+            setVddaAlcohol(vAlcochol);
+        }
+        /**
+         * Validación de variable café
+         */
+        if(cbCafe.getSelectedItem().equals("...")){
+            JOptionPane.showMessageDialog(null, "Asignar valor a la opción \"Café\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            String vCafe = (String) cbCafe.getSelectedItem();
+            setVddaCafe(vCafe);
+        }
+        
     }//GEN-LAST:event_dpGuardar3ActionPerformed
 
     private void cbCafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCafeActionPerformed
@@ -3611,6 +3802,167 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void dpGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar2ActionPerformed
         // TODO add your handling code here:
+        int banderavag = 0;
+        /**
+         * Validación de variable EMBARAZO
+         */
+        if(siEmbarazoActual.isSelected() || noEmbarazoActual.isSelected()){
+            if(siEmbarazoActual.isSelected()){
+                setVagEmbarazoAcutal("Embarazo Actual");
+            }else{
+                setVagEmbarazoAcutal("Sin Embarazo Actual");
+            }
+        }else{
+            banderavag = banderavag + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Embarazo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /**
+         * Valoracion de variable SDG
+         */
+        if(tfSDG.getText().equals("")){
+            setVagSemanasGestacion("Sin semanas de gestacion");            
+        }else{
+            if (funcion.tipoString(tfSDG.getText())) {
+                setVagSemanasGestacion(tfSDG.getText());
+            } else {
+                banderavag = banderavag + 1;
+                tfSDG.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Semanas de gestación\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Validación de variable Anticonceptivos
+         */
+        if(siAnticonceptivosOrales.isSelected()||noAnticonceptivos.isSelected()){
+            if(siAnticonceptivosOrales.isSelected()){
+                setVagAnticonceptivos("Anticonceptivos Orales");
+            }else{
+                setVagAnticonceptivos("Sin anticonceptivos orales");
+            }
+        }else{
+            banderavag = banderavag + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Anticonceptivos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoracion de variable Anticonceptivo
+         */
+        if(tfVagCualAnticonceptivo.getText().equals("")){
+            setVagCualAnticonceptivo("Sin anticonceptivos orales");            
+        }else{
+            if (funcion.tipoString(tfVagCualAnticonceptivo.getText())) {
+                setVagCualAnticonceptivo(tfVagCualAnticonceptivo.getText());
+            } else {
+                banderavag = banderavag + 1;
+                tfVagCualAnticonceptivo.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál anticonceptivo?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Valoracion de variable Dosis Anticonceptivo
+         */
+        if(tfDosisAnticonceptivos.getText().equals("")){
+            setVagDosisAnticoconceptivo("Sin dosis de anticonceptivos");            
+        }else{
+            if (funcion.tipoString(tfDosisAnticonceptivos.getText())) {
+                setVagDosisAnticoconceptivo(tfDosisAnticonceptivos.getText());
+            } else {
+                banderavag = banderavag + 1;
+                tfDosisAnticonceptivos.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Dosis Anticonceptivos\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Valoracion de variable Tiempo de Anticonceptivos
+         */
+        if(tfVagTiempoAnticonceptivo.getText().equals("")){
+            setVagTiempoAnticonceptivo("Sin tiempo de anticonceptivos");            
+        }else{
+            if (funcion.tipoString(tfVagTiempoAnticonceptivo.getText())) {
+                setVagTiempoAnticonceptivo(tfVagTiempoAnticonceptivo.getText());
+            } else {
+                banderavag = banderavag + 1;
+                tfVagTiempoAnticonceptivo.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Tiempo anticonceptivo\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Valoración de variable Climaterio
+         */
+        if(siClimaterio.isSelected() || noClimaterio.isSelected()){
+            if(siClimaterio.isSelected()){
+                setVagClimaterio("Con climaterio");
+            }else{
+                setVagClimaterio("Sin climaterio");
+            }
+        }else{
+            banderavag = banderavag + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Climaterio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variable Terapia hormonal
+         */
+        if(siTerapiaHormonal.isSelected() || noTerapiaHornomal.isSelected()){
+            if(siTerapiaHormonal.isSelected()){
+                setVagTerapiaHormonal("Con terapia hormonal");
+            }else{
+                setVagClimaterio("Sin terapia hormonal");
+            }
+        }else{
+            banderavag = banderavag + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Terapia Hormonal", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoracion de variable cual terapia hormonal
+         */
+        if(tfCualTerapiaHormonal.getText().equals("")){
+            setVagCualTerapiaHormonal("Sin terapia hormonal");   
+        }else{
+            if(funcion.tipoString(tfCualTerapiaHormonal.getText())){
+                setVagCualTerapiaHormonal(tfCualTerapiaHormonal.getText());
+            }else{
+                banderavag = banderavag + 1;
+                tfCualTerapiaHormonal.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál terapia hormonal?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Valoracion de variable cual dosis de terapia hormonal
+         */
+        if(tfDosisTerapiaHormonal.getText().equals("")){
+            setVagDosisTerapiaHormonal("Sin dosis de terapia hormonal");   
+        }else{
+            if(funcion.tipoString(tfDosisTerapiaHormonal.getText())){
+                setVagDosisTerapiaHormonal(tfDosisTerapiaHormonal.getText());
+            }else{
+                banderavag = banderavag + 1;
+                tfDosisTerapiaHormonal.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Dosis de terapia hormonal\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Valoracion de variable cual tiempo de terapia hormonal
+         */
+        if(tfvagTiempoTerapiaHormonal.getText().equals("")){
+            setVagTiempoTerapiaHormonal("Sin tiempo de terapia hormonal");   
+        }else{
+            if(funcion.tipoString(tfvagTiempoTerapiaHormonal.getText())){
+                setVagTiempoTerapiaHormonal(tfvagTiempoTerapiaHormonal.getText());
+            }else{
+                banderavag = banderavag + 1;
+                tfvagTiempoTerapiaHormonal.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Tiempo de terapia hormonal\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if (banderavag == 0) {
+            int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Aspectos Ginecológicos\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respvag == 0) {
+                panel.setSelectedIndex(3);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_dpGuardar2ActionPerformed
 
     private void tfvagTiempoTerapiaHormonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfvagTiempoTerapiaHormonalActionPerformed
@@ -3643,20 +3995,426 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void dpGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar1ActionPerformed
         // TODO add your handling code here:
+        int banderavase = 0;
+        /**
+         * Valoración de variables para la opcion "Diarrea"
+         */
+        if (rbSiDiarrea.isSelected() || rbNoDiarrea.isSelected()) {
+            if (rbSiDiarrea.isSelected()) {
+                setVasediarrea("SI");
+                System.out.println("Si Diarrea seleccionado");
+            } else if (rbNoDiarrea.isSelected()) {
+                System.out.println("No Diarrea seleccionado");
+                setVasediarrea("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Diarrea", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        /**
+         * Valoración de variables para la opción "Estreñimineto"
+         */
+        if (rbSiEstrenimiento.isSelected() || rbNoEstrenimiento.isSelected()) {
+            if (rbSiEstrenimiento.isSelected()) {
+                setVaseestrenimiento("SI");
+                System.out.println("Si Estrenimiento seleccionado");
+            } else if (rbNoEstrenimiento.isSelected()) {
+                System.out.println("No Estrenimiento seleccionado");
+                setVaseestrenimiento("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Estreñimiento", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Gastritis"
+         */
+        if (rbSiGastritis.isSelected() || rbNoGastritis.isSelected()) {
+            if (rbSiGastritis.isSelected()) {
+                setVasegastritis("SI");
+                System.out.println("Si Gastritis seleccionado");
+            } else if (rbNoGastritis.isSelected()) {
+                System.out.println("No Gastritis seleccionado");
+                setVasegastritis("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Gastritis", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Ulceras"
+         */
+        if (rbSiUlcera.isSelected() || rbNoUlcera.isSelected()) {
+            if (rbSiUlcera.isSelected()) {
+                setVaseulcera("SI");
+                System.out.println("Si Ulcera seleccionado");
+            } else if (rbNoUlcera.isSelected()) {
+                System.out.println("No Ulcera seleccionado");
+                setVaseulcera("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Ulcera", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Nauseas"
+         */
+        if (rbSiNausea.isSelected() || rbNoNausea.isSelected()) {
+            if (rbSiNausea.isSelected()) {
+                setVasenauseas("SI");
+                System.out.println("Si Nauseas seleccionado");
+            } else if (rbNoNausea.isSelected()) {
+                System.out.println("No Nauseas seleccionado");
+                setVasenauseas("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Náuseas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Pirosis"
+         */
+        if (rbSiPirosis.isSelected() || rbNoPirosis.isSelected()) {
+            if (rbSiPirosis.isSelected()) {
+                setVasepirosis("SI");
+                System.out.println("Si Pirosis seleccionado");
+            } else if (rbNoPirosis.isSelected()) {
+                System.out.println("No Pirosis seleccionado");
+                setVasepirosis("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Pirosis", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Vomito"
+         */
+        if (rbSiVomito.isSelected() || rbNoVomito.isSelected()) {
+            if (rbSiVomito.isSelected()) {
+                setVasevomito("SI");
+                System.out.println("Si Vómito seleccionado");
+            } else if (rbNoVomito.isSelected()) {
+                System.out.println("No Vómito seleccionado");
+                setVasevomito("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Vómito", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Colitis"
+         */
+        if (rbSiColitis.isSelected() || rbNoColitis.isSelected()) {
+            if (rbSiColitis.isSelected()) {
+                setVasecolitis("SI");
+                System.out.println("Si Colitis seleccionado");
+            } else if (rbNoColitis.isSelected()) {
+                System.out.println("No Colitis seleccionado");
+                setVasecolitis("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Colitis", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Dentadura"
+         */
+        if (rbSiDentadura.isSelected() || rbNoDentadura.isSelected()) {
+            if (rbSiDentadura.isSelected()) {
+                setVasedentadura("SI");
+                System.out.println("Si Dentadura seleccionado");
+            } else if (rbNoDentadura.isSelected()) {
+                System.out.println("No Dentadura seleccionado");
+                setVasedentadura("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Dentadura", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Text field otros
+         */
+        if (tfOtros.getText().equals("")) {
+            setVaseotros("Sin otros problemas");
+            System.out.println("Otros sin información");
+        } else {
+            if (funcion.tipoString(tfOtros.getText())) {
+                setVaseotros(tfOtros.getText());
+                System.out.println(getVaseotros());
+            } else {
+                banderavase = banderavase + 1;
+                tfOtros.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Otros\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        /**
+         * Text Area Observaciones
+         */
+        if (taObservaciones.getText().equals("")) {
+            setVaseobservaciones("Sin observaciones");
+            System.out.println("Sin observaciones");
+        } else {
+            if (funcion.tipoString(taObservaciones.getText())) {
+                setVaseobservaciones(taObservaciones.getText());
+                System.out.println(getVaseobservaciones());
+            } else {
+                banderavase = banderavase + 1;
+                taObservaciones.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Observaciones\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        /**
+         * Valoración de variables para la opción "Enfermedades diagnosticadas"
+         */
+        if (rbSiED.isSelected() || rbNoED.isSelected()) {
+            if (rbSiED.isSelected()) {
+                setVaseenfermedadDiagosticada("SI");
+                System.out.println("Si ED seleccionado");
+            } else if (rbNoED.isSelected()) {
+                System.out.println("No ED seleccionado");
+                setVaseenfermedadDiagosticada("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Enfermedad Diagnosticada", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoracion de variable cual enfermedad diagnosticada
+         */
+        if (tfCualED.getText().equals("")) {
+            setVasecualED("Sin enfermedad diagnosticada");
+            System.out.println("Sin enfermedad importante");
+        } else {
+            if (funcion.tipoString(tfCualED.getText())) {
+                setVasecualED(tfCualED.getText());
+                System.out.println(getVasecualED());
+            } else {
+                banderavase = banderavase + 1;
+                tfCualED.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál enfermedad diagnosticada?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        /**
+         * Valoración de variables para la opción "Enfermedades importante"
+         */
+        if (rbSiEI.isSelected() || rbNoEI.isSelected()) {
+            if (rbSiEI.isSelected()) {
+                setVaseenfermedadImportante("SI");
+                System.out.println("Si EI seleccionado");
+            } else if (rbNoEI.isSelected()) {
+                System.out.println("No EI seleccionado");
+                setVaseenfermedadImportante("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Enfermedad Importante", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoracion de variable cual enfermedad Importante
+         */
+        if (tfCualEI.getText().equals("")) {
+            setVasecualEI("Sin enfermedad importante");
+            System.out.println("Sin enfermedad importante");
+        } else {
+            if (funcion.tipoString(tfCualEI.getText())) {
+                setVasecualEI(tfCualEI.getText());
+                System.out.println(getVasecualEI());
+            } else {
+                banderavase = banderavase + 1;
+                tfCualEI.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál enfermedad importante?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        
+        
+        /**
+         * Valoración de variables para la opción "Medicamento"
+         */
+        if (rbSiMedicamento.isSelected() || rbNoMedicamento.isSelected()) {
+            if (rbSiMedicamento.isSelected()) {
+                setVasemedicamento("SI");
+                System.out.println("Si Medicamento seleccionado");
+            } else if (rbNoMedicamento.isSelected()) {
+                System.out.println("No Medicamento seleccionado");
+                setVasemedicamento("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Medicamento", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoracion de variable cual Medicamento
+         */
+        if (tfCualMedicamento.getText().equals("")) {
+            setVasecualMedicamento("Sin enfermedad importante");
+            System.out.println("Sin enfermedad importante");
+        } else {
+            if (funcion.tipoString(tfCualMedicamento.getText())) {
+                setVasecualMedicamento(tfCualMedicamento.getText());
+                System.out.println(getVasecualMedicamento());
+            } else {
+                banderavase = banderavase + 1;
+                tfCualMedicamento.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál enfermedad medicamento?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        /**
+         * Valoracion de variable dosisMedicamento
+         */
+        if(tfDosisMedicamento.getText().equals("")){
+            setVasedosisMedicamento("Sin dosis medicamento");
+            System.out.println("Sin dosis medicamento");
+        }else{
+            if (funcion.tipoString(tfDosisMedicamento.getText())) {
+                setVasedosisMedicamento(tfDosisMedicamento.getText());
+                System.out.println(getVasedosisMedicamento());
+            } else {
+                banderavase = banderavase + 1;
+                tfDosisMedicamento.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Dosis Medicamento\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        /**
+         * Valoracion de variable Tiempo medicamento
+         */
+        if(tfCuantoTiempo.getText().equals("")){
+            setVasedosisMedicamento("Sin tiempo medicamento");
+            System.out.println("Sin tiempo medicamento");
+            
+        }else{
+            if (funcion.tipoString(tfCuantoTiempo.getText())) {
+                setVasedosisMedicamento(tfCuantoTiempo.getText());
+                System.out.println(getVasetiempoMedicamento());
+            } else {
+                banderavase = banderavase + 1;
+                tfCuantoTiempo.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Tiempo Medicamento\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        /**
+         * Valoración de variables para la opción "Cirugia"
+         */
+        if (rbSiCirugia.isSelected() || rbNoCirugia.isSelected()) {
+            if (rbSiCirugia.isSelected()) {
+                setVasecirujia("SI");
+                System.out.println("Si cirugia seleccionado");
+            } else if (rbNoCirugia.isSelected()) {
+                System.out.println("No cirugia seleccionado");
+                setVasecirujia("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción cirugia", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoracion de variable cual Cirugia
+         */
+        if (tfCirugia.getText().equals("")) {
+            setVasecualCirujia("Sin cirugia");
+            System.out.println("Sin cirugia");
+        } else {
+            if (funcion.tipoString(tfCirugia.getText())) {
+                setVasecualCirujia(tfCirugia.getText());
+                System.out.println(getVasecualCirujia());
+            } else {
+                banderavase = banderavase + 1;
+                tfCirugia.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál cirugía?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        /**
+         * Valoración de variables para la opción "Laxantes"
+         */
+        if (rbSiLaxante.isSelected() || rbNoLaxante.isSelected()) {
+            if (rbSiLaxante.isSelected()) {
+                setVaselaxantes("SI");
+                System.out.println("Si cirugia seleccionado");
+            } else if (rbNoLaxante.isSelected()) {
+                System.out.println("No cirugia seleccionado");
+                setVaselaxantes("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Laxantes", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /**
+         * Valoración de variables para la opción "Diuréticos"
+         */
+        if (rbSiDiureticos.isSelected() || rbNoDiureticos.isSelected()) {
+            if (rbSiDiureticos.isSelected()) {
+                setVasediureticos("SI");
+                System.out.println("Si Diuréticos seleccionado");
+            } else if (rbNoDiureticos.isSelected()) {
+                System.out.println("No Diuréticos seleccionado");
+                setVasediureticos("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Diuréticos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Valoración de variables para la opción "Antiácidos"
+         */
+        if (rbSiAC.isSelected() || rbNoAC.isSelected()) {
+            if (rbSiAC.isSelected()) {
+                setVaseantiacidos("SI");
+                System.out.println("Si Antiácidos seleccionado");
+            } else if (rbNoAC.isSelected()) {
+                System.out.println("No Antiácidos seleccionado");
+                setVaseantiacidos("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Antiácidos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /**
+         * Valoración de variables para la opción "Analgésicos"
+         */
+        if (rbSiAnalgesicos.isSelected() || rbNoAnalgesicos.isSelected()) {
+            if (rbSiAnalgesicos.isSelected()) {
+                setVaseanalgesicos("SI");
+                System.out.println("Si Analgésicos seleccionado");
+            } else if (rbNoAnalgesicos.isSelected()) {
+                System.out.println("No Analgésicos seleccionado");
+                setVaseanalgesicos("NO");
+            }
+        } else {
+            banderavase = banderavase + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción Analgésicos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if(banderavase == 0){
+            int respvase = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Antecedentes Salud/Enfemedad\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(respvase==0){
+                panel.setSelectedIndex(2);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_dpGuardar1ActionPerformed
 
     private void dpGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardarActionPerformed
         // TODO add your handling code here:
         String nombre = dpNombre.getText(), apellidos = dpApellidos.getText(), sexo = (String) dpSexo.getSelectedItem();
         String nac = dpNacimiento.getText(), edad = (String) cbEdad.getSelectedItem(), cp = dpCP.getText();
-        String domicilio  = dpDomicilio.getText(), escolaridad = (String) dpEscolaridad.getSelectedItem(), ciudad = dpCiudad.getText();
+        String domicilio = dpDomicilio.getText(), escolaridad = (String) dpEscolaridad.getSelectedItem(), ciudad = dpCiudad.getText();
         String estadoC = (String) dpEstadoCivil.getSelectedItem(), telefono = dpTelefono.getText();
         String dpID = dpIDExpediente.getText(), email = dpEmail.getText();
         int resp = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información del usuario?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (resp == 0) {
             consultasMysql ingreso = new consultasMysql();
             try {
-                if (ingreso.insertarNuevoPaciente(dpID, nombre, apellidos, sexo, nac, edad,domicilio, cp, ciudad, escolaridad, estadoC, telefono, email) == 0) {
+                if (ingreso.insertarNuevoPaciente(dpID, nombre, apellidos, sexo, nac, edad, domicilio, cp, ciudad, escolaridad, estadoC, telefono, email) == 0) {
                     JOptionPane.showMessageDialog(null, "Datos guardados exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                 }
@@ -3783,20 +4541,159 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private void dpGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar5ActionPerformed
         // TODO add your handling code here:
         String pesoActual = tfPesoActual.getText();
-        pesoActual = pesoActual+"@";
+        pesoActual = pesoActual + "@";
         encriptacion encript = new encriptacion();
         String encr = encript.encriptar(pesoActual);
         System.out.println("Texto encriptado: " + encr);
-        
+
         System.out.println("Texto desencriptado: " + encript.desEncriptar(encr));
-        
+
         Random rnd = new Random();
         int valor = 48 + rnd.nextInt(118);
         System.out.println(valor);
     }//GEN-LAST:event_dpGuardar5ActionPerformed
-    private void guardarInfoGeneral(){
+
+    private void rbSiEDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbSiEDStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbSiEDStateChanged
+
+    private void rbSiEDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbSiEDFocusGained
+        // TODO add your handling code here:
+        tfCualED.enable(true);
+    }//GEN-LAST:event_rbSiEDFocusGained
+
+    private void rbNoEDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbNoEDFocusGained
+        // TODO add your handling code here:
+        tfCualED.setText("");
+        tfCualED.disable();
+        //JOptionPane.showMessageDialog(null, "Si no se padece ninguna Enfermedad Diagnosticada\n el siguiente campo no puede contener información", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_rbNoEDFocusGained
+
+    private void rbSiEIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbSiEIFocusGained
+        // TODO add your handling code here:
+        tfCualEI.enable(true);
+    }//GEN-LAST:event_rbSiEIFocusGained
+
+    private void rbNoEIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbNoEIFocusGained
+        // TODO add your handling code here:
+        tfCualEI.setText("");
+        tfCualEI.disable();
+    }//GEN-LAST:event_rbNoEIFocusGained
+
+    private void rbSiMedicamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbSiMedicamentoFocusGained
+        // TODO add your handling code here:
+        tfCualMedicamento.enable(true);
+        tfDosisMedicamento.enable(true);
+        tfCuantoTiempo.enable(true);
+    }//GEN-LAST:event_rbSiMedicamentoFocusGained
+
+    private void rbNoMedicamentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbNoMedicamentoFocusGained
+        // TODO add your handling code here:
+        tfCualMedicamento.setText("");
+        tfCualMedicamento.disable();
+        tfDosisMedicamento.setText("");
+        tfDosisMedicamento.disable();
+        tfCuantoTiempo.setText("");
+        tfCuantoTiempo.disable();
+    }//GEN-LAST:event_rbNoMedicamentoFocusGained
+
+    private void rbSiCirugiaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbSiCirugiaFocusGained
+        // TODO add your handling code here:
+        tfCirugia.enable();
+    }//GEN-LAST:event_rbSiCirugiaFocusGained
+
+    private void rbNoCirugiaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rbNoCirugiaFocusGained
+        // TODO add your handling code here:
+        tfCirugia.setText("");
+        tfCirugia.disable();
+    }//GEN-LAST:event_rbNoCirugiaFocusGained
+
+    private void siEmbarazoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siEmbarazoActualFocusGained
+        // TODO add your handling code here:
+        tfSDG.enable();
+    }//GEN-LAST:event_siEmbarazoActualFocusGained
+
+    private void noEmbarazoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noEmbarazoActualFocusGained
+        // TODO add your handling code here:
+        tfSDG.setText("");
+        tfSDG.disable();
+    }//GEN-LAST:event_noEmbarazoActualFocusGained
+
+    private void siAnticonceptivosOralesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siAnticonceptivosOralesFocusGained
+        // TODO add your handling code here:
+        tfVagCualAnticonceptivo.enable(true);
+        tfVagTiempoAnticonceptivo.enable(true);
+        tfDosisAnticonceptivos.enable(true);
+    }//GEN-LAST:event_siAnticonceptivosOralesFocusGained
+
+    private void noAnticonceptivosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noAnticonceptivosFocusGained
+        // TODO add your handling code here:
+        tfVagCualAnticonceptivo.setText("");
+        tfVagCualAnticonceptivo.disable();
+        tfVagTiempoAnticonceptivo.setText("");
+        tfVagTiempoAnticonceptivo.disable();
+        tfDosisAnticonceptivos.setText("");
+        tfDosisAnticonceptivos.disable();
+    }//GEN-LAST:event_noAnticonceptivosFocusGained
+
+    private void siTerapiaHormonalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siTerapiaHormonalFocusGained
+        // TODO add your handling code here:
+        tfCualTerapiaHormonal.enable(true);
+        tfDosisTerapiaHormonal.enable(true);
+        tfvagTiempoTerapiaHormonal.enable(true);
+    }//GEN-LAST:event_siTerapiaHormonalFocusGained
+
+    private void noTerapiaHornomalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noTerapiaHornomalFocusGained
+        // TODO add your handling code here:
+        tfCualTerapiaHormonal.setText("");
+        tfCualTerapiaHormonal.disable();
+        tfDosisTerapiaHormonal.setText("");
+        tfDosisTerapiaHormonal.disable();
+        tfvagTiempoTerapiaHormonal.setText("");
+        tfvagTiempoTerapiaHormonal.disable();
+    }//GEN-LAST:event_noTerapiaHornomalFocusGained
+
+    private void tfDesayunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDesayunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDesayunoActionPerformed
+
+    private void siPresionArterialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siPresionArterialFocusGained
+        // TODO add your handling code here:
+        tfCualPresionArterial.enable(true);
+        tfHoraPresion.enable(true);
+    }//GEN-LAST:event_siPresionArterialFocusGained
+
+    private void noPresionArterialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noPresionArterialFocusGained
+        // TODO add your handling code here:
+        tfCualPresionArterial.setText("");
+        tfCualPresionArterial.disable();
+        tfHoraPresion.setText("");
+        tfHoraPresion.disable();
+    }//GEN-LAST:event_noPresionArterialFocusGained
+
+    private void cbTipoActividadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoActividadItemStateChanged
+        // TODO add your handling code here:
+        if(cbTipoActividad.getSelectedItem().equals("Sin actividad")){
+            cbDuracionActividad.setSelectedIndex(1);
+            cbFrecuenciaActividad.setSelectedIndex(1);
+            cbDuracionActividad.disable();
+            cbFrecuenciaActividad.disable();
+        }
+        if(cbTipoActividad.getSelectedItem().equals("...")){
+            cbDuracionActividad.setSelectedIndex(0);
+            cbFrecuenciaActividad.setSelectedIndex(0);
+            cbDuracionActividad.enable(true);
+            cbFrecuenciaActividad.enable(true);
+        }
+        if(cbTipoActividad.getSelectedItem().equals("Muy ligera") || cbTipoActividad.getSelectedItem().equals("Ligera") || cbTipoActividad.getSelectedItem().equals("Moderada") || cbTipoActividad.getSelectedItem().equals("Pesada") || cbTipoActividad.getSelectedItem().equals("Excepcional")){
+            cbDuracionActividad.enable(true);
+            cbFrecuenciaActividad.enable(true);
+        }
+    }//GEN-LAST:event_cbTipoActividadItemStateChanged
+    private void guardarInfoGeneral() {
         System.out.println("Clic en guardar");
     }
+
     /**
      * @param args the command line arguments
      */
@@ -3841,6 +4738,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton buenoApetito;
     private javax.swing.JComboBox<String> cbAlcohol;
     private javax.swing.JComboBox<String> cbCafe;
+    private javax.swing.JComboBox<String> cbDuracionActividad;
     private javax.swing.JComboBox<String> cbEdad;
     private javax.swing.JComboBox<String> cbFrecuenciaActividad;
     private javax.swing.JComboBox<String> cbHoraCena;
@@ -3875,7 +4773,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField dpTelefono;
     private javax.swing.JRadioButton excepcionalApego;
     private javax.swing.JRadioButton excepcionalResultadosDieta;
-    private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jHaceCuantoDieta;
     private javax.swing.JLabel jLabel100;
@@ -3900,7 +4797,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jPliegueCutaneoSuprailiaco;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jlAgregarSal;
     private javax.swing.JLabel jlAguaCorporalTotal;
     private javax.swing.JLabel jlAlcohol;
@@ -4062,36 +4958,36 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelGinecologico;
     private javax.swing.JPanel panelIndicadores;
     private javax.swing.JPanel panelIndicadoresAntropo;
+    private javax.swing.JRadioButton rbNoAC;
+    private javax.swing.JRadioButton rbNoAnalgesicos;
+    private javax.swing.JRadioButton rbNoCirugia;
     private javax.swing.JRadioButton rbNoColitis;
     private javax.swing.JRadioButton rbNoDentadura;
     private javax.swing.JRadioButton rbNoDiarrea;
-    private javax.swing.JRadioButton rbNoDiarrea1;
-    private javax.swing.JRadioButton rbNoDiarrea2;
-    private javax.swing.JRadioButton rbNoDiarrea3;
-    private javax.swing.JRadioButton rbNoDiarrea4;
+    private javax.swing.JRadioButton rbNoDiureticos;
     private javax.swing.JRadioButton rbNoED;
     private javax.swing.JRadioButton rbNoEI;
     private javax.swing.JRadioButton rbNoEstrenimiento;
     private javax.swing.JRadioButton rbNoGastritis;
+    private javax.swing.JRadioButton rbNoLaxante;
     private javax.swing.JRadioButton rbNoMedicamento;
-    private javax.swing.JRadioButton rbNoMedicamento1;
     private javax.swing.JRadioButton rbNoNausea;
     private javax.swing.JRadioButton rbNoPirosis;
     private javax.swing.JRadioButton rbNoUlcera;
     private javax.swing.JRadioButton rbNoVomito;
+    private javax.swing.JRadioButton rbSiAC;
+    private javax.swing.JRadioButton rbSiAnalgesicos;
+    private javax.swing.JRadioButton rbSiCirugia;
     private javax.swing.JRadioButton rbSiColitis;
     private javax.swing.JRadioButton rbSiDentadura;
     private javax.swing.JRadioButton rbSiDiarrea;
-    private javax.swing.JRadioButton rbSiDiarrea1;
-    private javax.swing.JRadioButton rbSiDiarrea2;
-    private javax.swing.JRadioButton rbSiDiarrea3;
-    private javax.swing.JRadioButton rbSiDiarrea4;
+    private javax.swing.JRadioButton rbSiDiureticos;
     private javax.swing.JRadioButton rbSiED;
     private javax.swing.JRadioButton rbSiEI;
     private javax.swing.JRadioButton rbSiEstrenimiento;
     private javax.swing.JRadioButton rbSiGastritis;
+    private javax.swing.JRadioButton rbSiLaxante;
     private javax.swing.JRadioButton rbSiMedicamento;
-    private javax.swing.JRadioButton rbSiMedicamento1;
     private javax.swing.JRadioButton rbSiNausea;
     private javax.swing.JRadioButton rbSiPirosis;
     private javax.swing.JRadioButton rbSiUlcera;
@@ -4147,6 +5043,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton siVariacion;
     private javax.swing.JRadioButton suficienteResultadosDieta;
     private javax.swing.JTextArea taAspectoGeneral;
+    private javax.swing.JTextArea taObservaciones;
     private javax.swing.JTextField tfAguaCorporalTotal;
     private javax.swing.JTextField tfAlimentosMalestar;
     private javax.swing.JTextField tfAlimentosNoPreferidos;
@@ -4170,7 +5067,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfCualED;
     private javax.swing.JTextField tfCualEI;
     private javax.swing.JTextField tfCualMedicamento;
-    private javax.swing.JTextField tfCualMedicamento1;
     private javax.swing.JTextField tfCualMedicamentoBajarPeso;
     private javax.swing.JTextField tfCualPresionArterial;
     private javax.swing.JTextField tfCualTerapiaHormonal;
@@ -4182,6 +5078,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfDiferenciaGrasa;
     private javax.swing.JTextField tfDormir;
     private javax.swing.JTextField tfDosisAnticonceptivos;
+    private javax.swing.JTextField tfDosisMedicamento;
     private javax.swing.JTextField tfDosisTerapiaHormonal;
     private javax.swing.JTextField tfEstatura;
     private javax.swing.JTextField tfGrasaCorporal;
@@ -4212,7 +5109,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfRazonModifiacion;
     private javax.swing.JTextField tfSDG;
     private javax.swing.JTextField tfVagCualAnticonceptivo;
-    private javax.swing.JTextField tfvagTiempoAnticonceptivo;
+    private javax.swing.JTextField tfVagTiempoAnticonceptivo;
     private javax.swing.JTextField tfvagTiempoTerapiaHormonal;
     // End of variables declaration//GEN-END:variables
 }
