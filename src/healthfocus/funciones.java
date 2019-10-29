@@ -51,7 +51,7 @@ public class funciones {
      * @return
      */
     public boolean tipoString(String variable){
-        Pattern p = Pattern.compile("[a-zA-Z#.]");
+        Pattern p = Pattern.compile("[0-9a-zA-Z#.]");
         Matcher m = p.matcher(variable);
         return m.find();
     }

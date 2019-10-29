@@ -7,6 +7,8 @@ package healthfocus;
 
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -20,7 +22,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     selectorTexto seleccionarTexto = new selectorTexto();
     funciones funcion = new funciones();
-
+    consultasMysql cons = new consultasMysql();
     /**
      * Bloque para la asignación de getters y setters de la la primer ventana de
      * un nuevo usuario, DATOS PERSONALES
@@ -496,6 +498,24 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private String vddaTabaco = "";
     private String vddaAlcohol = "";
     private String vddaCafe = "";
+    private String vddaDormir = "";
+    private String vddaHoraDormir = "";
+
+    public String getVddaDormir() {
+        return vddaDormir;
+    }
+
+    public void setVddaDormir(String vddaDormir) {
+        this.vddaDormir = vddaDormir;
+    }
+
+    public String getVddaHoraDormir() {
+        return vddaHoraDormir;
+    }
+
+    public void setVddaHoraDormir(String vddaHoraDormir) {
+        this.vddaHoraDormir = vddaHoraDormir;
+    }
 
     public String getVddaHoraDespertarse() {
         return vddaHoraDespertarse;
@@ -702,6 +722,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
      */
     private String vidCuantasComidas = "";
     private String vidQuienPrepara = "";
+    private String vidEntreComidas = "";
     private String vidSiEntreComidas = "";
     private String vidNoEntreComidas = "";
     private String vidQueEntreComidas = "";
@@ -712,47 +733,78 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private String vidSiModificacionAlimentos = "";
     private String vidNoModificacionAlimentos = "";
     private String vidRazonModificacion = "";
-    private String vidApetitoBueno = "";
-    private String vidApetitoMalo = "";
-    private String vidApetitoRegular = "";
-    private String vidLevantarseHambre = "";
-    private String vidMananaHambre = "";
-    private String vidTardeHambre = "";
-    private String vidNocheHambre = "";
+    private String vidMasHambre="";
+    
     private String vidAlimentosPreferidos = "";
     private String vidAlimentosNoPreferidos = "";
     private String vidAlimentosMalestar = "";
-    private String vidSiAlimentosIntolerante = "";
-    private String vidNoAlimentosIntolerante = "";
+   
+    private String vidIntolerante = "";
     private String vidCualIntolerante = "";
     private String vidApetitoVariableEDA = ""; //Estado de animo
-    private String vidNuloEDA = "";
-    private String vidMenorEDA = "";
-    private String vidMayorEDA = "";
-    private String vidSiSal = "";
-    private String vidNoSal = "";
-    private String vidMargarinaGrasa = "";
-    private String vidAceiteGrasa = "";
-    private String vidMantecaGrasa = "";
-    private String vidMantequilla = "";
+    private String vidNivelVariacion = "";
+    private String vidSal = "";
+    private String vidGrasa = "";
     private String vidOtroGrasa = "";
-    private String vidSiDietaEspecial = "";
-    private String vidNoDietaEspecial = "";
+    private String vidDietaEspecial = "";
     private String vidCuantasDietaEspecial = "";
     private String vidHaceCuantoDietaEspecial = "";
     private String vidTiempoDietaEspecial = "";
     private String vidRazonDietaEspecial = "";
-    private String vidNadaApegoDieta = "";
-    private String vidMuyPocoAPegoDieta = "";
-    private String vidSuficienteApegoDieta = "";
-    private String vidExcepcionalApegoDieta = "";
-    private String vidNadaResultadosDieta = "";
-    private String vidMuyPocoResultadosDieta = "";
-    private String vidSuficienteResultadosDieta = "";
-    private String vidExcepcionalResultadosDieta = "";
-    private String vidSiMedicamentosPeso = "";
-    private String vidNoMedicamentosPeso = "";
+    private String vidApegoDieta = "";
+    private String vidResultadosDieta = "";
+    private String vidMedicamentoPeso = "";
     private String vidCualMedicamentoPeso = "";
+    private String vidModificacionAlimentos = "";
+    private String vidApetito = "";
+
+    public String getVidMedicamentoPeso() {
+        return vidMedicamentoPeso;
+    }
+
+    public void setVidMedicamentoPeso(String vidMedicamentoPeso) {
+        this.vidMedicamentoPeso = vidMedicamentoPeso;
+    }
+
+    public String getVidSal() {
+        return vidSal;
+    }
+
+    public void setVidSal(String vidSal) {
+        this.vidSal = vidSal;
+    }
+
+    public String getVidNivelVariacion() {
+        return vidNivelVariacion;
+    }
+
+    public void setVidNivelVariacion(String vidNivelVariacion) {
+        this.vidNivelVariacion = vidNivelVariacion;
+    }
+
+    public String getVidApetito() {
+        return vidApetito;
+    }
+
+    public void setVidApetito(String vidApetito) {
+        this.vidApetito = vidApetito;
+    }
+    
+    public String getVidModificacionAlimentos() {
+        return vidModificacionAlimentos;
+    }
+
+    public void setVidModificacionAlimentos(String vidModificacionAlimentos) {
+        this.vidModificacionAlimentos = vidModificacionAlimentos;
+    }
+    
+    public String getVidEntreComidas() {
+        return vidEntreComidas;
+    }
+
+    public void setVidEntreComidas(String vidEntreComidas) {
+        this.vidEntreComidas = vidEntreComidas;
+    }
 
     public String getVidCuantasComidas() {
         return vidCuantasComidas;
@@ -850,61 +902,15 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vidRazonModificacion = vidRazonModificacion;
     }
 
-    public String getVidApetitoBueno() {
-        return vidApetitoBueno;
+    public String getVidMasHambre() {
+        return vidMasHambre;
     }
 
-    public void setVidApetitoBueno(String vidApetitoBueno) {
-        this.vidApetitoBueno = vidApetitoBueno;
+    public void setVidMasHambre(String vidMasHambre) {
+        this.vidMasHambre = vidMasHambre;
     }
 
-    public String getVidApetitoMalo() {
-        return vidApetitoMalo;
-    }
-
-    public void setVidApetitoMalo(String vidApetitoMalo) {
-        this.vidApetitoMalo = vidApetitoMalo;
-    }
-
-    public String getVidApetitoRegular() {
-        return vidApetitoRegular;
-    }
-
-    public void setVidApetitoRegular(String vidApetitoRegular) {
-        this.vidApetitoRegular = vidApetitoRegular;
-    }
-
-    public String getVidLevantarseHambre() {
-        return vidLevantarseHambre;
-    }
-
-    public void setVidLevantarseHambre(String vidLevantarseHambre) {
-        this.vidLevantarseHambre = vidLevantarseHambre;
-    }
-
-    public String getVidMananaHambre() {
-        return vidMananaHambre;
-    }
-
-    public void setVidMananaHambre(String vidMananaHambre) {
-        this.vidMananaHambre = vidMananaHambre;
-    }
-
-    public String getVidTardeHambre() {
-        return vidTardeHambre;
-    }
-
-    public void setVidTardeHambre(String vidTardeHambre) {
-        this.vidTardeHambre = vidTardeHambre;
-    }
-
-    public String getVidNocheHambre() {
-        return vidNocheHambre;
-    }
-
-    public void setVidNocheHambre(String vidNocheHambre) {
-        this.vidNocheHambre = vidNocheHambre;
-    }
+    
 
     public String getVidAlimentosPreferidos() {
         return vidAlimentosPreferidos;
@@ -930,21 +936,15 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vidAlimentosMalestar = vidAlimentosMalestar;
     }
 
-    public String getVidSiAlimentosIntolerante() {
-        return vidSiAlimentosIntolerante;
+    public String getVidIntolerante() {
+        return vidIntolerante;
     }
 
-    public void setVidSiAlimentosIntolerante(String vidSiAlimentosIntolerante) {
-        this.vidSiAlimentosIntolerante = vidSiAlimentosIntolerante;
+    public void setVidIntolerante(String vidIntolerante) {
+        this.vidIntolerante = vidIntolerante;
     }
 
-    public String getVidNoAlimentosIntolerante() {
-        return vidNoAlimentosIntolerante;
-    }
-
-    public void setVidNoAlimentosIntolerante(String vidNoAlimentosIntolerante) {
-        this.vidNoAlimentosIntolerante = vidNoAlimentosIntolerante;
-    }
+   
 
     public String getVidCualIntolerante() {
         return vidCualIntolerante;
@@ -962,76 +962,12 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vidApetitoVariableEDA = vidApetitoVariableEDA;
     }
 
-    public String getVidNuloEDA() {
-        return vidNuloEDA;
+    public String getVidGrasa() {
+        return vidGrasa;
     }
 
-    public void setVidNuloEDA(String vidNuloEDA) {
-        this.vidNuloEDA = vidNuloEDA;
-    }
-
-    public String getVidMenorEDA() {
-        return vidMenorEDA;
-    }
-
-    public void setVidMenorEDA(String vidMenorEDA) {
-        this.vidMenorEDA = vidMenorEDA;
-    }
-
-    public String getVidMayorEDA() {
-        return vidMayorEDA;
-    }
-
-    public void setVidMayorEDA(String vidMayorEDA) {
-        this.vidMayorEDA = vidMayorEDA;
-    }
-
-    public String getVidSiSal() {
-        return vidSiSal;
-    }
-
-    public void setVidSiSal(String vidSiSal) {
-        this.vidSiSal = vidSiSal;
-    }
-
-    public String getVidNoSal() {
-        return vidNoSal;
-    }
-
-    public void setVidNoSal(String vidNoSal) {
-        this.vidNoSal = vidNoSal;
-    }
-
-    public String getVidMargarinaGrasa() {
-        return vidMargarinaGrasa;
-    }
-
-    public void setVidMargarinaGrasa(String vidMargarinaGrasa) {
-        this.vidMargarinaGrasa = vidMargarinaGrasa;
-    }
-
-    public String getVidAceiteGrasa() {
-        return vidAceiteGrasa;
-    }
-
-    public void setVidAceiteGrasa(String vidAceiteGrasa) {
-        this.vidAceiteGrasa = vidAceiteGrasa;
-    }
-
-    public String getVidMantecaGrasa() {
-        return vidMantecaGrasa;
-    }
-
-    public void setVidMantecaGrasa(String vidMantecaGrasa) {
-        this.vidMantecaGrasa = vidMantecaGrasa;
-    }
-
-    public String getVidMantequilla() {
-        return vidMantequilla;
-    }
-
-    public void setVidMantequilla(String vidMantequilla) {
-        this.vidMantequilla = vidMantequilla;
+    public void setVidGrasa(String vidGrasa) {
+        this.vidGrasa = vidGrasa;
     }
 
     public String getVidOtroGrasa() {
@@ -1042,21 +978,15 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vidOtroGrasa = vidOtroGrasa;
     }
 
-    public String getVidSiDietaEspecial() {
-        return vidSiDietaEspecial;
+    public String getVidDietaEspecial() {
+        return vidDietaEspecial;
     }
 
-    public void setVidSiDietaEspecial(String vidSiDietaEspecial) {
-        this.vidSiDietaEspecial = vidSiDietaEspecial;
+    public void setVidDietaEspecial(String vidDietaEspecial) {
+        this.vidDietaEspecial = vidDietaEspecial;
     }
 
-    public String getVidNoDietaEspecial() {
-        return vidNoDietaEspecial;
-    }
-
-    public void setVidNoDietaEspecial(String vidNoDietaEspecial) {
-        this.vidNoDietaEspecial = vidNoDietaEspecial;
-    }
+    
 
     public String getVidCuantasDietaEspecial() {
         return vidCuantasDietaEspecial;
@@ -1090,85 +1020,22 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         this.vidRazonDietaEspecial = vidRazonDietaEspecial;
     }
 
-    public String getVidNadaApegoDieta() {
-        return vidNadaApegoDieta;
+    public String getVidApegoDieta() {
+        return vidApegoDieta;
     }
 
-    public void setVidNadaApegoDieta(String vidNadaApegoDieta) {
-        this.vidNadaApegoDieta = vidNadaApegoDieta;
+    public void setVidApegoDieta(String vidApegoDieta) {
+        this.vidApegoDieta = vidApegoDieta;
     }
 
-    public String getVidMuyPocoAPegoDieta() {
-        return vidMuyPocoAPegoDieta;
+    public String getVidResultadosDieta() {
+        return vidResultadosDieta;
     }
 
-    public void setVidMuyPocoAPegoDieta(String vidMuyPocoAPegoDieta) {
-        this.vidMuyPocoAPegoDieta = vidMuyPocoAPegoDieta;
+    public void setVidResultadosDieta(String vidResultadosDieta) {
+        this.vidResultadosDieta = vidResultadosDieta;
     }
 
-    public String getVidSuficienteApegoDieta() {
-        return vidSuficienteApegoDieta;
-    }
-
-    public void setVidSuficienteApegoDieta(String vidSuficienteApegoDieta) {
-        this.vidSuficienteApegoDieta = vidSuficienteApegoDieta;
-    }
-
-    public String getVidExcepcionalApegoDieta() {
-        return vidExcepcionalApegoDieta;
-    }
-
-    public void setVidExcepcionalApegoDieta(String vidExcepcionalApegoDieta) {
-        this.vidExcepcionalApegoDieta = vidExcepcionalApegoDieta;
-    }
-
-    public String getVidNadaResultadosDieta() {
-        return vidNadaResultadosDieta;
-    }
-
-    public void setVidNadaResultadosDieta(String vidNadaResultadosDieta) {
-        this.vidNadaResultadosDieta = vidNadaResultadosDieta;
-    }
-
-    public String getVidMuyPocoResultadosDieta() {
-        return vidMuyPocoResultadosDieta;
-    }
-
-    public void setVidMuyPocoResultadosDieta(String vidMuyPocoResultadosDieta) {
-        this.vidMuyPocoResultadosDieta = vidMuyPocoResultadosDieta;
-    }
-
-    public String getVidSuficienteResultadosDieta() {
-        return vidSuficienteResultadosDieta;
-    }
-
-    public void setVidSuficienteResultadosDieta(String vidSuficienteResultadosDieta) {
-        this.vidSuficienteResultadosDieta = vidSuficienteResultadosDieta;
-    }
-
-    public String getVidExcepcionalResultadosDieta() {
-        return vidExcepcionalResultadosDieta;
-    }
-
-    public void setVidExcepcionalResultadosDieta(String vidExcepcionalResultadosDieta) {
-        this.vidExcepcionalResultadosDieta = vidExcepcionalResultadosDieta;
-    }
-
-    public String getVidSiMedicamentosPeso() {
-        return vidSiMedicamentosPeso;
-    }
-
-    public void setVidSiMedicamentosPeso(String vidSiMedicamentosPeso) {
-        this.vidSiMedicamentosPeso = vidSiMedicamentosPeso;
-    }
-
-    public String getVidNoMedicamentosPeso() {
-        return vidNoMedicamentosPeso;
-    }
-
-    public void setVidNoMedicamentosPeso(String vidNoMedicamentosPeso) {
-        this.vidNoMedicamentosPeso = vidNoMedicamentosPeso;
-    }
 
     public String getVidCualMedicamentoPeso() {
         return vidCualMedicamentoPeso;
@@ -1693,7 +1560,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         siEntreComidas = new javax.swing.JRadioButton();
         noEntreComidas = new javax.swing.JRadioButton();
         jLabel62 = new javax.swing.JLabel();
-        tfComidasDia6 = new javax.swing.JTextField();
+        tfQueEntreComidas = new javax.swing.JTextField();
         jlModificacionDieta = new javax.swing.JLabel();
         siModificacionAlimentos = new javax.swing.JRadioButton();
         noModificacionAlimentos = new javax.swing.JRadioButton();
@@ -1705,9 +1572,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         regularAPetito = new javax.swing.JRadioButton();
         jlHoraHambre = new javax.swing.JLabel();
         levantarseHambre = new javax.swing.JRadioButton();
-        mañanaHambre = new javax.swing.JRadioButton();
-        TardeHambre = new javax.swing.JRadioButton();
-        NocheHambre = new javax.swing.JRadioButton();
+        mananaHambre = new javax.swing.JRadioButton();
+        tardeHambre = new javax.swing.JRadioButton();
+        nocheHambre = new javax.swing.JRadioButton();
         jlAlimentosPreferidos = new javax.swing.JLabel();
         tfAlimentosPreferidos = new javax.swing.JTextField();
         jlAliementosNoPreferidos = new javax.swing.JLabel();
@@ -1817,13 +1684,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         tfDiferenciaGrasa = new javax.swing.JTextField();
         jlMasaMuscularTotal = new javax.swing.JLabel();
         tfMasaMuscularTotal = new javax.swing.JTextField();
-        jlPliegueCutaneoPerceptil = new javax.swing.JLabel();
-        tfPliegueCutaneoPerceptil = new javax.swing.JTextField();
-        jlPliegueCutaneosubescapular = new javax.swing.JLabel();
         jlIndiceCinturaCadera = new javax.swing.JLabel();
         jlAreaMuscularBrazo = new javax.swing.JLabel();
         jlAguaCorporalTotal = new javax.swing.JLabel();
-        tfPliegueCutaneoSubescapularPerceptil = new javax.swing.JTextField();
         tfIndiceCaderaCintura = new javax.swing.JTextField();
         tfAreaMuscularBrazo = new javax.swing.JTextField();
         tfAguaCorporalTotal = new javax.swing.JTextField();
@@ -2690,7 +2553,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelGinecologico.add(tfVagTiempoAnticonceptivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 200, -1));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_979x606.png"))); // NOI18N
-        panelGinecologico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 610));
+        panelGinecologico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 630));
 
         panel.addTab("Aspectos ginecológicos", panelGinecologico);
 
@@ -2712,6 +2575,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbHoraDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbHoraDespertarse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraDespertarse.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbHoraDespertarseItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbHoraDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2720,6 +2588,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbMinutoDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbMinutoDespertarse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoDespertarse.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMinutoDespertarseItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbMinutoDespertarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 75, -1, -1));
 
         jlDespertarse.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2741,10 +2614,20 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbHoraDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbHoraDesayuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraDesayuno.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbHoraDesayunoItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbHoraDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 119, -1, -1));
 
         cbMinutoDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbMinutoDesayuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoDesayuno.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMinutoDesayunoItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbMinutoDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 119, -1, -1));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2777,10 +2660,20 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbHoraComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbHoraComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraComida.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbHoraComidaItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbHoraComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 163, -1, -1));
 
         cbMinutoComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbMinutoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoComida.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMinutoComidaItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbMinutoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 163, -1, -1));
 
         jlComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2798,10 +2691,20 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbHoraCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbHoraCena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraCena.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbHoraCenaItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbHoraCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 207, -1, -1));
 
         cbMinutoCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbMinutoCena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoCena.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMinutoCenaItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbMinutoCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 207, -1, -1));
 
         jlCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2819,10 +2722,20 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbHoraDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbHoraDormir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraDormir.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbHoraDormirItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbHoraDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 251, -1, -1));
 
         cbMinutoDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbMinutoDormir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoDormir.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMinutoDormirItemStateChanged(evt);
+            }
+        });
         panelActiviadades.add(cbMinutoDormir, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 251, -1, -1));
 
         jlDormir.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2976,7 +2889,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelActiviadades.add(dpGuardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, -1, -1));
 
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_979x606.png"))); // NOI18N
-        panelActiviadades.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 610));
+        panelActiviadades.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 620));
 
         panel.addTab("Diario de actividades", panelActiviadades);
 
@@ -2989,6 +2902,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfComidasDia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfComidasDia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfComidasDia.setText("5");
         panelIndicadores.add(tfComidasDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 11, 124, -1));
 
         jlEntreSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3009,18 +2923,22 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfComidaCasaSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfComidaCasaSemana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfComidaCasaSemana.setText("25");
         panelIndicadores.add(tfComidaCasaSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 94, -1));
 
         tfComidaCasaFin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfComidaCasaFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfComidaCasaFin.setText("0");
         panelIndicadores.add(tfComidaCasaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 94, -1));
 
         tfComidasFueraSemana.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfComidasFueraSemana.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfComidasFueraSemana.setText("0");
         panelIndicadores.add(tfComidasFueraSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 94, -1));
 
         tfComidasFueraFin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfComidasFueraFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfComidasFueraFin.setText("10");
         panelIndicadores.add(tfComidasFueraFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 94, -1));
 
         jlQuienPrepara.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3029,6 +2947,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfQuienPrepara.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfQuienPrepara.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfQuienPrepara.setText("Padre");
         panelIndicadores.add(tfQuienPrepara, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 11, 166, -1));
 
         jlEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3039,21 +2958,33 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgEntreComidas.add(siEntreComidas);
         siEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siEntreComidas.setText("Si");
+        siEntreComidas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siEntreComidasFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siEntreComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(875, 10, -1, -1));
 
         noEntreComidas.setBackground(new java.awt.Color(153, 217, 234));
         rbgEntreComidas.add(noEntreComidas);
         noEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noEntreComidas.setSelected(true);
         noEntreComidas.setText("No");
+        noEntreComidas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noEntreComidasFocusGained(evt);
+            }
+        });
         panelIndicadores.add(noEntreComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 10, -1, -1));
 
         jLabel62.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel62.setText("¿Qué come entre comidas?");
         panelIndicadores.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
 
-        tfComidasDia6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        tfComidasDia6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        panelIndicadores.add(tfComidasDia6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 400, -1));
+        tfQueEntreComidas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfQueEntreComidas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfQueEntreComidas.setEnabled(false);
+        panelIndicadores.add(tfQueEntreComidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 400, -1));
 
         jlModificacionDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlModificacionDieta.setText("¿Ha modificado su alimentación en los últimos 6 meses (trabajo, estudio, etc)?");
@@ -3063,12 +2994,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgModificacionAlimentos.add(siModificacionAlimentos);
         siModificacionAlimentos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siModificacionAlimentos.setText("Si");
+        siModificacionAlimentos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siModificacionAlimentosFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siModificacionAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 70, -1, -1));
 
         noModificacionAlimentos.setBackground(new java.awt.Color(153, 217, 234));
         rbgModificacionAlimentos.add(noModificacionAlimentos);
         noModificacionAlimentos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noModificacionAlimentos.setSelected(true);
         noModificacionAlimentos.setText("No");
+        noModificacionAlimentos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noModificacionAlimentosFocusGained(evt);
+            }
+        });
         panelIndicadores.add(noModificacionAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, -1, -1));
 
         jlRazonModificacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3077,6 +3019,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfRazonModifiacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfRazonModifiacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfRazonModifiacion.setEnabled(false);
         panelIndicadores.add(tfRazonModifiacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 345, -1));
 
         jlApetito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3086,6 +3029,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         buenoApetito.setBackground(new java.awt.Color(255, 255, 255));
         rbgApetito.add(buenoApetito);
         buenoApetito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        buenoApetito.setSelected(true);
         buenoApetito.setText("Bueno");
         panelIndicadores.add(buenoApetito, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
@@ -3111,23 +3055,24 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         levantarseHambre.setText("Levantarse");
         panelIndicadores.add(levantarseHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, -1, -1));
 
-        mañanaHambre.setBackground(new java.awt.Color(255, 255, 255));
-        rbgHoraHambre.add(mañanaHambre);
-        mañanaHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        mañanaHambre.setText("Mañana");
-        panelIndicadores.add(mañanaHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
+        mananaHambre.setBackground(new java.awt.Color(255, 255, 255));
+        rbgHoraHambre.add(mananaHambre);
+        mananaHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        mananaHambre.setSelected(true);
+        mananaHambre.setText("Manana");
+        panelIndicadores.add(mananaHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
 
-        TardeHambre.setBackground(new java.awt.Color(153, 217, 234));
-        rbgHoraHambre.add(TardeHambre);
-        TardeHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        TardeHambre.setText("Tarde");
-        panelIndicadores.add(TardeHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, -1, -1));
+        tardeHambre.setBackground(new java.awt.Color(153, 217, 234));
+        rbgHoraHambre.add(tardeHambre);
+        tardeHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tardeHambre.setText("Tarde");
+        panelIndicadores.add(tardeHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, -1, -1));
 
-        NocheHambre.setBackground(new java.awt.Color(153, 217, 234));
-        rbgHoraHambre.add(NocheHambre);
-        NocheHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        NocheHambre.setText("Noche");
-        panelIndicadores.add(NocheHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, -1, -1));
+        nocheHambre.setBackground(new java.awt.Color(153, 217, 234));
+        rbgHoraHambre.add(nocheHambre);
+        nocheHambre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nocheHambre.setText("Noche");
+        panelIndicadores.add(nocheHambre, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, -1, -1));
 
         jlAlimentosPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlAlimentosPreferidos.setText("Alimentos preferidos:");
@@ -3135,6 +3080,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfAlimentosPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfAlimentosPreferidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAlimentosPreferidos.setText("Pina");
         panelIndicadores.add(tfAlimentosPreferidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 798, -1));
 
         jlAliementosNoPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3143,6 +3089,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfAlimentosNoPreferidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfAlimentosNoPreferidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAlimentosNoPreferidos.setText("Alimentos");
         panelIndicadores.add(tfAlimentosNoPreferidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 758, -1));
 
         jlAlimentosMalestar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3151,6 +3098,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfAlimentosMalestar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfAlimentosMalestar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAlimentosMalestar.setText("Sandia");
         panelIndicadores.add(tfAlimentosMalestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 734, -1));
 
         jlComoVaria.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3161,12 +3109,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgIntolerante.add(siAlergico);
         siAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siAlergico.setText("Si");
+        siAlergico.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siAlergicoFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, -1));
 
         noAlergico.setBackground(new java.awt.Color(255, 255, 255));
         rbgIntolerante.add(noAlergico);
         noAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noAlergico.setSelected(true);
         noAlergico.setText("No");
+        noAlergico.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noAlergicoFocusGained(evt);
+            }
+        });
         panelIndicadores.add(noAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, -1, -1));
 
         jlCualAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3175,6 +3134,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfCualAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfCualAlergico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCualAlergico.setEnabled(false);
         panelIndicadores.add(tfCualAlergico, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 484, -1));
 
         jlConsumoEDA.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3185,12 +3145,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgVariacionAlimentacion.add(siVariacion);
         siVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siVariacion.setText("Si");
+        siVariacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siVariacionFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
 
         noVariacion.setBackground(new java.awt.Color(153, 217, 234));
         rbgVariacionAlimentacion.add(noVariacion);
         noVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noVariacion.setSelected(true);
         noVariacion.setText("No");
+        noVariacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noVariacionFocusGained(evt);
+            }
+        });
         panelIndicadores.add(noVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
 
         jlAlergico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3200,6 +3171,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         nulaVariacion.setBackground(new java.awt.Color(153, 217, 234));
         rbgComportamientoAlimentacion.add(nulaVariacion);
         nulaVariacion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nulaVariacion.setSelected(true);
         nulaVariacion.setText("Nula");
         panelIndicadores.add(nulaVariacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, -1));
 
@@ -3222,7 +3194,13 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         siSal.setBackground(new java.awt.Color(153, 217, 234));
         rbgSal.add(siSal);
         siSal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        siSal.setSelected(true);
         siSal.setText("Si");
+        siSal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siSalFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
 
         noSal.setBackground(new java.awt.Color(153, 217, 234));
@@ -3244,6 +3222,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         aceiteVegetalGrasa.setBackground(new java.awt.Color(153, 217, 234));
         rbgGrasaUtilizada.add(aceiteVegetalGrasa);
         aceiteVegetalGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        aceiteVegetalGrasa.setSelected(true);
         aceiteVegetalGrasa.setText("Aceite vegetal");
         panelIndicadores.add(aceiteVegetalGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
@@ -3275,12 +3254,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgBajarPeso.add(siMedicamentoBajarPeso);
         siMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siMedicamentoBajarPeso.setText("Si");
+        siMedicamentoBajarPeso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siMedicamentoBajarPesoFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 560, -1, -1));
 
         noMedicamentoBajarPeso.setBackground(new java.awt.Color(153, 217, 234));
         rbgBajarPeso.add(noMedicamentoBajarPeso);
         noMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noMedicamentoBajarPeso.setSelected(true);
         noMedicamentoBajarPeso.setText("No");
+        noMedicamentoBajarPeso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noMedicamentoBajarPesoFocusGained(evt);
+            }
+        });
         panelIndicadores.add(noMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 560, -1, -1));
 
         jlCuantasDietas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3289,6 +3279,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfCuantasDietas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfCuantasDietas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCuantasDietas.setEnabled(false);
         panelIndicadores.add(tfCuantasDietas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 65, -1));
 
         jHaceCuantoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3297,6 +3288,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfHaceCuantoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfHaceCuantoDieta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfHaceCuantoDieta.setEnabled(false);
         panelIndicadores.add(tfHaceCuantoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 215, -1));
 
         jlCuantoTiempoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3305,6 +3297,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfCuantoTiempoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfCuantoTiempoDieta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCuantoTiempoDieta.setEnabled(false);
         panelIndicadores.add(tfCuantoTiempoDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 156, -1));
 
         jlRazonDIetaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3313,6 +3306,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfRazonDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfRazonDietaEspecial.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfRazonDietaEspecial.setEnabled(false);
         panelIndicadores.add(tfRazonDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 356, -1));
 
         jlCuantoAPegoDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3321,7 +3315,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         jlResultadosEsperadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlResultadosEsperadosDieta.setText("¿Obtuvo los resultados esperados?");
-        panelIndicadores.add(jlResultadosEsperadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, -1, -1));
+        panelIndicadores.add(jlResultadosEsperadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, -1, -1));
 
         jlAlimentosParaBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlAlimentosParaBajarPeso.setText("¿Ha utilizado medicamentos para bajar de peso?");
@@ -3333,11 +3327,13 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         tfCualMedicamentoBajarPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tfCualMedicamentoBajarPeso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCualMedicamentoBajarPeso.setEnabled(false);
         panelIndicadores.add(tfCualMedicamentoBajarPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, 299, -1));
 
         nadaAPego.setBackground(new java.awt.Color(153, 217, 234));
         rbgApegoDieta.add(nadaAPego);
         nadaAPego.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nadaAPego.setSelected(true);
         nadaAPego.setText("Nada");
         panelIndicadores.add(nadaAPego, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
 
@@ -3362,6 +3358,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         nadaResultadosDieta.setBackground(new java.awt.Color(153, 217, 234));
         rbgResultadosDieta.add(nadaResultadosDieta);
         nadaResultadosDieta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        nadaResultadosDieta.setSelected(true);
         nadaResultadosDieta.setText("Nada");
         panelIndicadores.add(nadaResultadosDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, -1, -1));
 
@@ -3387,12 +3384,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbgIDdietaEspecial.add(siDietaEspecial);
         siDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         siDietaEspecial.setText("Si");
+        siDietaEspecial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                siDietaEspecialFocusGained(evt);
+            }
+        });
         panelIndicadores.add(siDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, -1, -1));
 
         noDietaEspecial.setBackground(new java.awt.Color(153, 217, 234));
         rbgIDdietaEspecial.add(noDietaEspecial);
         noDietaEspecial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noDietaEspecial.setSelected(true);
         noDietaEspecial.setText("No");
+        noDietaEspecial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                noDietaEspecialFocusGained(evt);
+            }
+        });
         panelIndicadores.add(noDietaEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
 
         dpGuardar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
@@ -3425,6 +3433,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 45, -1, -1));
 
         tfPesoHabitual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoHabitual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoHabitual.setText("85");
         panelIndicadoresAntropo.add(tfPesoHabitual, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 74, 137, -1));
 
         jlPesoHabitual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3432,6 +3442,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoHabitual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
 
         tfPesoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoActual.setText("79");
         panelIndicadoresAntropo.add(tfPesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 42, 137, -1));
 
         jlDato.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3443,6 +3455,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlEstatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 109, -1, -1));
 
         tfEstatura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfEstatura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfEstatura.setText("1.75");
         panelIndicadoresAntropo.add(tfEstatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 106, 137, -1));
 
         jlPliegueCutaneoTricipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3450,6 +3464,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPliegueCutaneoTricipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, -1, -1));
 
         tfPliegueCutaneoTricipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPliegueCutaneoTricipital.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPliegueCutaneoTricipital.setText("6");
         panelIndicadoresAntropo.add(tfPliegueCutaneoTricipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 138, 137, -1));
 
         jlPliegueCutaneoBicipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3457,6 +3473,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPliegueCutaneoBicipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 173, -1, -1));
 
         tfPliegueCutaneoBicipital.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPliegueCutaneoBicipital.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPliegueCutaneoBicipital.setText("5");
         panelIndicadoresAntropo.add(tfPliegueCutaneoBicipital, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 170, 137, -1));
 
         jPliegueCutaneoSubescapular.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3464,6 +3482,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jPliegueCutaneoSubescapular, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 205, -1, -1));
 
         tfPliegueCutaneoSubescapular.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPliegueCutaneoSubescapular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPliegueCutaneoSubescapular.setText("11");
         panelIndicadoresAntropo.add(tfPliegueCutaneoSubescapular, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 202, 137, -1));
 
         jPliegueCutaneoSuprailiaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3471,6 +3491,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jPliegueCutaneoSuprailiaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 237, -1, -1));
 
         tfPliegueCutaneoSuprailiaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPliegueCutaneoSuprailiaco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPliegueCutaneoSuprailiaco.setText("8");
         panelIndicadoresAntropo.add(tfPliegueCutaneoSuprailiaco, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 234, 137, -1));
 
         jlCircunferenciaBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3478,6 +3500,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlCircunferenciaBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 269, -1, -1));
 
         tfCircunferenciaBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCircunferenciaBrazo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCircunferenciaBrazo.setText("32");
         panelIndicadoresAntropo.add(tfCircunferenciaBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 266, 137, -1));
 
         jlCircunferenciaCintura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3485,6 +3509,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlCircunferenciaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 301, -1, -1));
 
         tfCircunferenciaCintura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCircunferenciaCintura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCircunferenciaCintura.setText("82");
         panelIndicadoresAntropo.add(tfCircunferenciaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 298, 137, -1));
 
         jlCircunferenciaCadera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3492,6 +3518,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlCircunferenciaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 333, -1, -1));
 
         tfCircunferenciaCadera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCircunferenciaCadera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCircunferenciaCadera.setText("90");
         panelIndicadoresAntropo.add(tfCircunferenciaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 330, 137, -1));
 
         jlCircunferenciaAbdominal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3499,6 +3527,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlCircunferenciaAbdominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 365, -1, -1));
 
         tfCircunferenciaAbdominal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfCircunferenciaAbdominal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCircunferenciaAbdominal.setText("83");
         panelIndicadoresAntropo.add(tfCircunferenciaAbdominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 362, 137, -1));
 
         jLabel100.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3514,6 +3544,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlComplexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 429, -1, -1));
 
         tfComplexion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfComplexion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfComplexion.setText("Endomorfo");
         panelIndicadoresAntropo.add(tfComplexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 426, 142, -1));
 
         jlPesoTeorico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3521,6 +3553,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoTeorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 461, -1, -1));
 
         tfPesoTeorico.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoTeorico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoTeorico.setText("83");
         panelIndicadoresAntropo.add(tfPesoTeorico, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 458, 142, -1));
 
         jlPesoTeoricoXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3528,6 +3562,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoTeoricoXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 493, -1, -1));
 
         tfPesoTeoricoXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoTeoricoXC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoTeoricoXC.setText("26");
         panelIndicadoresAntropo.add(tfPesoTeoricoXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 490, 142, -1));
 
         jlPesoHabitualXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3535,6 +3571,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoHabitualXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 525, -1, -1));
 
         tfPesoHabitualXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoHabitualXC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoHabitualXC.setText("95");
         panelIndicadoresAntropo.add(tfPesoHabitualXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 522, 142, -1));
 
         JIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3542,6 +3580,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(JIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 557, -1, -1));
 
         tfIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfIMC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfIMC.setText("23.7");
         panelIndicadoresAntropo.add(tfIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 554, 142, -1));
 
         jlPesoMinimoIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3549,6 +3589,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoMinimoIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 589, -1, -1));
 
         tfPesoMinimoIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoMinimoIMC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoMinimoIMC.setText("18.6");
         panelIndicadoresAntropo.add(tfPesoMinimoIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 586, 142, -1));
 
         jlMedicion2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3564,9 +3606,13 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlPesoMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 40, -1, -1));
 
         tfPesoMaximo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfPesoMaximo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPesoMaximo.setText("22.3");
         panelIndicadoresAntropo.add(tfPesoMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 37, 142, -1));
 
         tfGrasaCorporal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfGrasaCorporal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfGrasaCorporal.setText("26");
         tfGrasaCorporal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfGrasaCorporalActionPerformed(evt);
@@ -3583,6 +3629,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlGrasaCorporalKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 109, -1, -1));
 
         tfGrasaCorporalKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfGrasaCorporalKG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfGrasaCorporalKG.setText("17");
         panelIndicadoresAntropo.add(tfGrasaCorporalKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 106, 142, -1));
 
         jlMasaLigreGrasaKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3590,6 +3638,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlMasaLigreGrasaKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 141, -1, -1));
 
         tfMasaLibreGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfMasaLibreGrasa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfMasaLibreGrasa.setText("56");
         panelIndicadoresAntropo.add(tfMasaLibreGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 138, 142, -1));
 
         jlDiferenciaGrasaKG.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3597,6 +3647,8 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlDiferenciaGrasaKG, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 173, -1, -1));
 
         tfDiferenciaGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfDiferenciaGrasa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfDiferenciaGrasa.setText("16");
         panelIndicadoresAntropo.add(tfDiferenciaGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 170, 142, -1));
 
         jlMasaMuscularTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -3604,42 +3656,36 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadoresAntropo.add(jlMasaMuscularTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 205, -1, -1));
 
         tfMasaMuscularTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tfMasaMuscularTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfMasaMuscularTotal.setText("62");
         panelIndicadoresAntropo.add(tfMasaMuscularTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 202, 142, -1));
-
-        jlPliegueCutaneoPerceptil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jlPliegueCutaneoPerceptil.setText("Pliegue cutáneo tricipital (perceptil)");
-        panelIndicadoresAntropo.add(jlPliegueCutaneoPerceptil, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 237, -1, -1));
-
-        tfPliegueCutaneoPerceptil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(tfPliegueCutaneoPerceptil, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 234, 142, -1));
-
-        jlPliegueCutaneosubescapular.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jlPliegueCutaneosubescapular.setText("Pliegue cutáneo subescapular (perceptil)");
-        panelIndicadoresAntropo.add(jlPliegueCutaneosubescapular, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 269, -1, -1));
 
         jlIndiceCinturaCadera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlIndiceCinturaCadera.setText("Índice cintura-cadera (cm)");
-        panelIndicadoresAntropo.add(jlIndiceCinturaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 301, -1, -1));
+        panelIndicadoresAntropo.add(jlIndiceCinturaCadera, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, -1, -1));
 
         jlAreaMuscularBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlAreaMuscularBrazo.setText("Área muscular de brazo (cm2)");
-        panelIndicadoresAntropo.add(jlAreaMuscularBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, -1, -1));
+        panelIndicadoresAntropo.add(jlAreaMuscularBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, -1, -1));
 
         jlAguaCorporalTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlAguaCorporalTotal.setText("Agua corporal total (lt)");
-        panelIndicadoresAntropo.add(jlAguaCorporalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, -1, -1));
-
-        tfPliegueCutaneoSubescapularPerceptil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(tfPliegueCutaneoSubescapularPerceptil, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 266, 142, -1));
+        panelIndicadoresAntropo.add(jlAguaCorporalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, -1, -1));
 
         tfIndiceCaderaCintura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(tfIndiceCaderaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(809, 298, 142, -1));
+        tfIndiceCaderaCintura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfIndiceCaderaCintura.setText("0.9");
+        panelIndicadoresAntropo.add(tfIndiceCaderaCintura, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 142, -1));
 
         tfAreaMuscularBrazo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(tfAreaMuscularBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 340, 142, -1));
+        tfAreaMuscularBrazo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAreaMuscularBrazo.setText("90");
+        panelIndicadoresAntropo.add(tfAreaMuscularBrazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, 142, -1));
 
         tfAguaCorporalTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        panelIndicadoresAntropo.add(tfAguaCorporalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 142, -1));
+        tfAguaCorporalTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfAguaCorporalTotal.setText("64");
+        panelIndicadoresAntropo.add(tfAguaCorporalTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 142, -1));
 
         dpGuardar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
         dpGuardar5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -3652,10 +3698,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
                 dpGuardar5ActionPerformed(evt);
             }
         });
-        panelIndicadoresAntropo.add(dpGuardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, -1, -1));
+        panelIndicadoresAntropo.add(dpGuardar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 450, -1, -1));
 
         jLabel123.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_979x606.png"))); // NOI18N
-        panelIndicadoresAntropo.add(jLabel123, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 630));
+        panelIndicadoresAntropo.add(jLabel123, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 620));
 
         panel.addTab("Indicadores Antropométricos", panelIndicadoresAntropo);
 
@@ -3672,7 +3718,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel)
                 .addContainerGap())
@@ -3701,7 +3747,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -3709,6 +3757,458 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void dpGuardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar4ActionPerformed
         // TODO add your handling code here:
+        int banderavid = 0;
+        /**
+         * Comidas por dia
+         */
+        if(!tfComidasDia.getText().equals("")){
+            if(funcion.tipoString(tfComidasDia.getText())){
+                setVidCuantasComidas(tfComidasDia.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "La cantidad de comidas al día no puede contener caracteres espciales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "La cantidad de comidas ingeridas al día debe ser ingresada", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Quien prepara
+         */
+        if(!tfQuienPrepara.getText().equals("")){
+            if(funcion.tipoString(tfQuienPrepara.getText())){
+                setVidQuienPrepara(tfQuienPrepara.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio de quien prepara los alimentos no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio de quien prepara los alimentos debe ser ingresada", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Entre comidas
+         */
+        if (siEntreComidas.isSelected() || noEntreComidas.isSelected()) {
+            if (siEntreComidas.isSelected()) {
+                setVidEntreComidas(siEntreComidas.getText());
+                /**
+                 * Que come entre comidas
+                 */
+                if (!tfQueEntreComidas.getText().equals("")) {
+                    if (funcion.tipoString(tfQueEntreComidas.getText())) {
+                        setVidQueEntreComidas(tfQueEntreComidas.getText());
+                    } else {
+                        banderavid = banderavid + 1;
+                        JOptionPane.showMessageDialog(null, "El espacio ¿Que prepara entre comidas? no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    banderavid = banderavid + 1;
+                    JOptionPane.showMessageDialog(null, "El espacio ¿Que prepara entre comidas? debe ser ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                setVidEntreComidas(noEntreComidas.getText());
+                setVidQueEntreComidas("Sin entre comidas");
+            }
+        } else {
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario seleccionar si come entre comidas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /**
+         * Comidas casa semana
+         */
+        if(!tfComidaCasaSemana.getText().equals("")){
+            if(funcion.tipoString(tfComidaCasaSemana.getText())){
+                setVidComidasCasaSemana(tfComidaCasaSemana.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Comidas Casa / Semana\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Comidas Casa / Semana\" debe ser ingresao", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Comidas casa fin
+         */
+        if(!tfComidaCasaFin.getText().equals("")){
+            if(funcion.tipoString(tfComidaCasaFin.getText())){
+                setVidComidasCasaFin(tfComidaCasaFin.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Comidas Casa / Fin\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Comidas Casa / Fin\" debe ser ingresao", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Comidas fuera semana
+         */
+        if (!tfComidasFueraSemana.getText().equals("")) {
+            if (funcion.tipoString(tfComidasFueraSemana.getText())) {
+                setVidComidasFueraSemana(tfComidasFueraSemana.getText());
+            } else {
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Comidas Fuera / Semana\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Comidas Fuera / Semana\" debe ser ingresao", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Comidas fuera fin
+         */
+        if (!tfComidasFueraFin.getText().equals("")) {
+            if(funcion.tipoString(tfComidasFueraFin.getText())){
+                setVidComidasFueraFin(tfComidasFueraFin.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Comidas Fuera / Fin\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Comidas Fuera / Fin\" debe ser ingresao", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Modificación de alimentacion
+         */
+        if (siModificacionAlimentos.isSelected() || noModificacionAlimentos.isSelected()) {
+            if (siModificacionAlimentos.isSelected()) {
+                setVidModificacionAlimentos(siModificacionAlimentos.getText());
+                /**
+                 * Razon modifiación
+                 */
+                if (!tfRazonModifiacion.getText().equals("")) {
+                    if (funcion.tipoString(tfRazonModifiacion.getText())) {
+                        setVidRazonModificacion(tfRazonModifiacion.getText());
+                    } else {
+                        banderavid = banderavid + 1;
+                        tfRazonModifiacion.setText("");
+                        JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Razón de modificacion de alimentación\"", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Es necesario llenar el campo \"Razón de modificacion de alimentación\"", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                setVidModificacionAlimentos(noModificacionAlimentos.getText());
+                setVidRazonModificacion("Sin modificación");
+            }
+        } else {
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Modificación de alimentación en los últimos 6 meses\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /**
+         * Apetito
+         */
+        if(buenoApetito.isSelected() || maloApetito.isSelected() || regularAPetito.isSelected()){
+            if(buenoApetito.isSelected())
+                setVidApetito(buenoApetito.getText());
+            else if (maloApetito.isSelected())
+                setVidApetito(maloApetito.getText());
+            else
+                setVidApetito(regularAPetito.getText());                 
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Apetito\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Hora con más hambre
+         */
+        if(levantarseHambre.isSelected() || mananaHambre.isSelected() || tardeHambre.isSelected() || nocheHambre.isSelected()){
+            if(levantarseHambre.isSelected())
+                setVidMasHambre(levantarseHambre.getText());
+            else if(mananaHambre.isSelected())
+                setVidMasHambre(mananaHambre.getText());
+            else if(tardeHambre.isSelected())
+                setVidMasHambre(tardeHambre.getText());
+            else
+                setVidMasHambre(nocheHambre.getText());
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Hora con más hambre\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Alimentos no preferidos
+         */
+        if(!tfAlimentosNoPreferidos.getText().equals("")){
+            if(funcion.tipoString(tfAlimentosNoPreferidos.getText())){
+                setVidAlimentosNoPreferidos(tfAlimentosNoPreferidos.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Alimentos NO preferidos\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Alimentos NO preferidos\" debe ser ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Alimentos preferidos
+         */
+        if(!tfAlimentosPreferidos.getText().equals("")){
+            if(funcion.tipoString(tfAlimentosPreferidos.getText())){
+                setVidAlimentosPreferidos(tfAlimentosPreferidos.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Alimentos preferidos\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Alimentos preferidos\" debe ser ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Alimentos malestar
+         */
+        if(!tfAlimentosMalestar.getText().equals("")){
+            if(funcion.tipoString(tfAlimentosMalestar.getText())){
+                setVidAlimentosMalestar(tfAlimentosMalestar.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio \"Alimentos malestar\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Alimentos malestar\" debe ser ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Alimentos alergico
+         */
+        if(siAlergico.isSelected()||noAlergico.isSelected()){
+            if(siAlergico.isSelected()){
+                if(!tfCualAlergico.getText().equals("")){
+                    if(funcion.tipoString(tfCualAlergico.getText())){
+                        setVidIntolerante(siAlergico.getText());
+                        setVidCualIntolerante(tfCualAlergico.getText());
+                    }else{
+                        banderavid = banderavid + 1;
+                        JOptionPane.showMessageDialog(null, "El espacio cuales alimentos \"Alergicos\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    banderavid = banderavid + 1;
+                    JOptionPane.showMessageDialog(null, "El espacio cuales alimentos \"Alergicos\" debe ser ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                setVidIntolerante(noAlergico.getText());
+                setVidCualIntolerante("Sin alergias");
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "El espacio \"Alergico\" debe ser ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Variacion estado de animo
+         */
+        if(noVariacion.isSelected()||siVariacion.isSelected()){
+            if(noVariacion.isSelected()){
+                setVidApetitoVariableEDA(noVariacion.getText());                
+            }else{
+                setVidApetitoVariableEDA(siVariacion.getText());
+            }            
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Variación del apetito\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Variacion nivel estado de animo
+         */
+        if(nulaVariacion.isSelected()||mayorVariacion.isSelected()||menorVariacion.isSelected()){
+            if(nulaVariacion.isSelected())
+                setVidNivelVariacion(nulaVariacion.getText());
+            else if(mayorVariacion.isSelected())
+                setVidNivelVariacion(mayorVariacion.getText());
+            else   
+                setVidNivelVariacion(menorVariacion.getText());
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Nivel de variación del apetito\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * SAL
+         */
+        if(siSal.isSelected() || noSal.isSelected()){
+            if(siSal.isSelected()){
+                setVidSal(siSal.getText());
+            }else{
+                setVidSal(noSal.getText());
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Sal\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * GRASA
+         */
+        if(mantequillaGrasa.isSelected()||aceiteVegetalGrasa.isSelected()||mantecaGrasa.isSelected()||margarinaGrasa.isSelected()||tfOtroGrasa.getText().equals("")){
+            if(mantequillaGrasa.isSelected())
+                setVidGrasa(mantequillaGrasa.getText());
+            else if(aceiteVegetalGrasa.isSelected())
+                setVidGrasa(aceiteVegetalGrasa.getText());
+            else if(mantecaGrasa.isSelected())
+                setVidGrasa(mantecaGrasa.getText());
+            else
+                setVidGrasa(margarinaGrasa.getText());
+            
+            if(!tfOtroGrasa.getText().equals("")){
+                if(funcion.tipoString(tfOtroGrasa.getText()))
+                    setVidOtroGrasa(tfOtroGrasa.getText());
+                else{
+                    setVidOtroGrasa(tfOtroGrasa.getText());
+                }
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Se debe de agregar una opción de \"Grasa\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Dieta especial
+         */
+        if(siDietaEspecial.isSelected()||noDietaEspecial.isSelected()){
+            if(siDietaEspecial.isSelected()){
+                setVidDietaEspecial(siDietaEspecial.getText());
+                if(!tfCuantasDietas.getText().equals("")){
+                    if(funcion.tipoString(tfCuantasDietas.getText())){
+                        setVidCuantasDietaEspecial(tfCuantasDietas.getText());
+                        if(!tfHaceCuantoDieta.getText().equals("")){
+                            if(funcion.tipoString(tfHaceCuantoDieta.getText())){
+                                setVidHaceCuantoDietaEspecial(tfHaceCuantoDieta.getText());
+                                if(!tfCuantoTiempoDieta.getText().equals("")){
+                                    if(funcion.tipoString(tfCuantoTiempoDieta.getText())){
+                                        setVidTiempoDietaEspecial(tfCuantoTiempoDieta.getText());
+                                        if(!tfRazonDietaEspecial.getText().equals("")){
+                                            if(funcion.tipoString(tfRazonDietaEspecial.getText())){
+                                                setVidRazonDietaEspecial(tfRazonDietaEspecial.getText());
+                                            }else{
+                                                banderavid = banderavid + 1;
+                                                JOptionPane.showMessageDialog(null, "EL espacio agregar una razón de \"Dietas Especiales\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                                            }
+                                        }else{
+                                            banderavid = banderavid + 1;
+                                        JOptionPane.showMessageDialog(null, "Se debe de agregar una razón de \"Dietas Especiales\"", "Error", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                    }else{
+                                        banderavid = banderavid + 1;
+                                        JOptionPane.showMessageDialog(null, "EL espacio ahce cuanto tiempo las dietas especiales no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                }else{
+                                    banderavid = banderavid + 1;
+                                    JOptionPane.showMessageDialog(null, "Se debe de agregar una cantidad de cuanto tiempo \"Dietas Especiales\"", "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }else{
+                                banderavid = banderavid + 1;
+                                JOptionPane.showMessageDialog(null, "EL espacio ahce cuanto tiempo las dietas especiales no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }else{
+                            banderavid = banderavid + 1;
+                            JOptionPane.showMessageDialog(null, "Se debe de agregar una cantidad de \"Dietas Especiales\"", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }else{
+                        banderavid = banderavid + 1;
+                        JOptionPane.showMessageDialog(null, "La cantidad de dietas especiales no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    banderavid = banderavid + 1;
+                    JOptionPane.showMessageDialog(null, "Se debe de agregar una cantidad de \"Dietas Especiales\"", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                setVidDietaEspecial(noDietaEspecial.getText());
+                setVidCuantasDietaEspecial("Sin dieta especial");
+                setVidHaceCuantoDietaEspecial("Sin dieta especial");
+                setVidTiempoDietaEspecial("Sin dieta especial");
+                setVidRazonDietaEspecial("Sin dieta especial");
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Dieta Especial\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Apego dieta
+         */
+        if(nadaAPego.isSelected()||muyPocoAPego.isSelected()||SuficienteApego.isSelected()||excepcionalApego.isSelected()){
+            if(nadaAPego.isSelected()){
+                setVidApegoDieta(nadaAPego.getText());
+            }else if(muyPocoAPego.isSelected()){
+                setVidApegoDieta(muyPocoAPego.getText());
+            }else if(SuficienteApego.isSelected()){
+                setVidApegoDieta(SuficienteApego.getText());
+            }else{
+                setVidApegoDieta(excepcionalApego.getText());
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Apego a la dieta especial\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Resultados dieta
+         */
+        if(nadaResultadosDieta.isSelected()||muyPocoResultadosDieta.isSelected()||suficienteResultadosDieta.isSelected()||excepcionalResultadosDieta.isSelected()){
+            if(nadaResultadosDieta.isSelected()){
+                setVidResultadosDieta(nadaResultadosDieta.getText());
+            }else if(muyPocoResultadosDieta.isSelected()){
+                setVidResultadosDieta(muyPocoResultadosDieta.getText());
+            }else if(suficienteResultadosDieta.isSelected()){
+                setVidResultadosDieta(suficienteResultadosDieta.getText());
+            }else{
+                setVidResultadosDieta(excepcionalResultadosDieta.getText());
+            }
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Seleccionar la opción \"Resultados a la dieta especial\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Medicamentos para bajar de peso
+         */
+        if(siMedicamentoBajarPeso.isSelected()){
+            setVidMedicamentoPeso(siMedicamentoBajarPeso.getText());
+            if(!tfCualPresionArterial.getText().equals("")){
+                if(funcion.tipoString(tfCualMedicamentoBajarPeso.getText())){
+                    setVidCualMedicamentoPeso(tfCualMedicamentoBajarPeso.getText());
+                }else{
+                    banderavid = banderavid + 1;
+                    JOptionPane.showMessageDialog(null, "El espacio cual \"Medicamento para bajar peso\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "Se debe de agregar cual \"Medicamento para bajar peso\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(noMedicamentoBajarPeso.isSelected()){
+            setVidMedicamentoPeso(noMedicamentoBajarPeso.getText());
+            setVidCualMedicamentoPeso("Sin medicamento");
+        }else{
+            banderavid = banderavid + 1;
+            JOptionPane.showMessageDialog(null, "Se debe de agregar una opción de \"Medicamento para bajar peso\"", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Otro grasa
+         */
+        if(!tfOtroGrasa.getText().equals("")){
+            if(funcion.tipoString(tfOtroGrasa.getText())){
+                setVidOtroGrasa(tfOtroGrasa.getText());
+            }else{
+                banderavid = banderavid + 1;
+                JOptionPane.showMessageDialog(null, "El espacio  \"Otra grasa\" no debe contener caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            setVidOtroGrasa("Sin otra grasa");
+        }
+        if (banderavid == 0) {
+            int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Diario de Actividades\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respvag == 0) {
+                try {
+                    cons.indicadoresDieteticos(207448229, 207448229, getVidCuantasComidas(), getVidQuienPrepara(), getVidEntreComidas(), getVidQueEntreComidas(), getVidComidasCasaSemana(), getVidComidasCasaFin(),
+                             getVidComidasFueraSemana(), getVidComidasFueraFin(), getVidModificacionAlimentos(), getVidRazonModificacion(), getVidApetito(), getVidMasHambre(), getVidAlimentosPreferidos(), getVidAlimentosNoPreferidos(),
+                             getVidAlimentosMalestar(), getVidCualIntolerante(), getVidCualIntolerante(), getVidApetitoVariableEDA(), getVidNivelVariacion(), getVidSal(), getVidGrasa(), getVidDietaEspecial(), getVidCuantasDietaEspecial(),
+                             getVidHaceCuantoDietaEspecial(), getVidTiempoDietaEspecial(), getVidRazonDietaEspecial(), getVidApegoDieta(), getVidResultadosDieta(), getVidMedicamentoPeso(), getVidCualMedicamentoPeso(), getVidOtroGrasa());
+                    
+                } catch (SQLException e) {
+                    Logger.getLogger(nuevoPacienteFrame.class.getName()).log(Level.SEVERE, null, e);
+                }
+                panel.setSelectedIndex(5);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_dpGuardar4ActionPerformed
 
     private void dpGuardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar3ActionPerformed
@@ -3717,71 +4217,235 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Validación de variable Presion Arterial
          */
-        if(siPresionArterial.isSelected()||noPresionArterial.isSelected()){
-            if(siPresionArterial.isSelected()){
+        if (siPresionArterial.isSelected() || noPresionArterial.isSelected()) {
+            if (siPresionArterial.isSelected()) {
                 setVddaPresionArterial("Con presion arterial");
-            }else{
+            } else {
                 setVddaPresionArterial("Sin presion arterial");
             }
-        }else{
+        } else {
+            banderavdda = banderavdda + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Presión Arterial", "Error", JOptionPane.ERROR_MESSAGE);
         }
         /**
          * Validacion cual presion arterial
          */
         if (tfCualPresionArterial.getText().equals("")) {
-            if(funcion.tipoString(tfCualPresionArterial.getText())){
-                setVddaCualPresionArterial(tfCualPresionArterial.getText());
-            }else{
-                setVddaCualPresionArterial("Sin presion arterial");
-            }
+            setVddaCualPresionArterial("Sin presion arterial");
         } else {
-            banderavdda = banderavdda + 1;
-            tfCualPresionArterial.setText("");
-            JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuanta presión arterial?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            if (funcion.tipoString(tfCualPresionArterial.getText())) {
+                setVddaCualPresionArterial(tfCualPresionArterial.getText());
+            } else {
+                banderavdda = banderavdda + 1;
+                tfCualPresionArterial.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuanta presión arterial?\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
         /**
          * Validacion hora presion arterial
          */
         if (tfHoraPresion.getText().equals("")) {
-            if(funcion.tipoString(tfHoraPresion.getText())){
-                setVddaHoraPresionArterial(tfHoraPresion.getText());
-            }else{
-                setVddaHoraPresionArterial("Sin hora presion arterial");
-            }
+            setVddaHoraPresionArterial("Sin hora presion arterial");
         } else {
-            banderavdda = banderavdda + 1;
-            tfHoraPresion.setText("");
-            JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Hora presión arterial\"", "Error", JOptionPane.ERROR_MESSAGE);
+            if (funcion.tipoString(tfHoraPresion.getText())) {
+                setVddaHoraPresionArterial(tfHoraPresion.getText());
+            } else {
+                banderavdda = banderavdda + 1;
+                tfHoraPresion.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Hora presión arterial\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         /**
          * Validación de variable tabaco
          */
-        if(cbTabaco.getSelectedItem().equals("...")){
+        if (cbTabaco.getSelectedItem().equals("...")) {
             JOptionPane.showMessageDialog(null, "Asignar valor a la opción \"Tabaco\"", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             String vTabaco = (String) cbTabaco.getSelectedItem();
             setVddaTabaco(vTabaco);
         }
         /**
          * Validación de variable alcochol
          */
-        if(cbAlcohol.getSelectedItem().equals("...")){
+        if (cbAlcohol.getSelectedItem().equals("...")) {
             JOptionPane.showMessageDialog(null, "Asignar valor a la opción \"Alcohol\"", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             String vAlcochol = (String) cbAlcohol.getSelectedItem();
             setVddaAlcohol(vAlcochol);
         }
         /**
          * Validación de variable café
          */
-        if(cbCafe.getSelectedItem().equals("...")){
+        if (cbCafe.getSelectedItem().equals("...")) {
             JOptionPane.showMessageDialog(null, "Asignar valor a la opción \"Café\"", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             String vCafe = (String) cbCafe.getSelectedItem();
             setVddaCafe(vCafe);
         }
+        /**
+         * Valoracion de variable ASPECTO GENERAL
+         */
+        if (taAspectoGeneral.getText().equals("")) {
+            setVddaAspectoGeneral("Sin aspecto general");
+        } else {
+            if(funcion.tipoString(taAspectoGeneral.getText())){
+                setVddaAspectoGeneral(taAspectoGeneral.getText());
+            }else{
+                banderavdda = banderavdda + 1;
+                tfHoraPresion.setText("");
+                JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Hora presión arterial\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }                        
+        }
+        /**
+         * Seccion para la recolección de horarios de comida
+         */
+        if (!cbHoraDespertarse.getSelectedItem().equals("00") || !cbMinutoDespertarse.getSelectedItem().equals("00")) {
+            String hd = (String) cbHoraDespertarse.getSelectedItem();
+            String md = (String) cbMinutoDespertarse.getSelectedItem();
+            String mac = hd+md;
+            if (!tfDespertarse.getText().equals("")) {
+                if (funcion.tipoString(tfDespertarse.getText())) {
+                    setVddaHoraDespertarse(mac);
+                    setVddaDespertarse(tfDespertarse.getText());
+                } else {
+                    banderavdda = banderavdda + 1;
+                    tfDespertarse.setText("");
+                    JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Despertarse\"", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                banderavdda = banderavdda + 1;
+                JOptionPane.showMessageDialog(null, "Es necesario ingresar datos en el campo \"Despertarse\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            setVddaHoraDespertarse("0000");
+        }
         
+        if(!cbHoraDesayuno.getSelectedItem().equals("00") || !cbMinutoDesayuno.getSelectedItem().equals("00")){
+            String hdes = (String) cbHoraDesayuno.getSelectedItem();
+            String mdes = (String) cbMinutoDesayuno.getSelectedItem();
+            String horades = hdes+mdes;
+            int hd =  Integer.parseInt(getVddaHoraDespertarse());            
+            int hor = Integer.parseInt(horades);
+            if(hor>hd || horades.equals(getVddaHoraDespertarse())){
+                if(!tfDesayuno.getText().equals("")){
+                    if(funcion.tipoString(tfDesayuno.getText())){
+                        setVddaHoraDesayuno(horades);
+                        setVddaDesayuno(tfDesayuno.getText());
+                    }else{
+                        banderavdda = banderavdda + 1;
+                        tfDesayuno.setText("");
+                        JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Desayuno\"", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    banderavdda = banderavdda + 1;
+                    JOptionPane.showMessageDialog(null, "Es necesario ingresar datos en el campo \"Desayuno\"", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                banderavdda = banderavdda + 1;
+                JOptionPane.showMessageDialog(null, "Error al ingresar la \"Hora Desayuno\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            setVddaHoraDesayuno("0000");
+        }
+        
+        if(!cbHoraComida.getSelectedItem().equals("00") || !cbMinutoComida.getSelectedItem().equals("00")){
+            String hcomida = (String) cbHoraComida.getSelectedItem();
+            String mcomida = (String) cbMinutoComida.getSelectedItem();
+            String horacomida = hcomida+mcomida;
+            
+            int hd = Integer.parseInt(getVddaHoraDesayuno());
+            int hora = Integer.parseInt(horacomida);
+            if(hora>hd || horacomida.equals(getVddaHoraDesayuno())){
+                if(!tfComida.getText().equals("")){
+                    if(funcion.tipoString(tfComida.getText())){
+                        setVddaHoraComida(horacomida);
+                        setVddaComida(tfComida.getText());
+                    }else{
+                        banderavdda = banderavdda + 1;
+                        tfComida.setText("");
+                        JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Comida\"", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    banderavdda = banderavdda + 1;
+                    JOptionPane.showMessageDialog(null, "Es necesario ingresar datos en el campo \"Comida\"", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                banderavdda = banderavdda + 1;
+                JOptionPane.showMessageDialog(null, "Error al ingresar la \"Hora Comida\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            setVddaHoraComida("0000");
+        }
+        
+        if(!cbHoraCena.getSelectedItem().equals("00") || !cbMinutoCena.getSelectedItem().equals("00")){
+            String hcena = (String) cbHoraCena.getSelectedItem();
+            String mCena = (String) cbMinutoCena.getSelectedItem();
+            String horaCen = hcena+mCena;
+            
+            int cena = Integer.parseInt(horaCen);
+            int horaCom = Integer.parseInt(getVddaHoraComida());
+            
+            if(cena>horaCom || horaCen.equals(getVddaHoraComida())){
+                if(!tfCena.getText().equals("")){
+                    if(funcion.tipoString(tfCena.getText())){
+                        setVddaHoraCena(horaCen);
+                        setVddaCena(tfCena.getText());
+                    }else{
+                        banderavdda = banderavdda + 1;
+                        tfCena.setText("");
+                        JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Cena\"", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                   banderavdda = banderavdda + 1;
+                   JOptionPane.showMessageDialog(null, "Es necesario ingresar datos en el campo \"Cena\"", "Error", JOptionPane.ERROR_MESSAGE); 
+                }                
+            }else{
+                banderavdda = banderavdda + 1;
+                JOptionPane.showMessageDialog(null, "Error al ingresar la \"Hora Cena\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            setVddaHoraCena("0000");
+        }
+        
+        if(!cbHoraDormir.getSelectedItem().equals("00") || !cbMinutoDormir.getSelectedItem().equals("00")){
+            String hd = (String) cbHoraDormir.getSelectedItem();
+            String md = (String) cbMinutoDormir.getSelectedItem();
+            String horaDormir = hd+md;
+            
+            int hDorm = Integer.parseInt(horaDormir);
+            int hCen = Integer.parseInt(getVddaHoraCena());
+            
+            if(hDorm > hCen || horaDormir.equals(getVddaHoraCena())){
+                if(!tfDormir.getText().equals("")){
+                    if(funcion.tipoString(tfDormir.getText())){
+                        setVddaHoraDormir(horaDormir);
+                        setVddaDormir(tfDormir.getText());
+                    }else{
+                        banderavdda = banderavdda + 1;
+                        tfDormir.setText("");
+                        JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Dormir\"", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    banderavdda = banderavdda + 1;
+                    JOptionPane.showMessageDialog(null, "Es necesario ingresar datos en el campo \"Dormir\"", "Error", JOptionPane.ERROR_MESSAGE); 
+                }                
+            }else{
+                banderavdda = banderavdda + 1;
+                JOptionPane.showMessageDialog(null, "Error al ingresar la \"Hora Dormir\"", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            setVddaHoraDormir("0000");
+        }
+        if (banderavdda == 0) {
+            int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Diario de Actividades\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respvag == 0) {
+                panel.setSelectedIndex(4);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+           
     }//GEN-LAST:event_dpGuardar3ActionPerformed
 
     private void cbCafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCafeActionPerformed
@@ -3806,23 +4470,23 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Validación de variable EMBARAZO
          */
-        if(siEmbarazoActual.isSelected() || noEmbarazoActual.isSelected()){
-            if(siEmbarazoActual.isSelected()){
+        if (siEmbarazoActual.isSelected() || noEmbarazoActual.isSelected()) {
+            if (siEmbarazoActual.isSelected()) {
                 setVagEmbarazoAcutal("Embarazo Actual");
-            }else{
+            } else {
                 setVagEmbarazoAcutal("Sin Embarazo Actual");
             }
-        }else{
+        } else {
             banderavag = banderavag + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Embarazo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         /**
          * Valoracion de variable SDG
          */
-        if(tfSDG.getText().equals("")){
-            setVagSemanasGestacion("Sin semanas de gestacion");            
-        }else{
+        if (tfSDG.getText().equals("")) {
+            setVagSemanasGestacion("Sin semanas de gestacion");
+        } else {
             if (funcion.tipoString(tfSDG.getText())) {
                 setVagSemanasGestacion(tfSDG.getText());
             } else {
@@ -3834,22 +4498,22 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Validación de variable Anticonceptivos
          */
-        if(siAnticonceptivosOrales.isSelected()||noAnticonceptivos.isSelected()){
-            if(siAnticonceptivosOrales.isSelected()){
+        if (siAnticonceptivosOrales.isSelected() || noAnticonceptivos.isSelected()) {
+            if (siAnticonceptivosOrales.isSelected()) {
                 setVagAnticonceptivos("Anticonceptivos Orales");
-            }else{
+            } else {
                 setVagAnticonceptivos("Sin anticonceptivos orales");
             }
-        }else{
+        } else {
             banderavag = banderavag + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Anticonceptivos", "Error", JOptionPane.ERROR_MESSAGE);
         }
         /**
          * Valoracion de variable Anticonceptivo
          */
-        if(tfVagCualAnticonceptivo.getText().equals("")){
-            setVagCualAnticonceptivo("Sin anticonceptivos orales");            
-        }else{
+        if (tfVagCualAnticonceptivo.getText().equals("")) {
+            setVagCualAnticonceptivo("Sin anticonceptivos orales");
+        } else {
             if (funcion.tipoString(tfVagCualAnticonceptivo.getText())) {
                 setVagCualAnticonceptivo(tfVagCualAnticonceptivo.getText());
             } else {
@@ -3861,9 +4525,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoracion de variable Dosis Anticonceptivo
          */
-        if(tfDosisAnticonceptivos.getText().equals("")){
-            setVagDosisAnticoconceptivo("Sin dosis de anticonceptivos");            
-        }else{
+        if (tfDosisAnticonceptivos.getText().equals("")) {
+            setVagDosisAnticoconceptivo("Sin dosis de anticonceptivos");
+        } else {
             if (funcion.tipoString(tfDosisAnticonceptivos.getText())) {
                 setVagDosisAnticoconceptivo(tfDosisAnticonceptivos.getText());
             } else {
@@ -3875,9 +4539,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoracion de variable Tiempo de Anticonceptivos
          */
-        if(tfVagTiempoAnticonceptivo.getText().equals("")){
-            setVagTiempoAnticonceptivo("Sin tiempo de anticonceptivos");            
-        }else{
+        if (tfVagTiempoAnticonceptivo.getText().equals("")) {
+            setVagTiempoAnticonceptivo("Sin tiempo de anticonceptivos");
+        } else {
             if (funcion.tipoString(tfVagTiempoAnticonceptivo.getText())) {
                 setVagTiempoAnticonceptivo(tfVagTiempoAnticonceptivo.getText());
             } else {
@@ -3889,38 +4553,38 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoración de variable Climaterio
          */
-        if(siClimaterio.isSelected() || noClimaterio.isSelected()){
-            if(siClimaterio.isSelected()){
+        if (siClimaterio.isSelected() || noClimaterio.isSelected()) {
+            if (siClimaterio.isSelected()) {
                 setVagClimaterio("Con climaterio");
-            }else{
+            } else {
                 setVagClimaterio("Sin climaterio");
             }
-        }else{
+        } else {
             banderavag = banderavag + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Climaterio", "Error", JOptionPane.ERROR_MESSAGE);
         }
         /**
          * Valoración de variable Terapia hormonal
          */
-        if(siTerapiaHormonal.isSelected() || noTerapiaHornomal.isSelected()){
-            if(siTerapiaHormonal.isSelected()){
+        if (siTerapiaHormonal.isSelected() || noTerapiaHornomal.isSelected()) {
+            if (siTerapiaHormonal.isSelected()) {
                 setVagTerapiaHormonal("Con terapia hormonal");
-            }else{
+            } else {
                 setVagClimaterio("Sin terapia hormonal");
             }
-        }else{
+        } else {
             banderavag = banderavag + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Terapia Hormonal", "Error", JOptionPane.ERROR_MESSAGE);
         }
         /**
          * Valoracion de variable cual terapia hormonal
          */
-        if(tfCualTerapiaHormonal.getText().equals("")){
-            setVagCualTerapiaHormonal("Sin terapia hormonal");   
-        }else{
-            if(funcion.tipoString(tfCualTerapiaHormonal.getText())){
+        if (tfCualTerapiaHormonal.getText().equals("")) {
+            setVagCualTerapiaHormonal("Sin terapia hormonal");
+        } else {
+            if (funcion.tipoString(tfCualTerapiaHormonal.getText())) {
                 setVagCualTerapiaHormonal(tfCualTerapiaHormonal.getText());
-            }else{
+            } else {
                 banderavag = banderavag + 1;
                 tfCualTerapiaHormonal.setText("");
                 JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"¿Cuál terapia hormonal?\"", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3929,12 +4593,12 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoracion de variable cual dosis de terapia hormonal
          */
-        if(tfDosisTerapiaHormonal.getText().equals("")){
-            setVagDosisTerapiaHormonal("Sin dosis de terapia hormonal");   
-        }else{
-            if(funcion.tipoString(tfDosisTerapiaHormonal.getText())){
+        if (tfDosisTerapiaHormonal.getText().equals("")) {
+            setVagDosisTerapiaHormonal("Sin dosis de terapia hormonal");
+        } else {
+            if (funcion.tipoString(tfDosisTerapiaHormonal.getText())) {
                 setVagDosisTerapiaHormonal(tfDosisTerapiaHormonal.getText());
-            }else{
+            } else {
                 banderavag = banderavag + 1;
                 tfDosisTerapiaHormonal.setText("");
                 JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Dosis de terapia hormonal\"", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3943,12 +4607,12 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoracion de variable cual tiempo de terapia hormonal
          */
-        if(tfvagTiempoTerapiaHormonal.getText().equals("")){
-            setVagTiempoTerapiaHormonal("Sin tiempo de terapia hormonal");   
-        }else{
-            if(funcion.tipoString(tfvagTiempoTerapiaHormonal.getText())){
+        if (tfvagTiempoTerapiaHormonal.getText().equals("")) {
+            setVagTiempoTerapiaHormonal("Sin tiempo de terapia hormonal");
+        } else {
+            if (funcion.tipoString(tfvagTiempoTerapiaHormonal.getText())) {
                 setVagTiempoTerapiaHormonal(tfvagTiempoTerapiaHormonal.getText());
-            }else{
+            } else {
                 banderavag = banderavag + 1;
                 tfvagTiempoTerapiaHormonal.setText("");
                 JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Tiempo de terapia hormonal\"", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3962,7 +4626,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_dpGuardar2ActionPerformed
 
     private void tfvagTiempoTerapiaHormonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfvagTiempoTerapiaHormonalActionPerformed
@@ -4230,8 +4894,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
             }
 
         }
-        
-        
+
         /**
          * Valoración de variables para la opción "Medicamento"
          */
@@ -4267,10 +4930,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoracion de variable dosisMedicamento
          */
-        if(tfDosisMedicamento.getText().equals("")){
+        if (tfDosisMedicamento.getText().equals("")) {
             setVasedosisMedicamento("Sin dosis medicamento");
             System.out.println("Sin dosis medicamento");
-        }else{
+        } else {
             if (funcion.tipoString(tfDosisMedicamento.getText())) {
                 setVasedosisMedicamento(tfDosisMedicamento.getText());
                 System.out.println(getVasedosisMedicamento());
@@ -4283,11 +4946,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         /**
          * Valoracion de variable Tiempo medicamento
          */
-        if(tfCuantoTiempo.getText().equals("")){
+        if (tfCuantoTiempo.getText().equals("")) {
             setVasedosisMedicamento("Sin tiempo medicamento");
             System.out.println("Sin tiempo medicamento");
-            
-        }else{
+
+        } else {
             if (funcion.tipoString(tfCuantoTiempo.getText())) {
                 setVasedosisMedicamento(tfCuantoTiempo.getText());
                 System.out.println(getVasetiempoMedicamento());
@@ -4297,7 +4960,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Caracteres especiales no permitidos en campo \"Tiempo Medicamento\"", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+
         /**
          * Valoración de variables para la opción "Cirugia"
          */
@@ -4345,7 +5008,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
             banderavase = banderavase + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Laxantes", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         /**
          * Valoración de variables para la opción "Diuréticos"
          */
@@ -4376,7 +5039,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
             banderavase = banderavase + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Antiácidos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         /**
          * Valoración de variables para la opción "Analgésicos"
          */
@@ -4392,13 +5055,13 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
             banderavase = banderavase + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Analgésicos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        if(banderavase == 0){
+
+        if (banderavase == 0) {
             int respvase = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Antecedentes Salud/Enfemedad\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if(respvase==0){
+            if (respvase == 0) {
                 panel.setSelectedIndex(2);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_dpGuardar1ActionPerformed
@@ -4540,17 +5203,606 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void dpGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar5ActionPerformed
         // TODO add your handling code here:
-        String pesoActual = tfPesoActual.getText();
-        pesoActual = pesoActual + "@";
-        encriptacion encript = new encriptacion();
-        String encr = encript.encriptar(pesoActual);
-        System.out.println("Texto encriptado: " + encr);
-
-        System.out.println("Texto desencriptado: " + encript.desEncriptar(encr));
-
-        Random rnd = new Random();
-        int valor = 48 + rnd.nextInt(118);
-        System.out.println(valor);
+        int bandera = 0;
+        encriptacion encript=new encriptacion();
+        /**
+         * Peso actual kg
+         */
+        if(!tfPesoActual.getText().equals("")){
+            String sPesoActual = tfPesoActual.getText();
+            try{
+                double dPesoActual = Double.valueOf(sPesoActual);
+                if(dPesoActual>0){
+                    setViaPesoActual(sPesoActual);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoActual.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Actual no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }    
+                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoActual.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo peso Actual solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);                                
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso Actual está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Peso habitual
+         */
+        if(!tfPesoHabitual.getText().equals("")){
+            String sPesoHabitual = tfPesoHabitual.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaPesoHabitual(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoHabitual.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Habitual no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoHabitual.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo peso Habitual solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso Habitual está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Estatura
+         */
+        if(!tfEstatura.getText().equals("")){
+            String sEstatura = tfEstatura.getText();
+            try{
+                double dEstatura = Double.valueOf(sEstatura);
+                if(dEstatura<2.5 || dEstatura>0){
+                    setViaEstatura(sEstatura);
+                }else{
+                    bandera = bandera + 1;
+                    tfEstatura.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta altura no está permitida, exprésala en Metros", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfEstatura.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Estatura solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso Estatura está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Pliegue Tricipital
+         */
+        if(!tfPliegueCutaneoTricipital.getText().equals("")){
+            String sTricipital = tfPliegueCutaneoTricipital.getText();
+            try{
+                double dTricipital = Double.valueOf(sTricipital);
+                if(dTricipital>0){
+                    setViaPCTricipital(sTricipital);
+                }else{
+                    bandera = bandera + 1;
+                    tfPliegueCutaneoTricipital.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en mm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPliegueCutaneoTricipital.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Tricpital solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Tricpital está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Pliegue Bicipital
+         */
+        if(!tfPliegueCutaneoBicipital.getText().equals("")){
+            String sBicipital = tfPliegueCutaneoBicipital.getText();
+            try{
+                double dBicipital = Double.valueOf(sBicipital);
+                if(dBicipital>0){
+                    setViaPCBicipital(sBicipital);
+                }else{
+                    bandera = bandera + 1;
+                    tfPliegueCutaneoBicipital.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en mm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPliegueCutaneoBicipital.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Bicipital solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Bicipital está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Pliegue Subescapular
+         */
+        if(!tfPliegueCutaneoSubescapular.getText().equals("")){
+            String sSubescapular = tfPliegueCutaneoSubescapular.getText();
+            try{
+                double dSubescapular = Double.valueOf(sSubescapular);
+                if(dSubescapular>0){
+                    setViaPCSubescapular(sSubescapular);
+                }else{
+                    bandera = bandera + 1;
+                    tfPliegueCutaneoSubescapular.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en mm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPliegueCutaneoSubescapular.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Subescapular solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Subescapular está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Pliegue Suprailiaco
+         */
+        if(!tfPliegueCutaneoSuprailiaco.getText().equals("")){
+            String sSuprailiaco = tfPliegueCutaneoSuprailiaco.getText();
+            try{
+                double dSuprailiaco = Double.valueOf(sSuprailiaco);
+                if(dSuprailiaco>0){
+                    setViaPCSuprailiaco(sSuprailiaco);
+                }else{
+                    bandera = bandera + 1;
+                    tfPliegueCutaneoSuprailiaco.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en mm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPliegueCutaneoSuprailiaco.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Suprailiaco solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Pliegue Cutáneo Suprailiaco está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Circunferencia brazo
+         */
+        if(!tfCircunferenciaBrazo.getText().equals("")){
+            String sCB = tfCircunferenciaBrazo.getText();
+            try{
+                double dCB = Double.valueOf(sCB);
+                if(dCB>0){
+                    setViaCircunferenciaBrazon(sCB);
+                }else{
+                    bandera = bandera + 1;
+                    tfCircunferenciaBrazo.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en cm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfCircunferenciaBrazo.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Brazo solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Brazo está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Circunferencia cintura
+         */
+        if(!tfCircunferenciaCintura.getText().equals("")){
+            String sCCi = tfCircunferenciaCintura.getText();
+            try{
+                double dCB = Double.valueOf(sCCi);
+                if(dCB>0){
+                    setViaCircunferenciaCintura(sCCi);
+                }else{
+                    bandera = bandera + 1;
+                    tfCircunferenciaCintura.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en cm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfCircunferenciaCintura.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Cintura solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Cintura está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Circunferencia cadera
+         */
+        if(!tfCircunferenciaCadera.getText().equals("")){
+            String sCCi = tfCircunferenciaCadera.getText();
+            try{
+                double dCB = Double.valueOf(sCCi);
+                if(dCB>0){
+                    setViaCircunferenciaCadera(sCCi);
+                }else{
+                    bandera = bandera + 1;
+                    tfCircunferenciaCadera.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en cm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfCircunferenciaCadera.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Cadera solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Cadera está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Circunferencia abdominal
+         */
+        if(!tfCircunferenciaAbdominal.getText().equals("")){
+            String sCCi = tfCircunferenciaAbdominal.getText();
+            try{
+                double dCB = Double.valueOf(sCCi);
+                if(dCB>0){
+                    setViaCircunferenciaAbdominal(sCCi);
+                }else{
+                    bandera = bandera + 1;
+                    tfCircunferenciaAbdominal.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en cm", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfCircunferenciaAbdominal.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Abdominal solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Circunferencia Abdominal está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Peso Teorico
+         */
+        if(!tfPesoTeorico.getText().equals("")){
+            String sCCi = tfPesoTeorico.getText();
+            try{
+                double dCB = Double.valueOf(sCCi);
+                if(dCB>0){
+                    setViaPesoTeorico(sCCi);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoTeorico.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en kg", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoTeorico.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Peso Teórico solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Peso Teórico está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Peso Teorico %
+         */
+        if(!tfPesoTeoricoXC.getText().equals("")){
+            String sCCi = tfPesoTeoricoXC.getText();
+            try{
+                double dCB = Double.valueOf(sCCi);
+                if(dCB>0){
+                    setViaPesoTeoricoXC(sCCi);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoTeoricoXC.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, esta medición no está permitida, exprésala en kg", "Error", JOptionPane.ERROR_MESSAGE);   
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoTeoricoXC.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Peso Teórico % solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Peso Teórico % está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Peso habitual %
+         */
+        if(!tfPesoHabitualXC.getText().equals("")){
+            String sPesoHabitual = tfPesoHabitualXC.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaPesoHabitualXC(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoHabitualXC.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Habitual % no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoHabitualXC.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo peso Habitual % solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso Habitual % está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * IMC
+         */
+        if(!tfIMC.getText().equals("")){
+            String sPesoHabitual = tfIMC.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaIMC(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfIMC.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Habitual % no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfIMC.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Índice Masa Corporal Kg/m^2 solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso Índice Masa Corporal Kg/m^2 está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * peso mínimo IMC
+         */
+        if(!tfPesoMinimoIMC.getText().equals("")){
+            String sPesoHabitual = tfPesoMinimoIMC.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaMinimoIMC(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoMinimoIMC.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso mínimo Índice Masa Corporal Kg/m^2 no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoMinimoIMC.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo peso mínimo Índice Masa Corporal Kg/m^2 solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso mínimo Índice Masa Corporal Kg/m^2 está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * peso mínimo IMC
+         */
+        if(!tfPesoMaximo.getText().equals("")){
+            String sPesoHabitual = tfPesoMaximo.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaMaximoIMC(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfPesoMaximo.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso máximo Índice Masa Corporal Kg/m^2 no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfPesoMaximo.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo peso máximo Índice Masa Corporal Kg/m^2 solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo peso máximo Índice Masa Corporal Kg/m^2 está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Grasa Corporal
+         */
+        if(!tfGrasaCorporalKG.getText().equals("")){
+            String sPesoHabitual = tfGrasaCorporalKG.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaGrasaCorporalTotal(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfGrasaCorporalKG.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Grasa Corporal Kg no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfGrasaCorporalKG.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Grasa Corporal Kg2 solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Grasa Corporal Kg está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Grasa Corporal
+         */
+        if(!tfGrasaCorporal.getText().equals("")){
+            String sPesoHabitual = tfGrasaCorporal.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaGrasaCorporalXC(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfGrasaCorporal.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Grasa Corporal % no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfGrasaCorporal.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Grasa Corporal % solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Grasa Corporal % está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Masa libre de grasa
+         */
+        if(!tfMasaLibreGrasa.getText().equals("")){
+            String sPesoHabitual = tfMasaLibreGrasa.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaMasaLibreGrasa(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfMasaLibreGrasa.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Masa Libre de Grasa no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfMasaLibreGrasa.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Masa Libre de Grasa solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Masa Libre de Grasa está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Diferencia Grasa
+         */
+        if(!tfDiferenciaGrasa.getText().equals("")){
+            String sPesoHabitual = tfDiferenciaGrasa.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaDiferenciaGrasa(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfDiferenciaGrasa.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Diferencia de  Grasa no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfDiferenciaGrasa.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Diferencia de  Grasa solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Diferencia de  Grasa está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Masa Muscular Total
+         */
+        if(!tfMasaMuscularTotal.getText().equals("")){
+            String sPesoHabitual = tfMasaMuscularTotal.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaMasaMuscularTotal(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfMasaMuscularTotal.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Masa Muscular Total no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfMasaMuscularTotal.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Masa Muscular Total solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Masa Muscular Total está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Indice cintura cadera
+         */
+        if(!tfIndiceCaderaCintura.getText().equals("")){
+            String sPesoHabitual = tfIndiceCaderaCintura.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaIndiceCinturaCadera(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfIndiceCaderaCintura.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Índice Cintura-Cadera no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfIndiceCaderaCintura.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Índice Cintura-Cadera solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Índice Cintura-Cadera está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Área Muscular de Brazo
+         */
+        if(!tfAreaMuscularBrazo.getText().equals("")){
+            String sPesoHabitual = tfAreaMuscularBrazo.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaAreaMuscularBrazo(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfAreaMuscularBrazo.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Área Muscular de Brazo no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfAreaMuscularBrazo.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Área Muscular de Brazo solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Área Muscular de Brazo está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Agua Corporal Total
+         */
+        if(!tfAguaCorporalTotal.getText().equals("")){
+            String sPesoHabitual = tfAguaCorporalTotal.getText();
+            try{
+                double dPesoHabitual = Double.valueOf(sPesoHabitual);
+                if(dPesoHabitual>0){
+                    setViaAguaCorporalTotal(sPesoHabitual);
+                }else{
+                    bandera = bandera + 1;
+                    tfAguaCorporalTotal.setText("");
+                    JOptionPane.showMessageDialog(null, "Error, este peso Agua Corporal Total no está permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                }                
+            }catch(NumberFormatException e){
+                bandera = bandera + 1;
+                tfAguaCorporalTotal.setText("");
+                JOptionPane.showMessageDialog(null, "Error, el campo Agua Corporal Total solo puede contener números", "Error", JOptionPane.ERROR_MESSAGE);   
+            }
+        }else{
+            bandera = 0;
+            JOptionPane.showMessageDialog(null, "Error, el campo Agua Corporal Total está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if (bandera == 0) {
+            int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Indicadores Antropométricos\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (respvag == 0) {
+                /**
+                 * Ingreso de datos a la base de datos
+                 */
+                
+                /**
+                 * Indicadores antropometricos
+                 */
+                try {                    
+                    cons.indicadoresAntropometicos(207448229, 207448229, encript.encriptar(getViaPesoActual()), encript.encriptar(getViaPesoHabitual()), encript.encriptar(getViaEstatura()), encript.encriptar(getViaPCTricipital()), encript.encriptar(getViaPCBicipital()), encript.encriptar(getViaPCSubescapular()),
+                            encript.encriptar(getViaPCSuprailiaco()), encript.encriptar(getViaCircunferenciaBrazon()), encript.encriptar(getViaCircunferenciaCintura()), encript.encriptar(getViaCircunferenciaCadera()), encript.encriptar(getViaCircunferenciaAbdominal()), encript.encriptar(getViaComplexion()), encript.encriptar(getViaPesoTeorico()),
+                            encript.encriptar(getViaPesoTeoricoXC()),encript.encriptar(getViaPesoHabitualXC()), encript.encriptar(getViaIMC()), encript.encriptar(getViaMinimoIMC()), encript.encriptar(getViaMaximoIMC()), encript.encriptar(getViaGrasaCorporalXC()), encript.encriptar(getViaGrasaCorporalTotal()), 
+                            encript.encriptar(getViaMasaLibreGrasa()), encript.encriptar(getViaDiferenciaGrasa()), encript.encriptar(getViaMasaMuscularTotal()), encript.encriptar(getViaIndiceCinturaCadera()), encript.encriptar(getViaAreaMuscularBrazo()), encript.encriptar(getViaAguaCorporalTotal()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(nuevoPacienteFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_dpGuardar5ActionPerformed
 
     private void rbSiEDStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbSiEDStateChanged
@@ -4673,23 +5925,265 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     private void cbTipoActividadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoActividadItemStateChanged
         // TODO add your handling code here:
-        if(cbTipoActividad.getSelectedItem().equals("Sin actividad")){
+        if (cbTipoActividad.getSelectedItem().equals("Sin actividad")) {
             cbDuracionActividad.setSelectedIndex(1);
             cbFrecuenciaActividad.setSelectedIndex(1);
             cbDuracionActividad.disable();
             cbFrecuenciaActividad.disable();
         }
-        if(cbTipoActividad.getSelectedItem().equals("...")){
+        if (cbTipoActividad.getSelectedItem().equals("...")) {
             cbDuracionActividad.setSelectedIndex(0);
             cbFrecuenciaActividad.setSelectedIndex(0);
             cbDuracionActividad.enable(true);
             cbFrecuenciaActividad.enable(true);
         }
-        if(cbTipoActividad.getSelectedItem().equals("Muy ligera") || cbTipoActividad.getSelectedItem().equals("Ligera") || cbTipoActividad.getSelectedItem().equals("Moderada") || cbTipoActividad.getSelectedItem().equals("Pesada") || cbTipoActividad.getSelectedItem().equals("Excepcional")){
+        if (cbTipoActividad.getSelectedItem().equals("Muy ligera") || cbTipoActividad.getSelectedItem().equals("Ligera") || cbTipoActividad.getSelectedItem().equals("Moderada") || cbTipoActividad.getSelectedItem().equals("Pesada") || cbTipoActividad.getSelectedItem().equals("Excepcional")) {
             cbDuracionActividad.enable(true);
             cbFrecuenciaActividad.enable(true);
         }
     }//GEN-LAST:event_cbTipoActividadItemStateChanged
+
+    private void cbHoraDespertarseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbHoraDespertarseItemStateChanged
+        // TODO add your handling code here:
+        if(!cbHoraDespertarse.getSelectedItem().equals("00")){
+            tfDespertarse.setText("");
+            tfDespertarse.enable(true);
+        }else{
+            if(!cbMinutoDespertarse.getSelectedItem().equals("00")){
+                tfDespertarse.setText("");
+                tfDespertarse.enable(true);
+            }else{
+                tfDespertarse.setText("Si la acción no se realiza dejar 00:00");
+                tfDespertarse.disable();
+            }            
+        }
+    }//GEN-LAST:event_cbHoraDespertarseItemStateChanged
+
+    private void cbMinutoDespertarseItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMinutoDespertarseItemStateChanged
+        // TODO add your handling code here:
+        if(cbMinutoDespertarse.getSelectedItem().equals("00")){
+            if(cbHoraDespertarse.getSelectedItem().equals("00")){
+                tfDespertarse.setText("Si la acción no se realiza dejar 00:00");  
+                tfDespertarse.disable();
+            }else{
+                tfDespertarse.setText("");
+                tfDespertarse.enable(true);
+            }            
+        }else{
+            tfDespertarse.setText("");
+            tfDespertarse.enable(true);
+        }
+    }//GEN-LAST:event_cbMinutoDespertarseItemStateChanged
+
+    private void cbHoraDesayunoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbHoraDesayunoItemStateChanged
+        // TODO add your handling code here:
+        if(!cbHoraDesayuno.getSelectedItem().equals("00")){
+            tfDesayuno.setText("");
+            tfDesayuno.enable(true);
+        }else{
+            if(!cbMinutoDesayuno.getSelectedItem().equals("00")){
+                tfDesayuno.setText("");
+                tfDesayuno.enable(true);
+            }else{
+                tfDesayuno.setText("Si la acción no se realiza dejar 00:00");
+                tfDesayuno.disable();
+            }            
+        }
+    }//GEN-LAST:event_cbHoraDesayunoItemStateChanged
+
+    private void cbMinutoDesayunoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMinutoDesayunoItemStateChanged
+        // TODO add your handling code here:
+        if(cbMinutoDesayuno.getSelectedItem().equals("00")){
+            if(cbHoraDesayuno.getSelectedItem().equals("00")){
+                tfDesayuno.setText("Si la acción no se realiza dejar 00:00");  
+                tfDesayuno.disable();
+            }else{
+                tfDesayuno.setText("");
+                tfDesayuno.enable(true);
+            }            
+        }else{
+            tfDesayuno.setText("");
+            tfDesayuno.enable(true);
+        }
+    }//GEN-LAST:event_cbMinutoDesayunoItemStateChanged
+
+    private void cbHoraComidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbHoraComidaItemStateChanged
+        // TODO add your handling code here:
+        if(!cbHoraComida.getSelectedItem().equals("00")){
+            tfComida.setText("");
+            tfComida.enable(true);
+        }else{
+            if(!cbMinutoComida.getSelectedItem().equals("00")){
+                tfComida.setText("");
+                tfComida.enable(true);
+            }else{
+                tfComida.setText("Si la acción no se realiza dejar 00:00");
+                tfComida.disable();
+            }            
+        }
+    }//GEN-LAST:event_cbHoraComidaItemStateChanged
+
+    private void cbMinutoComidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMinutoComidaItemStateChanged
+        // TODO add your handling code here:
+        if(cbMinutoComida.getSelectedItem().equals("00")){
+            if(cbHoraComida.getSelectedItem().equals("00")){
+                tfComida.setText("Si la acción no se realiza dejar 00:00");  
+                tfComida.disable();
+            }else{
+                tfComida.setText("");
+                tfComida.enable(true);
+            }            
+        }else{
+            tfComida.setText("");
+            tfComida.enable(true);
+        }
+    }//GEN-LAST:event_cbMinutoComidaItemStateChanged
+
+    private void cbHoraCenaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbHoraCenaItemStateChanged
+        // TODO add your handling code here:
+        if(!cbHoraCena.getSelectedItem().equals("00")){
+            tfCena.setText("");
+            tfCena.enable(true);
+        }else{
+            if(!cbMinutoCena.getSelectedItem().equals("00")){
+                tfCena.setText("");
+                tfCena.enable(true);
+            }else{
+                tfCena.setText("Si la acción no se realiza dejar 00:00");
+                tfCena.disable();
+            }            
+        }
+    }//GEN-LAST:event_cbHoraCenaItemStateChanged
+
+    private void cbMinutoCenaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMinutoCenaItemStateChanged
+        // TODO add your handling code here:
+        if(cbMinutoCena.getSelectedItem().equals("00")){
+            if(cbHoraCena.getSelectedItem().equals("00")){
+                tfCena.setText("Si la acción no se realiza dejar 00:00");  
+                tfCena.disable();
+            }else{
+                tfCena.setText("");
+                tfCena.enable(true);
+            }            
+        }else{
+            tfCena.setText("");
+            tfCena.enable(true);
+        }
+    }//GEN-LAST:event_cbMinutoCenaItemStateChanged
+
+    private void cbHoraDormirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbHoraDormirItemStateChanged
+        // TODO add your handling code here:
+        if(!cbHoraDormir.getSelectedItem().equals("00")){
+            tfDormir.setText("");
+            tfDormir.enable(true);
+        }else{
+            if(!cbMinutoDormir.getSelectedItem().equals("00")){
+                tfDormir.setText("");
+                tfDormir.enable(true);
+            }else{
+                tfDormir.setText("Si la acción no se realiza dejar 00:00");
+                tfDormir.disable();
+            }            
+        }
+    }//GEN-LAST:event_cbHoraDormirItemStateChanged
+
+    private void cbMinutoDormirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMinutoDormirItemStateChanged
+        // TODO add your handling code here:
+        if(cbMinutoDormir.getSelectedItem().equals("00")){
+            if(cbHoraDormir.getSelectedItem().equals("00")){
+                tfDormir.setText("Si la acción no se realiza dejar 00:00");  
+                tfDormir.disable();
+            }else{
+                tfDormir.setText("");
+                tfDormir.enable(true);
+            }            
+        }else{
+            tfDormir.setText("");
+            tfDormir.enable(true);
+        }
+    }//GEN-LAST:event_cbMinutoDormirItemStateChanged
+
+    private void siEntreComidasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siEntreComidasFocusGained
+        // TODO add your handling code here:
+        tfQueEntreComidas.enable(true);
+        tfQueEntreComidas.setText("");
+    }//GEN-LAST:event_siEntreComidasFocusGained
+
+    private void noEntreComidasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noEntreComidasFocusGained
+        // TODO add your handling code here:
+        tfQueEntreComidas.setText("");
+        tfQueEntreComidas.disable();
+    }//GEN-LAST:event_noEntreComidasFocusGained
+
+    private void siModificacionAlimentosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siModificacionAlimentosFocusGained
+        // TODO add your handling code here:
+        tfRazonModifiacion.enable(true);
+        tfRazonModifiacion.setText("");
+    }//GEN-LAST:event_siModificacionAlimentosFocusGained
+
+    private void noModificacionAlimentosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noModificacionAlimentosFocusGained
+        // TODO add your handling code here:
+        tfRazonModifiacion.setText("");
+        tfRazonModifiacion.disable();
+    }//GEN-LAST:event_noModificacionAlimentosFocusGained
+
+    private void siAlergicoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siAlergicoFocusGained
+        // TODO add your handling code here:
+        tfCualAlergico.enable(true);
+        tfCualAlergico.setText("");
+    }//GEN-LAST:event_siAlergicoFocusGained
+
+    private void noAlergicoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noAlergicoFocusGained
+        // TODO add your handling code here:
+        tfCualAlergico.setText("");
+        tfCualAlergico.disable();
+    }//GEN-LAST:event_noAlergicoFocusGained
+
+    private void siVariacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siVariacionFocusGained
+        // TODO add your handling code here:
+        nulaVariacion.enable(true);
+        mayorVariacion.enable(true);
+        menorVariacion.enable(true);
+    }//GEN-LAST:event_siVariacionFocusGained
+
+    private void noVariacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noVariacionFocusGained
+        // TODO add your handling code here:
+        nulaVariacion.setSelected(false);
+        mayorVariacion.setSelected(false);
+        menorVariacion.setSelected(false);
+    }//GEN-LAST:event_noVariacionFocusGained
+
+    private void siSalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siSalFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_siSalFocusGained
+
+    private void siDietaEspecialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siDietaEspecialFocusGained
+        // TODO add your handling code here:
+        tfCuantasDietas.enable(true);
+        tfHaceCuantoDieta.enable(true);
+        tfCuantasDietas.setText("");
+        tfHaceCuantoDieta.setText("");
+    }//GEN-LAST:event_siDietaEspecialFocusGained
+
+    private void noDietaEspecialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noDietaEspecialFocusGained
+        // TODO add your handling code here:
+        tfCuantasDietas.disable();
+        tfHaceCuantoDieta.disable();
+        tfCuantasDietas.setText("");
+        tfHaceCuantoDieta.setText("");
+    }//GEN-LAST:event_noDietaEspecialFocusGained
+
+    private void siMedicamentoBajarPesoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_siMedicamentoBajarPesoFocusGained
+        // TODO add your handling code here:
+        tfCualMedicamentoBajarPeso.enable(true);
+        tfCualMedicamentoBajarPeso.setText("");
+    }//GEN-LAST:event_siMedicamentoBajarPesoFocusGained
+
+    private void noMedicamentoBajarPesoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_noMedicamentoBajarPesoFocusGained
+        // TODO add your handling code here:
+        tfCualMedicamentoBajarPeso.disable();
+        tfCualMedicamentoBajarPeso.setText("");
+    }//GEN-LAST:event_noMedicamentoBajarPesoFocusGained
     private void guardarInfoGeneral() {
         System.out.println("Clic en guardar");
     }
@@ -4731,9 +6225,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JIMC;
-    private javax.swing.JRadioButton NocheHambre;
     private javax.swing.JRadioButton SuficienteApego;
-    private javax.swing.JRadioButton TardeHambre;
     private javax.swing.JRadioButton aceiteVegetalGrasa;
     private javax.swing.JRadioButton buenoApetito;
     private javax.swing.JComboBox<String> cbAlcohol;
@@ -4905,9 +6397,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jlPesoTeoricoXC;
     private javax.swing.JLabel jlPirosis;
     private javax.swing.JLabel jlPliegueCutaneoBicipital;
-    private javax.swing.JLabel jlPliegueCutaneoPerceptil;
     private javax.swing.JLabel jlPliegueCutaneoTricipital;
-    private javax.swing.JLabel jlPliegueCutaneosubescapular;
     private javax.swing.JLabel jlPreisonArterial;
     private javax.swing.JLabel jlPresionArterial;
     private javax.swing.JLabel jlQuienPrepara;
@@ -4928,11 +6418,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jlvagTiempoTerapiaHormonal;
     private javax.swing.JRadioButton levantarseHambre;
     private javax.swing.JRadioButton maloApetito;
+    private javax.swing.JRadioButton mananaHambre;
     private javax.swing.JRadioButton mantecaGrasa;
     private javax.swing.JRadioButton mantequillaGrasa;
     private javax.swing.JRadioButton margarinaGrasa;
     private javax.swing.JRadioButton mayorVariacion;
-    private javax.swing.JRadioButton mañanaHambre;
     private javax.swing.JRadioButton menorVariacion;
     private javax.swing.JRadioButton muyPocoAPego;
     private javax.swing.JRadioButton muyPocoResultadosDieta;
@@ -4950,6 +6440,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton noSal;
     private javax.swing.JRadioButton noTerapiaHornomal;
     private javax.swing.JRadioButton noVariacion;
+    private javax.swing.JRadioButton nocheHambre;
     private javax.swing.JRadioButton nulaVariacion;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel panelActiviadades;
@@ -5044,6 +6535,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton suficienteResultadosDieta;
     private javax.swing.JTextArea taAspectoGeneral;
     private javax.swing.JTextArea taObservaciones;
+    private javax.swing.JRadioButton tardeHambre;
     private javax.swing.JTextField tfAguaCorporalTotal;
     private javax.swing.JTextField tfAlimentosMalestar;
     private javax.swing.JTextField tfAlimentosNoPreferidos;
@@ -5059,7 +6551,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfComidaCasaFin;
     private javax.swing.JTextField tfComidaCasaSemana;
     private javax.swing.JTextField tfComidasDia;
-    private javax.swing.JTextField tfComidasDia6;
     private javax.swing.JTextField tfComidasFueraFin;
     private javax.swing.JTextField tfComidasFueraSemana;
     private javax.swing.JTextField tfComplexion;
@@ -5099,11 +6590,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfPesoTeorico;
     private javax.swing.JTextField tfPesoTeoricoXC;
     private javax.swing.JTextField tfPliegueCutaneoBicipital;
-    private javax.swing.JTextField tfPliegueCutaneoPerceptil;
     private javax.swing.JTextField tfPliegueCutaneoSubescapular;
-    private javax.swing.JTextField tfPliegueCutaneoSubescapularPerceptil;
     private javax.swing.JTextField tfPliegueCutaneoSuprailiaco;
     private javax.swing.JTextField tfPliegueCutaneoTricipital;
+    private javax.swing.JTextField tfQueEntreComidas;
     private javax.swing.JTextField tfQuienPrepara;
     private javax.swing.JTextField tfRazonDietaEspecial;
     private javax.swing.JTextField tfRazonModifiacion;
