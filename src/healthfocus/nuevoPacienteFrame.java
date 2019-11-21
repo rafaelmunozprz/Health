@@ -23,6 +23,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     selectorTexto seleccionarTexto = new selectorTexto();
     funciones funcion = new funciones();
     consultasMysql cons = new consultasMysql();
+    encriptacion encript = new encriptacion();
     /**
      * Bloque para la asignación de getters y setters de la la primer ventana de
      * un nuevo usuario, DATOS PERSONALES
@@ -37,8 +38,17 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private String vdpEscolaridad = "";
     private String vdpCiudad = "";
     private String vdpEstadoCivil = "";
+    private String vdpTelefono = "";
     private String vdpIDEspediente = "";
     private String vdpEmail = "";
+
+    public String getVdpTelefono() {
+        return vdpTelefono;
+    }
+
+    public void setVdpTelefono(String vdpTelefono) {
+        this.vdpTelefono = vdpTelefono;
+    }
 
     public String getVdpNombre() {
         return vdpNombre;
@@ -1300,7 +1310,16 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     public void setViaAguaCorporalTotal(String viaAguaCorporalTotal) {
         this.viaAguaCorporalTotal = viaAguaCorporalTotal;
     }
+    public static String codigoNutirologo = "";
 
+    public static String getCodigoNutirologo() {
+        return codigoNutirologo;
+    }
+
+    public static void setCodigoNutirologo(String codigoNutirologo) {
+        nuevoPacienteFrame.codigoNutirologo = codigoNutirologo;
+    }
+    
     /**
      * Creates new form nuevoPacienteFrame
      */
@@ -1308,6 +1327,14 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/icons/headerIcon.png")).getImage());
+        accionesFrame af = new accionesFrame();
+        setCodigoNutirologo(af.getCodigoUsuario());
+        System.out.println("Codigo nutriologo npf: " + getCodigoNutirologo());
+        dpGuardar1.setVisible(false);
+        dpGuardar2.setVisible(false);
+        dpGuardar3.setVisible(false);
+        dpGuardar4.setVisible(false);
+        dpGuardar5.setVisible(false);
     }
 
     /**
@@ -1376,8 +1403,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         dpCiudad = new javax.swing.JTextField();
         jlID = new javax.swing.JLabel();
         dpIDExpediente = new javax.swing.JTextField();
-        jlEmail = new javax.swing.JLabel();
-        dpEmail = new javax.swing.JTextField();
         jlEscolaridad = new javax.swing.JLabel();
         dpEscolaridad = new javax.swing.JComboBox<>();
         jlEstadoCivil = new javax.swing.JLabel();
@@ -1692,10 +1717,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         tfAguaCorporalTotal = new javax.swing.JTextField();
         dpGuardar5 = new javax.swing.JButton();
         jLabel123 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("HF - Nuevo Paciente");
@@ -1711,6 +1732,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpNombre.setText("Javier");
         dpNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpNombreFocusGained(evt);
@@ -1732,6 +1754,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpApellidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpApellidos.setText("Rosas Coronado");
         dpApellidos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpApellidosFocusGained(evt);
@@ -1753,6 +1776,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpSexo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Femenino", "Masculino" }));
+        dpSexo.setSelectedIndex(2);
         dpSexo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDatosPersonales.add(dpSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, 150, -1));
 
@@ -1762,6 +1786,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbEdad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbEdad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110" }));
+        cbEdad.setSelectedIndex(19);
         panelDatosPersonales.add(cbEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 122, 200, -1));
 
         jlNacimiento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -1770,6 +1795,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpNacimiento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpNacimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpNacimiento.setText("16 de Septiembre 2000");
         dpNacimiento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpNacimientoFocusGained(evt);
@@ -1791,6 +1817,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpDomicilio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpDomicilio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpDomicilio.setText("Calle de las Rosas");
         dpDomicilio.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpDomicilioFocusGained(evt);
@@ -1808,6 +1835,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpCP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpCP.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpCP.setText("33000");
         dpCP.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpCPFocusGained(evt);
@@ -1833,6 +1861,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpCiudad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpCiudad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpCiudad.setText("Tepatitlan de Morelos");
         dpCiudad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpCiudadFocusGained(evt);
@@ -1850,10 +1879,11 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         jlID.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlID.setText("ID (Expediente)");
-        panelDatosPersonales.add(jlID, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 298, -1, -1));
+        panelDatosPersonales.add(jlID, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, -1));
 
         dpIDExpediente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpIDExpediente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpIDExpediente.setText("207448457");
         dpIDExpediente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpIDExpedienteFocusGained(evt);
@@ -1867,28 +1897,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
                 dpIDExpedienteActionPerformed(evt);
             }
         });
-        panelDatosPersonales.add(dpIDExpediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 283, -1));
-
-        jlEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jlEmail.setText("E-mail");
-        panelDatosPersonales.add(jlEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, -1, -1));
-
-        dpEmail.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        dpEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        dpEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                dpEmailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                dpEmailFocusLost(evt);
-            }
-        });
-        dpEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dpEmailActionPerformed(evt);
-            }
-        });
-        panelDatosPersonales.add(dpEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 555, -1));
+        panelDatosPersonales.add(dpIDExpediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 283, -1));
 
         jlEscolaridad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jlEscolaridad.setText("Escolaridad");
@@ -1896,6 +1905,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpEscolaridad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpEscolaridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Sin estudios", "Preescolar", "Primaria", "Secundaria", "Carrera Técnica", "Bachillerato", "Licenciatura", "Maestría", "Doctorado", " ", " " }));
+        dpEscolaridad.setSelectedIndex(5);
         dpEscolaridad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDatosPersonales.add(dpEscolaridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 150, -1));
 
@@ -1905,6 +1915,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpEstadoCivil.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Soltero/a", "Comprometido/a", "Relación (novio/a)", "Casado/a", "Union libre", "Separado/a", "Divorciado/a", "Viudo/a", " ", " " }));
+        dpEstadoCivil.setSelectedIndex(1);
         dpEstadoCivil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelDatosPersonales.add(dpEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 210, 150, -1));
 
@@ -1914,6 +1925,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         dpTelefono.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         dpTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        dpTelefono.setText("3330003300");
         dpTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 dpTelefonoFocusGained(evt);
@@ -1963,6 +1975,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoDiarrea.setBackground(new java.awt.Color(255, 255, 255));
         rbgDiarrea.add(rbNoDiarrea);
         rbNoDiarrea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoDiarrea.setSelected(true);
         rbNoDiarrea.setText("No");
         panelAntecedentes.add(rbNoDiarrea, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 7, -1, -1));
 
@@ -1979,6 +1992,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoEstrenimiento.setBackground(new java.awt.Color(255, 255, 255));
         rbgEstrenimiento.add(rbNoEstrenimiento);
         rbNoEstrenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoEstrenimiento.setSelected(true);
         rbNoEstrenimiento.setText("No");
         panelAntecedentes.add(rbNoEstrenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 7, -1, -1));
 
@@ -1995,6 +2009,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoGastritis.setBackground(new java.awt.Color(255, 255, 255));
         rbgGastritis.add(rbNoGastritis);
         rbNoGastritis.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoGastritis.setSelected(true);
         rbNoGastritis.setText("No");
         panelAntecedentes.add(rbNoGastritis, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 7, -1, -1));
 
@@ -2011,6 +2026,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoUlcera.setBackground(new java.awt.Color(255, 255, 255));
         rbgUlcera.add(rbNoUlcera);
         rbNoUlcera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoUlcera.setSelected(true);
         rbNoUlcera.setText("No");
         panelAntecedentes.add(rbNoUlcera, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 54, -1, -1));
 
@@ -2021,6 +2037,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbSiNausea.setBackground(new java.awt.Color(255, 255, 255));
         rbgNausea.add(rbSiNausea);
         rbSiNausea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiNausea.setSelected(true);
         rbSiNausea.setText("Si");
         panelAntecedentes.add(rbSiNausea, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 54, -1, -1));
 
@@ -2043,6 +2060,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoPirosis.setBackground(new java.awt.Color(255, 255, 255));
         rbgPirosis.add(rbNoPirosis);
         rbNoPirosis.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoPirosis.setSelected(true);
         rbNoPirosis.setText("No");
         panelAntecedentes.add(rbNoPirosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 54, -1, -1));
 
@@ -2053,6 +2071,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbSiVomito.setBackground(new java.awt.Color(255, 255, 255));
         rbgVomito.add(rbSiVomito);
         rbSiVomito.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiVomito.setSelected(true);
         rbSiVomito.setText("Si");
         panelAntecedentes.add(rbSiVomito, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 101, -1, -1));
 
@@ -2069,6 +2088,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbSiColitis.setBackground(new java.awt.Color(255, 255, 255));
         rbgColitis.add(rbSiColitis);
         rbSiColitis.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiColitis.setSelected(true);
         rbSiColitis.setText("Si");
         panelAntecedentes.add(rbSiColitis, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 101, -1, -1));
 
@@ -2091,6 +2111,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoDentadura.setBackground(new java.awt.Color(255, 255, 255));
         rbgDentadura.add(rbNoDentadura);
         rbNoDentadura.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoDentadura.setSelected(true);
         rbNoDentadura.setText("No");
         panelAntecedentes.add(rbNoDentadura, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 101, -1, -1));
 
@@ -2108,6 +2129,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         taObservaciones.setColumns(20);
         taObservaciones.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         taObservaciones.setRows(5);
+        taObservaciones.setText("El paciente presenta un color extrano color amarillo");
         jScrollPane1.setViewportView(taObservaciones);
 
         panelAntecedentes.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 217, 702, -1));
@@ -2135,6 +2157,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoED.setBackground(new java.awt.Color(153, 217, 234));
         rgbEDiagnosticada.add(rbNoED);
         rbNoED.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoED.setSelected(true);
         rbNoED.setText("No");
         rbNoED.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2169,6 +2192,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoEI.setBackground(new java.awt.Color(153, 217, 234));
         rbgEnfermedadImportante.add(rbNoEI);
         rbNoEI.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoEI.setSelected(true);
         rbNoEI.setText("No");
         rbNoEI.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2203,6 +2227,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoMedicamento.setBackground(new java.awt.Color(153, 217, 234));
         rbgMedicamento.add(rbNoMedicamento);
         rbNoMedicamento.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoMedicamento.setSelected(true);
         rbNoMedicamento.setText("No");
         rbNoMedicamento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2248,6 +2273,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoLaxante.setBackground(new java.awt.Color(153, 217, 234));
         rbgLaxantes.add(rbNoLaxante);
         rbNoLaxante.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoLaxante.setSelected(true);
         rbNoLaxante.setText("No");
         panelAntecedentes.add(rbNoLaxante, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 526, -1, -1));
 
@@ -2264,6 +2290,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoDiureticos.setBackground(new java.awt.Color(153, 217, 234));
         rbgDiureticos.add(rbNoDiureticos);
         rbNoDiureticos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoDiureticos.setSelected(true);
         rbNoDiureticos.setText("No");
         panelAntecedentes.add(rbNoDiureticos, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 526, -1, -1));
 
@@ -2276,6 +2303,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbSiAnalgesicos.setBackground(new java.awt.Color(153, 217, 234));
         rbgAnalgesicos.add(rbSiAnalgesicos);
         rbSiAnalgesicos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbSiAnalgesicos.setSelected(true);
         rbSiAnalgesicos.setText("Si");
         panelAntecedentes.add(rbSiAnalgesicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 526, -1, -1));
 
@@ -2286,6 +2314,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoAC.setBackground(new java.awt.Color(153, 217, 234));
         rbgAntiacidos.add(rbNoAC);
         rbNoAC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoAC.setSelected(true);
         rbNoAC.setText("No");
         panelAntecedentes.add(rbNoAC, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 526, -1, -1));
 
@@ -2317,6 +2346,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         rbNoCirugia.setBackground(new java.awt.Color(153, 217, 234));
         rbgCirugia.add(rbNoCirugia);
         rbNoCirugia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        rbNoCirugia.setSelected(true);
         rbNoCirugia.setText("No");
         rbNoCirugia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2376,6 +2406,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         noEmbarazoActual.setBackground(new java.awt.Color(255, 255, 255));
         rbgEmbarazo.add(noEmbarazoActual);
         noEmbarazoActual.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noEmbarazoActual.setSelected(true);
         noEmbarazoActual.setText("No");
         noEmbarazoActual.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2421,6 +2452,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         noAnticonceptivos.setBackground(new java.awt.Color(255, 255, 255));
         rbgAnticonceptivos.add(noAnticonceptivos);
         noAnticonceptivos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noAnticonceptivos.setSelected(true);
         noAnticonceptivos.setText("No");
         noAnticonceptivos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2476,6 +2508,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         noClimaterio.setBackground(new java.awt.Color(255, 255, 255));
         rbgClimaterio.add(noClimaterio);
         noClimaterio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noClimaterio.setSelected(true);
         noClimaterio.setText("No");
         noClimaterio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2502,6 +2535,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         noTerapiaHornomal.setBackground(new java.awt.Color(255, 255, 255));
         rbgReemplazoHormonal.add(noTerapiaHornomal);
         noTerapiaHornomal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noTerapiaHornomal.setSelected(true);
         noTerapiaHornomal.setText("No");
         noTerapiaHornomal.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -2650,6 +2684,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         taAspectoGeneral.setColumns(20);
         taAspectoGeneral.setRows(5);
+        taAspectoGeneral.setText("Hombre con sobrepeso y algo de condicion fisica");
         jScrollPane2.setViewportView(taAspectoGeneral);
 
         panelActiviadades.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 119, 453, 169));
@@ -2757,6 +2792,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbTipoActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbTipoActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Sin actividad", "Muy ligera", "Ligera", "Moderada", "Pesada", "Excepcional" }));
+        cbTipoActividad.setSelectedIndex(2);
         cbTipoActividad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbTipoActividadItemStateChanged(evt);
@@ -2775,6 +2811,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbFrecuenciaActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbFrecuenciaActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbFrecuenciaActividad.setSelectedIndex(2);
         panelActiviadades.add(cbFrecuenciaActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 337, -1, -1));
 
         jlPreisonArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2799,6 +2836,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         noPresionArterial.setBackground(new java.awt.Color(153, 217, 234));
         rbgPresionArterial.add(noPresionArterial);
         noPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        noPresionArterial.setSelected(true);
         noPresionArterial.setText("No");
         noPresionArterial.setToolTipText("");
         noPresionArterial.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -2814,6 +2852,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbDuracionActividad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbDuracionActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Sin actividad", "< 30 Minutos", "< 60 minutos", "< 90 minutos", "< 120 minutos", "< 150 minutos", "< 180 minutos", "> 180 minutos" }));
+        cbDuracionActividad.setSelectedIndex(2);
         panelActiviadades.add(cbDuracionActividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 374, -1, -1));
 
         jlCualPresionArterial.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -2842,6 +2881,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbTabaco.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbTabaco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbTabaco.setSelectedIndex(1);
         cbTabaco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTabacoActionPerformed(evt);
@@ -2855,6 +2895,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbAlcohol.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbAlcohol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbAlcohol.setSelectedIndex(2);
         cbAlcohol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbAlcoholActionPerformed(evt);
@@ -2868,6 +2909,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
 
         cbCafe.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         cbCafe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "Nunca", "Raramente", "Frecuentemente", "Casi siempre", "Siempre" }));
+        cbCafe.setSelectedIndex(3);
         cbCafe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCafeActionPerformed(evt);
@@ -3417,7 +3459,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         panelIndicadores.add(dpGuardar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, -1, -1));
 
         jLabel86.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_979x606.png"))); // NOI18N
-        panelIndicadores.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 980, 630));
+        panelIndicadores.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 980, 660));
 
         panel.addTab("Indicadores dietéticos", panelIndicadores);
 
@@ -3724,21 +3766,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("Archivo");
-        jMenu1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jMenuItem1.setText("Guardar");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jMenuItem2.setText("Salir");
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -3893,7 +3920,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
                 }
             } else {
                 setVidModificacionAlimentos(noModificacionAlimentos.getText());
-                setVidRazonModificacion("Sin modificación");
+                setVidRazonModificacion("Sin modificacion");
             }
         } else {
             banderavid = banderavid + 1;
@@ -4196,11 +4223,15 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
             int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Diario de Actividades\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (respvag == 0) {
                 try {
-                    cons.indicadoresDieteticos(207448229, 207448229, getVidCuantasComidas(), getVidQuienPrepara(), getVidEntreComidas(), getVidQueEntreComidas(), getVidComidasCasaSemana(), getVidComidasCasaFin(),
-                             getVidComidasFueraSemana(), getVidComidasFueraFin(), getVidModificacionAlimentos(), getVidRazonModificacion(), getVidApetito(), getVidMasHambre(), getVidAlimentosPreferidos(), getVidAlimentosNoPreferidos(),
-                             getVidAlimentosMalestar(), getVidCualIntolerante(), getVidCualIntolerante(), getVidApetitoVariableEDA(), getVidNivelVariacion(), getVidSal(), getVidGrasa(), getVidDietaEspecial(), getVidCuantasDietaEspecial(),
-                             getVidHaceCuantoDietaEspecial(), getVidTiempoDietaEspecial(), getVidRazonDietaEspecial(), getVidApegoDieta(), getVidResultadosDieta(), getVidMedicamentoPeso(), getVidCualMedicamentoPeso(), getVidOtroGrasa());
-                    
+                    cons.indicadoresDieteticos(Integer.parseInt(getCodigoNutirologo()), Integer.parseInt(getVdpIDEspediente()), encript.encriptar(getVidCuantasComidas()), encript.encriptar(getVidQuienPrepara()), encript.encriptar(getVidEntreComidas()), encript.encriptar(getVidQueEntreComidas()), encript.encriptar(getVidComidasCasaSemana()), encript.encriptar(getVidComidasCasaFin()),
+                             encript.encriptar(getVidComidasFueraSemana()), encript.encriptar(getVidComidasFueraFin()), encript.encriptar(getVidModificacionAlimentos()), encript.encriptar(getVidRazonModificacion()), encript.encriptar(getVidApetito()), encript.encriptar(getVidMasHambre()), encript.encriptar(getVidAlimentosPreferidos()), encript.encriptar(getVidAlimentosNoPreferidos()),
+                             encript.encriptar(getVidAlimentosMalestar()), encript.encriptar(getVidCualIntolerante()), encript.encriptar(getVidCualIntolerante()), encript.encriptar(getVidApetitoVariableEDA()), encript.encriptar(getVidNivelVariacion()), encript.encriptar(getVidSal()), encript.encriptar(getVidGrasa()), encript.encriptar(getVidDietaEspecial()), encript.encriptar(getVidCuantasDietaEspecial()),
+                             encript.encriptar(getVidHaceCuantoDietaEspecial()), encript.encriptar(getVidTiempoDietaEspecial()), encript.encriptar(getVidRazonDietaEspecial()), encript.encriptar(getVidApegoDieta()), encript.encriptar(getVidResultadosDieta()), encript.encriptar(getVidMedicamentoPeso()), encript.encriptar(getVidCualMedicamentoPeso()), encript.encriptar(getVidOtroGrasa()));
+                    //String encr = encript.encriptar(getVidCuantasComidas());
+                    //System.out.println("Desencriptado" + encript.desEncriptar(encr));
+                    dpGuardar4.disable();
+                    dpGuardar4.setVisible(false);
+                    dpGuardar5.setVisible(true);
                 } catch (SQLException e) {
                     Logger.getLogger(nuevoPacienteFrame.class.getName()).log(Level.SEVERE, null, e);
                 }
@@ -4440,6 +4471,17 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         if (banderavdda == 0) {
             int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Diario de Actividades\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (respvag == 0) {
+                try{
+                    cons.diarioActvidades(Integer.parseInt(getCodigoNutirologo()), Integer.parseInt(getVdpIDEspediente()), encript.encriptar(getVddaHoraDespertarse()), encript.encriptar(getVddaHoraDesayuno()), encript.encriptar(getVddaHoraComida()), encript.encriptar(getVddaHoraCena()), encript.encriptar(getVddaHoraDormir()), 
+                            encript.encriptar(getVddaAspectoGeneral()), encript.encriptar(getVddaTipoEjercicio()), encript.encriptar(getVddaDuracionEjercicio()), encript.encriptar(getVddaFrecuenciaEjercicio()), 
+                            encript.encriptar(getVddaTabaco()), encript.encriptar(getVddaCafe()), encript.encriptar(getVddaAlcohol()), encript.encriptar(getVddaPresionArterial()), encript.encriptar(getVddaCualPresionArterial()), encript.encriptar(getVddaHoraPresionArterial()),
+                            encript.encriptar(getVddaDespertarse()), encript.encriptar(getVddaDesayuno()), encript.encriptar(getVddaComida()), encript.encriptar(getVddaCena()), encript.encriptar(getVddaDormir()));
+                    dpGuardar3.disable();
+                    dpGuardar3.setVisible(false);
+                    dpGuardar4.setVisible(true);
+                }catch(SQLException e){
+                    
+                }
                 panel.setSelectedIndex(4);
             }
         } else {
@@ -4472,9 +4514,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (siEmbarazoActual.isSelected() || noEmbarazoActual.isSelected()) {
             if (siEmbarazoActual.isSelected()) {
-                setVagEmbarazoAcutal("Embarazo Actual");
+                setVagEmbarazoAcutal(siEmbarazoActual.getText());
             } else {
-                setVagEmbarazoAcutal("Sin Embarazo Actual");
+                setVagEmbarazoAcutal(noEmbarazoActual.getText());
             }
         } else {
             banderavag = banderavag + 1;
@@ -4500,9 +4542,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (siAnticonceptivosOrales.isSelected() || noAnticonceptivos.isSelected()) {
             if (siAnticonceptivosOrales.isSelected()) {
-                setVagAnticonceptivos("Anticonceptivos Orales");
+                setVagAnticonceptivos(siAnticonceptivosOrales.getText());
             } else {
-                setVagAnticonceptivos("Sin anticonceptivos orales");
+                setVagAnticonceptivos(noAnticonceptivos.getText());
             }
         } else {
             banderavag = banderavag + 1;
@@ -4555,9 +4597,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (siClimaterio.isSelected() || noClimaterio.isSelected()) {
             if (siClimaterio.isSelected()) {
-                setVagClimaterio("Con climaterio");
+                setVagClimaterio(siClimaterio.getText());
             } else {
-                setVagClimaterio("Sin climaterio");
+                setVagClimaterio(noClimaterio.getText());
             }
         } else {
             banderavag = banderavag + 1;
@@ -4568,9 +4610,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (siTerapiaHormonal.isSelected() || noTerapiaHornomal.isSelected()) {
             if (siTerapiaHormonal.isSelected()) {
-                setVagTerapiaHormonal("Con terapia hormonal");
+                setVagTerapiaHormonal(siTerapiaHormonal.getText());
             } else {
-                setVagClimaterio("Sin terapia hormonal");
+                setVagClimaterio(noTerapiaHornomal.getText());
             }
         } else {
             banderavag = banderavag + 1;
@@ -4621,7 +4663,18 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         if (banderavag == 0) {
             int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Aspectos Ginecológicos\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (respvag == 0) {
-                panel.setSelectedIndex(3);
+                try {
+                    cons.aspectosGinecologicos(Integer.parseInt(getCodigoNutirologo()), Integer.parseInt(getVdpIDEspediente()), encript.encriptar(getVagEmbarazoAcutal()), encript.encriptar(getVagSemanasGestacion()), encript.encriptar(getVagAnticonceptivos()), encript.encriptar(getVagCualAnticonceptivo()), 
+                            encript.encriptar(getVagDosisAnticoconceptivo()), encript.encriptar(getVagTiempoAnticonceptivo()), encript.encriptar(getVagClimaterio()), encript.encriptar(getVagTerapiaHormonal()), 
+                            encript.encriptar(getVagCualTerapiaHormonal()), encript.encriptar(getVagDosisTerapiaHormonal()), encript.encriptar(getVagTiempoTerapiaHormonal()));
+                    dpGuardar2.disable();
+                    dpGuardar2.setVisible(false);
+                    dpGuardar3.setVisible(true);
+                    panel.setSelectedIndex(3);
+                } catch (SQLException ex) {
+                    Logger.getLogger(nuevoPacienteFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         } else {
             JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -4665,11 +4718,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiDiarrea.isSelected() || rbNoDiarrea.isSelected()) {
             if (rbSiDiarrea.isSelected()) {
-                setVasediarrea("SI");
-                System.out.println("Si Diarrea seleccionado");
+                setVasediarrea(rbSiDiarrea.getText());
             } else if (rbNoDiarrea.isSelected()) {
-                System.out.println("No Diarrea seleccionado");
-                setVasediarrea("NO");
+                setVasediarrea(rbNoDiarrea.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4681,11 +4732,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiEstrenimiento.isSelected() || rbNoEstrenimiento.isSelected()) {
             if (rbSiEstrenimiento.isSelected()) {
-                setVaseestrenimiento("SI");
-                System.out.println("Si Estrenimiento seleccionado");
+                setVaseestrenimiento(rbSiEstrenimiento.getText());
             } else if (rbNoEstrenimiento.isSelected()) {
-                System.out.println("No Estrenimiento seleccionado");
-                setVaseestrenimiento("NO");
+                setVaseestrenimiento(rbNoEstrenimiento.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4696,11 +4745,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiGastritis.isSelected() || rbNoGastritis.isSelected()) {
             if (rbSiGastritis.isSelected()) {
-                setVasegastritis("SI");
-                System.out.println("Si Gastritis seleccionado");
+                setVasegastritis(rbSiGastritis.getText());
             } else if (rbNoGastritis.isSelected()) {
-                System.out.println("No Gastritis seleccionado");
-                setVasegastritis("NO");
+                setVasegastritis(rbNoGastritis.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4711,11 +4758,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiUlcera.isSelected() || rbNoUlcera.isSelected()) {
             if (rbSiUlcera.isSelected()) {
-                setVaseulcera("SI");
-                System.out.println("Si Ulcera seleccionado");
+                setVaseulcera(rbSiUlcera.getText());
             } else if (rbNoUlcera.isSelected()) {
-                System.out.println("No Ulcera seleccionado");
-                setVaseulcera("NO");
+                setVaseulcera(rbNoUlcera.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4726,11 +4771,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiNausea.isSelected() || rbNoNausea.isSelected()) {
             if (rbSiNausea.isSelected()) {
-                setVasenauseas("SI");
-                System.out.println("Si Nauseas seleccionado");
+                setVasenauseas(rbSiNausea.getText());
             } else if (rbNoNausea.isSelected()) {
-                System.out.println("No Nauseas seleccionado");
-                setVasenauseas("NO");
+                setVasenauseas(rbNoNausea.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4741,11 +4784,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiPirosis.isSelected() || rbNoPirosis.isSelected()) {
             if (rbSiPirosis.isSelected()) {
-                setVasepirosis("SI");
-                System.out.println("Si Pirosis seleccionado");
+                setVasepirosis(rbSiPirosis.getText());
             } else if (rbNoPirosis.isSelected()) {
-                System.out.println("No Pirosis seleccionado");
-                setVasepirosis("NO");
+                setVasepirosis(rbNoPirosis.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4756,11 +4797,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiVomito.isSelected() || rbNoVomito.isSelected()) {
             if (rbSiVomito.isSelected()) {
-                setVasevomito("SI");
-                System.out.println("Si Vómito seleccionado");
+                setVasevomito(rbSiVomito.getText());
             } else if (rbNoVomito.isSelected()) {
-                System.out.println("No Vómito seleccionado");
-                setVasevomito("NO");
+                setVasevomito(rbNoVomito.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4771,11 +4810,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiColitis.isSelected() || rbNoColitis.isSelected()) {
             if (rbSiColitis.isSelected()) {
-                setVasecolitis("SI");
-                System.out.println("Si Colitis seleccionado");
+                setVasecolitis(rbSiColitis.getText());
             } else if (rbNoColitis.isSelected()) {
-                System.out.println("No Colitis seleccionado");
-                setVasecolitis("NO");
+                setVasecolitis(rbNoColitis.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4786,11 +4823,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiDentadura.isSelected() || rbNoDentadura.isSelected()) {
             if (rbSiDentadura.isSelected()) {
-                setVasedentadura("SI");
-                System.out.println("Si Dentadura seleccionado");
+                setVasedentadura(rbSiDentadura.getText());
             } else if (rbNoDentadura.isSelected()) {
-                System.out.println("No Dentadura seleccionado");
-                setVasedentadura("NO");
+                setVasedentadura(rbNoDentadura.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4801,11 +4836,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfOtros.getText().equals("")) {
             setVaseotros("Sin otros problemas");
-            System.out.println("Otros sin información");
         } else {
             if (funcion.tipoString(tfOtros.getText())) {
                 setVaseotros(tfOtros.getText());
-                System.out.println(getVaseotros());
             } else {
                 banderavase = banderavase + 1;
                 tfOtros.setText("");
@@ -4818,11 +4851,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (taObservaciones.getText().equals("")) {
             setVaseobservaciones("Sin observaciones");
-            System.out.println("Sin observaciones");
         } else {
             if (funcion.tipoString(taObservaciones.getText())) {
                 setVaseobservaciones(taObservaciones.getText());
-                System.out.println(getVaseobservaciones());
             } else {
                 banderavase = banderavase + 1;
                 taObservaciones.setText("");
@@ -4835,11 +4866,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiED.isSelected() || rbNoED.isSelected()) {
             if (rbSiED.isSelected()) {
-                setVaseenfermedadDiagosticada("SI");
-                System.out.println("Si ED seleccionado");
+                setVaseenfermedadDiagosticada(rbSiED.getText());
             } else if (rbNoED.isSelected()) {
-                System.out.println("No ED seleccionado");
-                setVaseenfermedadDiagosticada("NO");
+                setVaseenfermedadDiagosticada(rbNoED.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4850,11 +4879,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfCualED.getText().equals("")) {
             setVasecualED("Sin enfermedad diagnosticada");
-            System.out.println("Sin enfermedad importante");
         } else {
             if (funcion.tipoString(tfCualED.getText())) {
                 setVasecualED(tfCualED.getText());
-                System.out.println(getVasecualED());
             } else {
                 banderavase = banderavase + 1;
                 tfCualED.setText("");
@@ -4867,11 +4894,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiEI.isSelected() || rbNoEI.isSelected()) {
             if (rbSiEI.isSelected()) {
-                setVaseenfermedadImportante("SI");
-                System.out.println("Si EI seleccionado");
+                setVaseenfermedadImportante(rbSiEI.getText());
             } else if (rbNoEI.isSelected()) {
-                System.out.println("No EI seleccionado");
-                setVaseenfermedadImportante("NO");
+                setVaseenfermedadImportante(rbNoEI.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4882,11 +4907,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfCualEI.getText().equals("")) {
             setVasecualEI("Sin enfermedad importante");
-            System.out.println("Sin enfermedad importante");
         } else {
             if (funcion.tipoString(tfCualEI.getText())) {
                 setVasecualEI(tfCualEI.getText());
-                System.out.println(getVasecualEI());
             } else {
                 banderavase = banderavase + 1;
                 tfCualEI.setText("");
@@ -4900,11 +4923,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiMedicamento.isSelected() || rbNoMedicamento.isSelected()) {
             if (rbSiMedicamento.isSelected()) {
-                setVasemedicamento("SI");
-                System.out.println("Si Medicamento seleccionado");
+                setVasemedicamento(rbSiMedicamento.getText());
             } else if (rbNoMedicamento.isSelected()) {
-                System.out.println("No Medicamento seleccionado");
-                setVasemedicamento("NO");
+                setVasemedicamento(rbNoMedicamento.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4915,11 +4936,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfCualMedicamento.getText().equals("")) {
             setVasecualMedicamento("Sin enfermedad importante");
-            System.out.println("Sin enfermedad importante");
         } else {
             if (funcion.tipoString(tfCualMedicamento.getText())) {
                 setVasecualMedicamento(tfCualMedicamento.getText());
-                System.out.println(getVasecualMedicamento());
             } else {
                 banderavase = banderavase + 1;
                 tfCualMedicamento.setText("");
@@ -4932,11 +4951,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfDosisMedicamento.getText().equals("")) {
             setVasedosisMedicamento("Sin dosis medicamento");
-            System.out.println("Sin dosis medicamento");
         } else {
             if (funcion.tipoString(tfDosisMedicamento.getText())) {
                 setVasedosisMedicamento(tfDosisMedicamento.getText());
-                System.out.println(getVasedosisMedicamento());
             } else {
                 banderavase = banderavase + 1;
                 tfDosisMedicamento.setText("");
@@ -4948,12 +4965,10 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfCuantoTiempo.getText().equals("")) {
             setVasedosisMedicamento("Sin tiempo medicamento");
-            System.out.println("Sin tiempo medicamento");
 
         } else {
             if (funcion.tipoString(tfCuantoTiempo.getText())) {
                 setVasedosisMedicamento(tfCuantoTiempo.getText());
-                System.out.println(getVasetiempoMedicamento());
             } else {
                 banderavase = banderavase + 1;
                 tfCuantoTiempo.setText("");
@@ -4966,11 +4981,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiCirugia.isSelected() || rbNoCirugia.isSelected()) {
             if (rbSiCirugia.isSelected()) {
-                setVasecirujia("SI");
-                System.out.println("Si cirugia seleccionado");
+                setVasecirujia(rbSiCirugia.getText());
             } else if (rbNoCirugia.isSelected()) {
-                System.out.println("No cirugia seleccionado");
-                setVasecirujia("NO");
+                setVasecirujia(rbNoCirugia.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -4981,11 +4994,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (tfCirugia.getText().equals("")) {
             setVasecualCirujia("Sin cirugia");
-            System.out.println("Sin cirugia");
         } else {
             if (funcion.tipoString(tfCirugia.getText())) {
                 setVasecualCirujia(tfCirugia.getText());
-                System.out.println(getVasecualCirujia());
             } else {
                 banderavase = banderavase + 1;
                 tfCirugia.setText("");
@@ -4998,11 +5009,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiLaxante.isSelected() || rbNoLaxante.isSelected()) {
             if (rbSiLaxante.isSelected()) {
-                setVaselaxantes("SI");
-                System.out.println("Si cirugia seleccionado");
+                setVaselaxantes(rbSiLaxante.getText());
             } else if (rbNoLaxante.isSelected()) {
-                System.out.println("No cirugia seleccionado");
-                setVaselaxantes("NO");
+                setVaselaxantes(rbNoLaxante.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -5014,11 +5023,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiDiureticos.isSelected() || rbNoDiureticos.isSelected()) {
             if (rbSiDiureticos.isSelected()) {
-                setVasediureticos("SI");
-                System.out.println("Si Diuréticos seleccionado");
+                setVasediureticos(rbSiDiureticos.getText());
             } else if (rbNoDiureticos.isSelected()) {
-                System.out.println("No Diuréticos seleccionado");
-                setVasediureticos("NO");
+                setVasediureticos(rbNoDiureticos.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -5029,11 +5036,9 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiAC.isSelected() || rbNoAC.isSelected()) {
             if (rbSiAC.isSelected()) {
-                setVaseantiacidos("SI");
-                System.out.println("Si Antiácidos seleccionado");
+                setVaseantiacidos(rbSiAC.getText());
             } else if (rbNoAC.isSelected()) {
-                System.out.println("No Antiácidos seleccionado");
-                setVaseantiacidos("NO");
+                setVaseantiacidos(rbNoAC.getText());
             }
         } else {
             banderavase = banderavase + 1;
@@ -5045,20 +5050,34 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
          */
         if (rbSiAnalgesicos.isSelected() || rbNoAnalgesicos.isSelected()) {
             if (rbSiAnalgesicos.isSelected()) {
-                setVaseanalgesicos("SI");
-                System.out.println("Si Analgésicos seleccionado");
+                setVaseanalgesicos(rbSiAnalgesicos.getText());
             } else if (rbNoAnalgesicos.isSelected()) {
-                System.out.println("No Analgésicos seleccionado");
-                setVaseanalgesicos("NO");
+                setVaseanalgesicos(rbNoAnalgesicos.getText());
             }
         } else {
             banderavase = banderavase + 1;
             JOptionPane.showMessageDialog(null, "Seleccionar la opción Analgésicos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+        
+        System.out.println(getVdpIDEspediente());
+        int idVase = Integer.valueOf(getVdpIDEspediente());
+        int auxNutri = Integer.valueOf(getCodigoNutirologo());
         if (banderavase == 0) {
             int respvase = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información \"Antecedentes Salud/Enfemedad\"?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (respvase == 0) {
+                try {
+                    cons.antecedentes(encript.encriptar(getVasediarrea()), encript.encriptar(getVaseestrenimiento()), encript.encriptar(getVasegastritis()), encript.encriptar(getVaseulcera()), 
+                            encript.encriptar(getVasenauseas()), encript.encriptar(getVasepirosis()), encript.encriptar(getVasevomito()), encript.encriptar(getVasecolitis()), encript.encriptar(getVasedentadura()),
+                            encript.encriptar(getVaseotros()), encript.encriptar(getVaseobservaciones()), encript.encriptar(getVaseenfermedadDiagosticada()), encript.encriptar(getVasecualED()), encript.encriptar(getVaseenfermedadImportante()), 
+                            encript.encriptar(getVasecualEI()), encript.encriptar(getVasecualMedicamento()),encript.encriptar(getVasemedicamento()), encript.encriptar(getVasedosisMedicamento()), encript.encriptar(getVasetiempoMedicamento()), 
+                            encript.encriptar(getVaselaxantes()), encript.encriptar(getVasediureticos()), encript.encriptar(getVaseantiacidos()), encript.encriptar(getVaseanalgesicos()), 
+                            encript.encriptar(getVasecirujia()),encript.encriptar(getVasecualCirujia()), auxNutri, idVase);
+                    dpGuardar1.disable();
+                    dpGuardar1.setVisible(false);
+                    dpGuardar2.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(nuevoPacienteFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 panel.setSelectedIndex(2);
             }
         } else {
@@ -5072,14 +5091,167 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
         String nac = dpNacimiento.getText(), edad = (String) cbEdad.getSelectedItem(), cp = dpCP.getText();
         String domicilio = dpDomicilio.getText(), escolaridad = (String) dpEscolaridad.getSelectedItem(), ciudad = dpCiudad.getText();
         String estadoC = (String) dpEstadoCivil.getSelectedItem(), telefono = dpTelefono.getText();
-        String dpID = dpIDExpediente.getText(), email = dpEmail.getText();
+        String dpID = dpIDExpediente.getText(), email = "nuevo";
+        setVdpIDEspediente(dpID);
+        System.out.println("ID Expediente: " + getVdpIDEspediente());
+        int bandera = 0;
+        /**
+         * Nombre
+         */
+        if(!dpNombre.getText().equals("")){
+            if(funcion.tipoCiudad(nombre)){
+                setVdpNombre(nombre);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales en el Nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar el Nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Apellidos
+         */
+        if(!apellidos.equals("")){
+            if(funcion.tipoString(apellidos)){
+                setVdpApellidos(apellidos);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales en los Apellidos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar al menos un Apellido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Sexo
+         */
+        if(!sexo.equals("...")){
+            setVdpSexo(sexo);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario seleccionar un Sexo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Fecha nacimiento
+         */
+        if(!nac.equals("")){
+            setVdpNacimiento(nac);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar la Fecha de Nacimiento", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Edad
+         */
+        if(!edad.equals("...")){
+            setVdpEdad(edad);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario seleccionar la Eddad", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Codigo Postal
+         */
+        if(!cp.equals("")){
+            if(funcion.tipoNumero(cp, 1)){
+                setVdpCPostal(cp);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales el Código Postal", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar el Código Postal", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Domicilio
+         */
+        if(!domicilio.equals("")){
+            if(funcion.tipoDomicilio(domicilio)){
+                setVdpDomicilio(domicilio);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales el Domicilio", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar el Domicilio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Escolaridad
+         */
+        if(!escolaridad.equals("...")){
+            setVdpEscolaridad(escolaridad);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar la Escolaridad", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Ciudad
+         */
+        if(!ciudad.equals("")){
+            if(funcion.tipoCiudad(ciudad)){
+                setVdpCiudad(ciudad);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales la Ciudad", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar la Ciudad", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Estado Civil
+         */
+        if(!estadoC.equals("...")){
+            setVdpEstadoCivil(estadoC);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar el Estado Civil", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Telefono
+         */
+        if(!telefono.equals("")){
+            if(funcion.tipoNumero(telefono, 2)){
+                setVdpTelefono(telefono);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales en le Teléfono", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar el Teléfono", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * ID EXPEDIENTE
+         */
+        if(!dpID.equals("")){
+            if(funcion.tipoNumero(dpID, 3)){
+                setVdpIDEspediente(dpID);
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null, "No se permiten caracteres especiales en el ID", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null, "Es necesario ingresar el ID del Usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /**
+         * Guardar Datos
+         */
         int resp = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información del usuario?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (resp == 0) {
             consultasMysql ingreso = new consultasMysql();
             try {
-                if (ingreso.insertarNuevoPaciente(dpID, nombre, apellidos, sexo, nac, edad, domicilio, cp, ciudad, escolaridad, estadoC, telefono, email) == 0) {
+                if (ingreso.insertarNuevoPaciente(dpID, nombre, apellidos, sexo, nac, edad, domicilio, cp, ciudad, escolaridad, estadoC, telefono, email, getCodigoNutirologo()) == 0) {
                     JOptionPane.showMessageDialog(null, "Datos guardados exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                    this.dispose();
+                    panel.setSelectedIndex(1);
+                    dpGuardar.disable();
+                    dpGuardar.setVisible(false);
+                    dpGuardar1.setVisible(true);
+                    //this.dispose();
                 }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al guardar los datos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -5098,18 +5270,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private void dpTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dpTelefonoFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_dpTelefonoFocusGained
-
-    private void dpEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dpEmailActionPerformed
-
-    private void dpEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dpEmailFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dpEmailFocusLost
-
-    private void dpEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dpEmailFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dpEmailFocusGained
 
     private void dpIDExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpIDExpedienteActionPerformed
         // TODO add your handling code here:
@@ -5204,7 +5364,7 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private void dpGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpGuardar5ActionPerformed
         // TODO add your handling code here:
         int bandera = 0;
-        encriptacion encript=new encriptacion();
+        
         /**
          * Peso actual kg
          */
@@ -5792,10 +5952,16 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
                  * Indicadores antropometricos
                  */
                 try {                    
-                    cons.indicadoresAntropometicos(207448229, 207448229, encript.encriptar(getViaPesoActual()), encript.encriptar(getViaPesoHabitual()), encript.encriptar(getViaEstatura()), encript.encriptar(getViaPCTricipital()), encript.encriptar(getViaPCBicipital()), encript.encriptar(getViaPCSubescapular()),
+                    cons.indicadoresAntropometicos(207448229, Integer.parseInt(getVdpIDEspediente()), encript.encriptar(getViaPesoActual()), encript.encriptar(getViaPesoHabitual()), encript.encriptar(getViaEstatura()), encript.encriptar(getViaPCTricipital()), encript.encriptar(getViaPCBicipital()), encript.encriptar(getViaPCSubescapular()),
                             encript.encriptar(getViaPCSuprailiaco()), encript.encriptar(getViaCircunferenciaBrazon()), encript.encriptar(getViaCircunferenciaCintura()), encript.encriptar(getViaCircunferenciaCadera()), encript.encriptar(getViaCircunferenciaAbdominal()), encript.encriptar(getViaComplexion()), encript.encriptar(getViaPesoTeorico()),
                             encript.encriptar(getViaPesoTeoricoXC()),encript.encriptar(getViaPesoHabitualXC()), encript.encriptar(getViaIMC()), encript.encriptar(getViaMinimoIMC()), encript.encriptar(getViaMaximoIMC()), encript.encriptar(getViaGrasaCorporalXC()), encript.encriptar(getViaGrasaCorporalTotal()), 
                             encript.encriptar(getViaMasaLibreGrasa()), encript.encriptar(getViaDiferenciaGrasa()), encript.encriptar(getViaMasaMuscularTotal()), encript.encriptar(getViaIndiceCinturaCadera()), encript.encriptar(getViaAreaMuscularBrazo()), encript.encriptar(getViaAguaCorporalTotal()));
+                    System.out.println(encript.desEncriptar(getViaPesoActual()));
+                    //nuevaConsultaFrame ncf = new nuevaConsultaFrame();
+                    //ncf.setVisible(true);
+                    //nuevoPlanAlimenticioFrame npa = new nuevoPlanAlimenticioFrame();
+                    //npa.setVisible(true);
+                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(nuevoPacienteFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -6249,7 +6415,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField dpCP;
     private javax.swing.JTextField dpCiudad;
     private javax.swing.JTextField dpDomicilio;
-    private javax.swing.JTextField dpEmail;
     private javax.swing.JComboBox<String> dpEscolaridad;
     private javax.swing.JComboBox<String> dpEstadoCivil;
     private javax.swing.JButton dpGuardar;
@@ -6281,10 +6446,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel86;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel jPliegueCutaneoSubescapular;
     private javax.swing.JLabel jPliegueCutaneoSuprailiaco;
     private javax.swing.JScrollPane jScrollPane1;
@@ -6355,7 +6516,6 @@ public class nuevoPacienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jlEDiagnosticada;
     private javax.swing.JLabel jlEdad;
     private javax.swing.JLabel jlEjercicio;
-    private javax.swing.JLabel jlEmail;
     private javax.swing.JLabel jlEmbarazoActual;
     private javax.swing.JLabel jlEnfemedadImportante;
     private javax.swing.JLabel jlEntreComidas;

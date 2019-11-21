@@ -5,11 +5,13 @@
  */
 package healthfocus;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,46 +20,69 @@ import javax.swing.table.DefaultTableModel;
  * @author Rafael
  */
 public class nuevaConsultaFrame extends javax.swing.JFrame {
+
     consultasMysql consultas = new consultasMysql();
-    String nombre = "", apellidos = "", sexo = "", fechaNacimiento = "";
-    private void setNombre(String name){
+    
+    
+    
+    private String cadenaCaracteres = "";
+
+    public String getCadenaCaracteres() {
+        return cadenaCaracteres;
+    }
+
+    public void setCadenaCaracteres(String cadenaCaracteres) {
+        this.cadenaCaracteres = cadenaCaracteres;
+    }
+
+    encriptacion encript = new encriptacion();
+    
+    public static String nombre = "";
+
+    public void setNombre(String name) {
         this.nombre = name;
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return this.nombre;
     }
+    String idUsuario = "";
     /**
      * Creates new form nuevaConsultaFrame
      */
     public nuevaConsultaFrame() {
         initComponents();
-        DefaultTableModel dtm = new DefaultTableModel(){
-             @Override
-             public boolean isCellEditable(int fila, int columna) {
-                       return false;
+        DefaultTableModel dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
             }
         };
-        dtm.addColumn("nombre");
+        accionesFrame af = new accionesFrame();    
+        idUsuario = af.getCodigoUsuario();
+        dtm.addColumn("ID Paciente");
         dtm.addColumn("Nombre");
         dtm.addColumn("Apellidos");
         dtm.addColumn("Sexo");
         dtm.addColumn("Fecha de nacimiento");
         this.tabla.setModel(dtm);
-        String[] datos = new String[4];
+        String[] datos = new String[5];
         try {
-            ResultSet resultado = consultas.cargarPacientesTabla();
-            while(resultado.next()){
-                datos[0]=resultado.getString(3);
-                datos[1]=resultado.getString(4);
-                datos[2]=resultado.getString(5);
-                datos[3]=resultado.getString(6);
+            int idNutri = Integer.valueOf(idUsuario);
+            ResultSet resultado = consultas.cargarPacientesTabla(idNutri);
+            while (resultado.next()) {
+                datos[0] = resultado.getString(2);
+                datos[1] = resultado.getString(3);
+                datos[2] = resultado.getString(4);
+                datos[3] = resultado.getString(5);
+                datos[4] = resultado.getString(6);
                 dtm.addRow(datos);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar los datos en la tabla", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(nuevaConsultaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/icons/headerIcon.png")).getImage());
     }
@@ -75,21 +100,26 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
         btnNuevaConsulta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        btnNuevaConsulta1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnNuevaConsulta2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("HF - Nueva consulta");
         setBounds(new java.awt.Rectangle(0, 0, 1024, 720));
+        setMinimumSize(new java.awt.Dimension(1024, 720));
         setPreferredSize(new java.awt.Dimension(1024, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1024, 720));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelInfo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 22)); // NOI18N
         labelInfo.setForeground(new java.awt.Color(153, 217, 234));
         labelInfo.setText("Lista de pacientes");
+        getContentPane().add(labelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         btnNuevaConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/notepad_128px.png"))); // NOI18N
         btnNuevaConsulta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -102,6 +132,7 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
                 btnNuevaConsultaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnNuevaConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 358, -1, -1));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,58 +169,51 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
             tabla.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jMenu1.setText("Archivo");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 47, 990, 268));
 
-        jMenuItem1.setText("Guardar datos");
-        jMenu1.add(jMenuItem1);
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel1.setText("Historial Clínico");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 490, -1, -1));
 
-        jMenuItem2.setText("Salir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevaConsulta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/plan.png"))); // NOI18N
+        btnNuevaConsulta1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnNuevaConsulta1.setBorderPainted(false);
+        btnNuevaConsulta1.setContentAreaFilled(false);
+        btnNuevaConsulta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevaConsulta1.setFocusPainted(false);
+        btnNuevaConsulta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                btnNuevaConsulta1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        getContentPane().add(btnNuevaConsulta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, -1, -1));
 
-        jMenuBar1.add(jMenu1);
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel2.setText("Nuevo Plan de Alimentos");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 496, -1, -1));
 
-        setJMenuBar(jMenuBar1);
+        btnNuevaConsulta2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/lunch-box.png"))); // NOI18N
+        btnNuevaConsulta2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnNuevaConsulta2.setBorderPainted(false);
+        btnNuevaConsulta2.setContentAreaFilled(false);
+        btnNuevaConsulta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevaConsulta2.setFocusPainted(false);
+        btnNuevaConsulta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaConsulta2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNuevaConsulta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelInfo)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(347, 347, 347)
-                .addComponent(btnNuevaConsulta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnNuevaConsulta)
-                .addContainerGap(192, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel3.setText("Historial de planes alimenticios");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_1024x720.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
         // TODO add your handling code here:
@@ -204,6 +228,449 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
         setNombre(String.valueOf(tabla.getValueAt(seleccion, 0)));
         System.out.println(getNombre());
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void btnNuevaConsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsulta1ActionPerformed
+        // TODO add your handling code here:
+        
+        /**
+         * Cargar datos de antecendentes
+         */
+        
+        ResultSet resultado = consultas.cargarDatosAntecedentesSalud(idUsuario, nombre);
+        String auxiliarAntedentes = "Antecedentes del paciente\n";
+        String[] datos = new String[27];
+        try {
+            while (resultado.next()) {
+
+                datos[0] = resultado.getString(1);
+                //Diarrea
+                datos[1] = resultado.getString(2);
+                //Estrenimiento
+                datos[2] = resultado.getString(3);
+                //Gastritis
+                datos[3] = resultado.getString(4);
+                //Ulceras
+                datos[4] = resultado.getString(5);
+                //Nauseas
+                datos[5] = resultado.getString(6);
+                //Pirosis
+                datos[6] = resultado.getString(7);
+                //Vomitos
+                datos[7] = resultado.getString(8);
+                //Colitis
+                datos[8] = resultado.getString(9);
+                //Dentadura
+                datos[9] = resultado.getString(10);
+                //OtrosAntecedentes
+                datos[10] = resultado.getString(11);
+                //Observaciones Generales
+                datos[11] = resultado.getString(12);
+                //Enfermedad diagnosticada
+                datos[12] = resultado.getString(13);
+                //Cual enfermedad diagnosticada
+                datos[13] = resultado.getString(14);
+                //enfermedad importante
+                datos[14] = resultado.getString(15);
+                //cual enfermedad importante
+                datos[15] = resultado.getString(16);
+                //medicamento
+                datos[16] = resultado.getString(17);
+                //cual medicamento
+                datos[17] = resultado.getString(18);
+                //dosis medicamento
+                datos[18] = resultado.getString(19);
+                //tiempo medicamento
+                datos[19] = resultado.getString(20);
+                //laxantes
+                datos[20] = resultado.getString(21);
+                //diureticos
+                datos[21] = resultado.getString(22);
+                //antiacidos
+                datos[22] = resultado.getString(23);
+                //Analgesicos
+                datos[23] = resultado.getString(24);
+                //Cirugia
+                datos[24] = resultado.getString(25);
+                //Cual cirugis
+                datos[25] = resultado.getString(26);
+
+                System.out.println("Este es el ID de la tabla: " + datos[0]);
+
+                if (encript.desEncriptar(datos[1]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Diarrea: SI\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Diarrea: NO\n";
+                }
+                if (encript.desEncriptar(datos[2]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con estreñimiento\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin estreñimiento\n";
+                }
+                if (encript.desEncriptar(datos[3]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de gastritis\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de gastritis\n";
+                }
+                if (encript.desEncriptar(datos[4]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de úlceras\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de úlceras\n";
+                }
+                if (encript.desEncriptar(datos[5]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de náuseas\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de náuseas\n";
+                }
+                if (encript.desEncriptar(datos[6]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de pirosis\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de pirosis\n";
+                }
+                if (encript.desEncriptar(datos[7]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de vómito\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de vómito\n";
+                }
+                if (encript.desEncriptar(datos[8]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de colitis\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de colitis\n";
+                }
+                if (encript.desEncriptar(datos[9]).equals("Si")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Con problemas de dentales\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin problemas de dentales\n";
+                }
+                if (encript.desEncriptar(datos[10]).equals("Sin otros problemas")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin otros problemas\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + encript.desEncriptar(datos[10]) + "\n";
+                }
+                if (encript.desEncriptar(datos[11]).equals("Sin observaciones")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "Sin otros observaciones\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + encript.desEncriptar(datos[11]) + "\n";
+                }
+                if (encript.desEncriptar(datos[12]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente se encuentra con buena salud\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente se encuentraba enfermo de " + datos[13] + "\n";
+                }
+                if (encript.desEncriptar(datos[14]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente no tienen ninguna enfermedad crónico-degenerativa\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente se encuentraba enfermo de la siguiente enfermedad crónico-degenerativa: " + datos[15] + "\n";
+                }
+                if (encript.desEncriptar(datos[17]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente no toma ningun medicamento controlado\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente toma el siguiente medicamento: " + datos[18] + " ingiriendo una dosis de " + datos[19] + " y lo ha tomado por un periodo de: " + datos[20] + "\n";
+                }
+                if (encript.desEncriptar(datos[21]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente no hace uso de laxantes\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente hace uso de laxantes\n";
+                }
+                if (encript.desEncriptar(datos[22]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente no hace uso de diuréticos\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente hace uso de diuréticos\n";
+                }
+                if (encript.desEncriptar(datos[23]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente no hace uso de antiácidos\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente hace uso de antiácidos\n";
+                }
+                if (encript.desEncriptar(datos[24]).equals("No")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente no hace uso de analgésicos\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente hace uso de analgésicos\n";
+                }
+                if (encript.desEncriptar(datos[25]).equals("Sin cirugia")) {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente jamás ha sido sometido a cirugía\n";
+                } else {
+                    auxiliarAntedentes = auxiliarAntedentes + "El paciente fue sometido a una cirugía de: " + datos[26] + "\n";
+                }
+                //System.out.println(auxiliarAntedentes);
+                //System.out.println(encript.desEncriptar(datos[25]));
+
+            }
+
+            /**
+             * Generación de resumen final
+             */
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevaConsultaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /**
+         * Cargar los datos ginecologicos
+         */
+        String auxiliarginecologico = "\n\n\n\nAspectos Ginecológicos\n";
+        ResultSet resGin = consultas.cargarDatosGinecologicos(idUsuario, nombre);
+        String[] dGine = new String[11];
+        try {
+            while (resGin.next()) {
+                //Embarazo actual SI o NO
+                dGine[0] = resGin.getString(4);
+                //Semanas de gestacion
+                dGine[1] = resGin.getString(5);
+                //Anticonceptivos Orales
+                dGine[2] = resGin.getString(6);
+                //Cual anticoncetivo oral
+                dGine[3] = resGin.getString(7);
+                //Dosis de anticonceptivo
+                dGine[4] = resGin.getString(8);
+                //Tiempo tomando anticonceptivos
+                dGine[5] = resGin.getString(9);
+                //Climaterio
+                dGine[6] = resGin.getString(10);
+                //Terapia hormanal
+                dGine[7] = resGin.getString(11);
+                //Cual terapia
+                dGine[8] = resGin.getString(12);
+                //Dosis de la terapia
+                dGine[9] = resGin.getString(13);
+                //Tiempo en terapia
+                dGine[10] = resGin.getString(14);
+
+                if (encript.desEncriptar(dGine[0]).equals("Si")) {
+                    auxiliarginecologico = auxiliarginecologico + "Actualmente embarazada, con " + dGine[1] + " semanas de gestación\n";
+                } else {
+                    auxiliarginecologico = auxiliarginecologico + "Sin algún embarazo actual\n";
+                }
+                if (encript.desEncriptar(dGine[2]).equals("Si")) {
+                    auxiliarginecologico = auxiliarginecologico + "El paciente actualmente toma anticonceptivos los siguientes anticonceptivos orales : " + dGine[3] + ", con una dosis de " + dGine[4] + ", tratamiento que ha tenido durante " + dGine[5] + "\n";
+                } else {
+                    auxiliarginecologico = auxiliarginecologico + "El paciente actualmente no toma anticonceptivos orales\n";
+                }
+                if (encript.desEncriptar(dGine[6]).equals("Si")) {
+                    auxiliarginecologico = auxiliarginecologico + "El paciente actualmente pasa por la etapa de climaterio (regulación antes de la menopáusia)\n";
+                } else {
+                    auxiliarginecologico = auxiliarginecologico + "El paciente actualmente no se encuentra en climaterio\n";
+                }
+                if (encript.desEncriptar(dGine[7]).equals("Si")) {
+                    auxiliarginecologico = auxiliarginecologico + "El paciente actualmente bajo terapia hormonal de : " + dGine[8] + ", con una dosis de " + dGine[9] + ", tratamiento que ha tenido durante " + dGine[10] + "\n";
+                } else {
+                    auxiliarginecologico = auxiliarginecologico + "El paciente actualmente no se encuentra en tratamiento hormonal\n";
+                }
+                //System.out.println(encript.desEncriptar(dGine[7]));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevaConsultaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /**
+         * Espacio para diario de actividades
+         */
+        String auxiliarActividades = "\n\n\n\nDiario de actividades\n";
+        ResultSet resAct = consultas.cargarActividades(idUsuario, nombre);
+        String[] dActi = new String[20];
+        try {
+            while (resAct.next()) {
+                //hora despertarse
+                dActi[0] = resAct.getString(4);
+                //Hora desayuno
+                dActi[1] = resAct.getString(5);
+                //Hora comida
+                dActi[2] = resAct.getString(6);
+                //hora cena
+                dActi[3] = resAct.getString(7);
+                //hora dormir
+                dActi[4] = resAct.getString(8);
+                //aspecto general
+                dActi[5] = resAct.getString(9);
+                //tipo ejercicio
+                dActi[6] = resAct.getString(10);
+                //duracion ejercicio
+                dActi[7] = resAct.getString(11);
+                //frecuencia ejercicio
+                dActi[8] = resAct.getString(12);
+                //tabaco
+                dActi[9] = resAct.getString(13);
+                //cafe
+                dActi[10] = resAct.getString(14);
+                //alcohol
+                dActi[11] = resAct.getString(15);
+                //presion arterial
+                dActi[12] = resAct.getString(16);
+                //cual presion arterial
+                dActi[13] = resAct.getString(17);
+                //hora presion arterial
+                dActi[14] = resAct.getString(18);
+                //comida despertarse
+                dActi[15] = resAct.getString(19);
+                //comida desayuno
+                dActi[16] = resAct.getString(20);
+                //comida comida
+                dActi[17] = resAct.getString(21);
+                //comida cena
+                dActi[18] = resAct.getString(22);
+                //comida dormir
+                dActi[19] = resAct.getString(23);
+
+                if (encript.desEncriptar(dActi[0]).equals("0000")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente no ingiere ningún alimento a la hora de levantarse\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente se levanta a las " + encript.desEncriptar(dActi[0]) + " e ingiere los siguientes alimentos: " + encript.desEncriptar(dActi[15]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[1]).equals("0000")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente no realiza un desayuno formal\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente se desayuna a las " + encript.desEncriptar(dActi[1]) + " e ingiere los siguientes alimentos: " + encript.desEncriptar(dActi[16]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[2]).equals("0000")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente no realiza una comida formal\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente se come a las " + encript.desEncriptar(dActi[2]) + " e ingiere los siguientes alimentos: " + encript.desEncriptar(dActi[17]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[3]).equals("0000")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente no realiza una cena formal\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente cena a las " + encript.desEncriptar(dActi[3]) + " e ingiere los siguientes alimentos: " + encript.desEncriptar(dActi[18]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[4]).equals("0000")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente no ingiere alimentos antes de acostarse\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente come antes de acostarse a las " + encript.desEncriptar(dActi[4]) + " e ingiere los siguientes alimentos: " + encript.desEncriptar(dActi[19]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[5]).equals("Sin aspecto general")) {
+                    auxiliarActividades = auxiliarActividades + "No se ha agregado alguna característica adcional, sobre el aspecto físico del paciente\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El el nutriólogo describe los siguientes comantarios,  el paciente " + encript.desEncriptar(dActi[5]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[6]).equals("Sin actividad")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente no registra actividad física\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente registra actividad " + encript.desEncriptar(dActi[6]) + " con una duración de " + encript.desEncriptar(dActi[7]) + " y una frecuencia " + encript.desEncriptar(dActi[8]) + "\n";
+                }
+                if (encript.desEncriptar(dActi[9]).equals("Si")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente reporta fumar\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente no fuma\n";
+                }
+                if (encript.desEncriptar(dActi[10]).equals("Si")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente reporta beber café\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente no bebe café\n";
+                }
+                if (encript.desEncriptar(dActi[11]).equals("Si")) {
+                    auxiliarActividades = auxiliarActividades + "El paciente reporta beber alcohol\n";
+                } else {
+                    auxiliarActividades = auxiliarActividades + "El paciente no bebe alcohol\n";
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevaConsultaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        /**
+         * Seccion indicadores dieteticos
+         */
+        String auxiliarDieta = "\n\n\n\nIndicadores Dietéticos\n";
+        ResultSet resDieta = consultas.indicadoresDieta(idUsuario, nombre);
+        
+        try {
+            while(resDieta.next()){
+                auxiliarDieta = auxiliarDieta + "El paciente realiza un número de "+encript.desEncriptar(resDieta.getString(4))+" comidas al día\n";
+                auxiliarDieta = auxiliarDieta + "La persona que prepara sus alimentos es: "+encript.desEncriptar(resDieta.getString(5))+"\n";
+                if(encript.desEncriptar(resDieta.getString(6)).equals("Si")){
+                    auxiliarDieta = auxiliarDieta + "El paciente come entre comidas los siguientes alimentos: "+encript.desEncriptar(resDieta.getString(7))+"\n";
+                }else{
+                    auxiliarDieta = auxiliarDieta + "El paciente no come entre comidas\n";
+                }
+                auxiliarDieta = auxiliarDieta + "El paciente reporta las siguiente actividad de alimentación: \n"+encript.desEncriptar(resDieta.getString(8))+" comidas en casa durante la semana\n"+encript.desEncriptar(resDieta.getString(9))+""
+                                                + " comidas en casa durante el fin de semana\n"+encript.desEncriptar(resDieta.getString(10))+" comidas fuera de casa durante la semana\n"+encript.desEncriptar(resDieta.getString(11))+" comidas fuera de casa durante el fin de semana\n";
+                if(encript.desEncriptar(resDieta.getString(12)).equals("Si")){
+                    auxiliarDieta = auxiliarDieta + "El paciente ha modificado su alimentación en los últimos seis meses debido a: "+encript.desEncriptar(resDieta.getString(13))+"\n";
+                }else{
+                    auxiliarDieta = auxiliarDieta + "El paciente no ha modificado su alimentación en los ultimos seis meses\n";
+                }
+                auxiliarDieta = auxiliarDieta + "El paciente reporta tener "+encript.desEncriptar(resDieta.getString(14))+" apetito\n";
+                auxiliarDieta = auxiliarDieta + "Sus alimentos preferidos son: "+encript.desEncriptar(resDieta.getString(16))+" \n";
+                auxiliarDieta = auxiliarDieta + "Los alimentos que no son de su preferencia son: "+encript.desEncriptar(resDieta.getString(17))+"\n";
+                auxiliarDieta = auxiliarDieta + "Los alimentos que le causan malestar estomacal son: "+encript.desEncriptar(resDieta.getString(18))+"\n";
+                auxiliarDieta = auxiliarDieta + "Es alérgico a los siguientes alimentos: "+encript.desEncriptar(resDieta.getString(19))+"\n";
+                if(encript.desEncriptar(resDieta.getString(32)).equals("Si")){
+                    auxiliarDieta = auxiliarDieta + "El paciente reporta haber tomando los siguientes medicamentos para bajar de peso "+encript.desEncriptar(resDieta.getString(33))+" apetito\n";
+                }else{
+                    auxiliarDieta = auxiliarDieta + "El paciente reporta nunca haber tomado medicamentos para bajar de peso\n";
+                }
+                //System.out.println(auxiliarDieta);
+            }           
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevaConsultaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        /**
+         * Datos antropometricos
+         */
+        String auxiliarAntro = "\n\n\n\nIndicadores Antropométricos\n";
+        ResultSet resAntro = consultas.indicadoresAntro(idUsuario, nombre);
+        
+        try {
+            while(resAntro.next()){
+                //pesoActual
+                auxiliarAntro = auxiliarAntro + "El peso del paciente en su primer revisión fue de: "+encript.desEncriptar(resAntro.getString(4))+" KG\n";
+                //Peso habitual
+                auxiliarAntro = auxiliarAntro + "El peso habitual en que se mantiene el paciente es de: "+encript.desEncriptar(resAntro.getString(5))+" KG\n";
+                //Estatura
+                auxiliarAntro = auxiliarAntro + "La estatura del paciente es de: "+encript.desEncriptar(resAntro.getString(6))+" cm\n\n";
+                //Pliegeues
+                auxiliarAntro = auxiliarAntro + "Pliegues\n\n\t\tPriegue Cutáneo Tricipital: "+encript.desEncriptar(resAntro.getString(7))+" mm\n";
+                auxiliarAntro = auxiliarAntro + "\t\tPriegue Cutáneo Bicipital: "+encript.desEncriptar(resAntro.getString(8))+" mm\n";
+                auxiliarAntro = auxiliarAntro + "\t\tPriegue Cutáneo Subescapular: "+encript.desEncriptar(resAntro.getString(9))+" mm\n";
+                auxiliarAntro = auxiliarAntro + "\t\tPriegue Cutáneo Suprailiaco: "+encript.desEncriptar(resAntro.getString(10))+" mm\n\n";
+                
+                //Circunferencias
+                auxiliarAntro = auxiliarAntro + "Circunferencias\n\n\t\tCircunferencia brazo: "+encript.desEncriptar(resAntro.getString(11))+" cm\n";
+                auxiliarAntro = auxiliarAntro + "\t\tCircunferencia Cintura: "+encript.desEncriptar(resAntro.getString(12))+" cm\n";
+                auxiliarAntro = auxiliarAntro + "\t\tCircunferencia Cadera: "+encript.desEncriptar(resAntro.getString(13))+" cm\n";
+                auxiliarAntro = auxiliarAntro + "\t\tCircunferencia zona Abdominal: "+encript.desEncriptar(resAntro.getString(14))+" cm\n\n";
+                
+                //Pesos
+                auxiliarAntro = auxiliarAntro + "Pesos\n\n\t\tPeso teórico: "+encript.desEncriptar(resAntro.getString(16))+" KG\n";
+                auxiliarAntro = auxiliarAntro + "\t\tPeso teórico %: "+encript.desEncriptar(resAntro.getString(17))+" %\n";
+                auxiliarAntro = auxiliarAntro + "\t\tPeso habitual %: "+encript.desEncriptar(resAntro.getString(18))+" %\n";
+                auxiliarAntro = auxiliarAntro + "\t\tIMC: "+encript.desEncriptar(resAntro.getString(19))+" Kg/m^2\n";
+                auxiliarAntro = auxiliarAntro + "\t\tIMC peso mínimo: "+encript.desEncriptar(resAntro.getString(20))+" Kg/m^2\n";
+                auxiliarAntro = auxiliarAntro + "\t\tIMC peso máximo: "+encript.desEncriptar(resAntro.getString(21))+" Kg/m^2\n";
+                auxiliarAntro = auxiliarAntro + "\t\tGrasa Corporal: "+encript.desEncriptar(resAntro.getString(22))+" Kg\n";
+                auxiliarAntro = auxiliarAntro + "\t\tGrasa Corporal Total: "+encript.desEncriptar(resAntro.getString(23))+" Kg\n";
+                auxiliarAntro = auxiliarAntro + "\t\tMasa libre de grasa: "+encript.desEncriptar(resAntro.getString(24))+" Kg\n";
+                auxiliarAntro = auxiliarAntro + "\t\tDiferencia de Grasa Corporal: "+encript.desEncriptar(resAntro.getString(25))+" Kg\n";
+                auxiliarAntro = auxiliarAntro + "\t\tMasa muscular total: "+encript.desEncriptar(resAntro.getString(26))+" Kg\n";
+                auxiliarAntro = auxiliarAntro + "\t\tÍndice Cintura-Cadera: "+encript.desEncriptar(resAntro.getString(27))+" \n";
+                auxiliarAntro = auxiliarAntro + "\t\tÁrea muscular del brazo: "+encript.desEncriptar(resAntro.getString(28))+" cm^2\n";
+                auxiliarAntro = auxiliarAntro + "\t\tAgua Corporal Total: "+encript.desEncriptar(resAntro.getString(29))+" Litros\n";
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevaConsultaFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        JFileChooser dlg = new JFileChooser();
+        int option = dlg.showSaveDialog(this);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File f = dlg.getSelectedFile();
+            f.toString();
+            String ruta = f.toString();
+            String contenido = auxiliarAntedentes + auxiliarginecologico + auxiliarActividades + auxiliarDieta + auxiliarAntro;
+            generarPDF g = new generarPDF();
+            g.generarPDF("Health Focus", contenido, "Datos del nutriólogo", "C:\\Users\\Rafael\\Documents\\NetBeansProjects\\HealthFocus\\headerIcon.png", ruta + ".pdf");
+        }
+    }//GEN-LAST:event_btnNuevaConsulta1ActionPerformed
+
+    private void btnNuevaConsulta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsulta2ActionPerformed
+        // TODO add your handling code here:
+        planesAlimenticiosFrame paf = new planesAlimenticiosFrame();
+        paf.setVisible(true);
+        
+    }//GEN-LAST:event_btnNuevaConsulta2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,10 +709,12 @@ public class nuevaConsultaFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevaConsulta;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JButton btnNuevaConsulta1;
+    private javax.swing.JButton btnNuevaConsulta2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelInfo;
     private javax.swing.JTable tabla;

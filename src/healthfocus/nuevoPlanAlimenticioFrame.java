@@ -5,14 +5,55 @@
  */
 package healthfocus;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.stream.FileImageOutputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Rafael
  */
 public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
+    
+    selectorTexto seleccionarTexto = new selectorTexto();
+    funciones funcion = new funciones();
+    consultasMysql cons = new consultasMysql();
+    encriptacion encript = new encriptacion();
+    public static String idUsuario, idPaciente;
 
+    public static String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public static void setIdUsuario(String idUsuario) {
+        nuevoPlanAlimenticioFrame.idUsuario = idUsuario;
+    }
+
+    public static String getIdPaciente() {
+        return idPaciente;
+    }
+
+    public static void setIdPaciente(String idPaciente) {
+        nuevoPlanAlimenticioFrame.idPaciente = idPaciente;
+    }
+    
     /**
      * Creates new form nuevoPlanAlimenticioFrame
      */
@@ -20,8 +61,191 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/icons/headerIcon.png")).getImage());
+        accionesFrame af = new accionesFrame();
+        idUsuario = af.getCodigoUsuario();
+        System.out.println("Usuario nuevo plan: " + idUsuario);
+        nuevaConsultaFrame ncf = new nuevaConsultaFrame();
+        idPaciente = ncf.getNombre();
+        System.out.println("Paciente nuevo plan: " + idPaciente);
+        ResultSet rsDP = cons.cargarPacientePlan(idPaciente);
+        
+        ResultSet rdUC = cons.ultimaConsulta(Integer.parseInt(idPaciente));
+        try {
+            while(rsDP.next()){
+                jlNombre.setText(rsDP.getString(3));
+                jlApellidos.setText(rsDP.getString(4));
+                jlFNac.setText(rsDP.getString(6));
+                jlID.setText(rsDP.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevaConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            while(rdUC.next()){
+                jlPeso.setText(encript.desEncriptar(rdUC.getString(4)));
+                jlGrasaXC.setText(encript.desEncriptar(rdUC.getString(6)));
+                jlAguaXC.setText(encript.desEncriptar(rdUC.getString(8)));
+                jlIMC.setText(encript.desEncriptar(rdUC.getString(5)));
+                jlPesoGrasa.setText(encript.desEncriptar(rdUC.getString(7)));
+                jlPesoAgua.setText(encript.desEncriptar(rdUC.getString(9)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevoPlanAlimenticioFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public boolean copyFile(String fromFile, String toFile){
+        File origin = new File(fromFile);
+        File destination = new File(toFile);
+        if (origin.exists()) {
+            try {
+                InputStream in = new FileInputStream(origin);
+                OutputStream out = new FileOutputStream(destination);
+                // We use a buffer for the copy (Usamos un buffer para la copia).
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                out.close();
+                return true;
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    private String levantarse = "";
+    private String desayuno = "";
+    private String comida = "";
+    private String cena = "";
+    private String colacionUno = "";
+    private String colacionDos = "";
+    private String colacionTres = "";
+    private String recomendaciones = "";
+    private String horaDesayuno = "";
+    private String horaComida = "";
+    private String horaCena = "";
+    private String horaColacionUno = "";
+    private String horaColacionDos = "";
+    private String horaColacionTres = "";
+
+    public String getLevantarse() {
+        return levantarse;
     }
 
+    public void setLevantarse(String levantarse) {
+        this.levantarse = levantarse;
+    }
+
+    public String getDesayuno() {
+        return desayuno;
+    }
+
+    public void setDesayuno(String desayuno) {
+        this.desayuno = desayuno;
+    }
+
+    public String getComida() {
+        return comida;
+    }
+
+    public void setComida(String comida) {
+        this.comida = comida;
+    }
+
+    public String getCena() {
+        return cena;
+    }
+
+    public void setCena(String cena) {
+        this.cena = cena;
+    }
+
+    public String getColacionUno() {
+        return colacionUno;
+    }
+
+    public void setColacionUno(String colacionUno) {
+        this.colacionUno = colacionUno;
+    }
+
+    public String getColacionDos() {
+        return colacionDos;
+    }
+
+    public void setColacionDos(String colacionDos) {
+        this.colacionDos = colacionDos;
+    }
+
+    public String getColacionTres() {
+        return colacionTres;
+    }
+
+    public void setColacionTres(String colacionTres) {
+        this.colacionTres = colacionTres;
+    }
+
+    public String getRecomendaciones() {
+        return recomendaciones;
+    }
+
+    public void setRecomendaciones(String recomendaciones) {
+        this.recomendaciones = recomendaciones;
+    }
+
+    public String getHoraDesayuno() {
+        return horaDesayuno;
+    }
+
+    public void setHoraDesayuno(String horaDesayuno) {
+        this.horaDesayuno = horaDesayuno;
+    }
+
+    public String getHoraComida() {
+        return horaComida;
+    }
+
+    public void setHoraComida(String horaComida) {
+        this.horaComida = horaComida;
+    }
+
+    public String getHoraCena() {
+        return horaCena;
+    }
+
+    public void setHoraCena(String horaCena) {
+        this.horaCena = horaCena;
+    }
+
+    public String getHoraColacionUno() {
+        return horaColacionUno;
+    }
+
+    public void setHoraColacionUno(String horaColacionUno) {
+        this.horaColacionUno = horaColacionUno;
+    }
+
+    public String getHoraColacionDos() {
+        return horaColacionDos;
+    }
+
+    public void setHoraColacionDos(String horaColacionDos) {
+        this.horaColacionDos = horaColacionDos;
+    }
+
+    public String getHoraColacionTres() {
+        return horaColacionTres;
+    }
+
+    public void setHoraColacionTres(String horaColacionTres) {
+        this.horaColacionTres = horaColacionTres;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,13 +264,13 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jlApellidos = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jlFNac = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jlID = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -55,60 +279,54 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taLevantarse = new javax.swing.JTextArea();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        taDesayuno = new javax.swing.JTextArea();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        taComida = new javax.swing.JTextArea();
         jLabel26 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        taCena = new javax.swing.JTextArea();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        taColacionUno = new javax.swing.JTextArea();
         jLabel28 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        taColacionDos = new javax.swing.JTextArea();
         jLabel29 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
+        taColacionTres = new javax.swing.JTextArea();
         jLabel30 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea8 = new javax.swing.JTextArea();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
+        taRecomendaciones = new javax.swing.JTextArea();
+        jlPeso = new javax.swing.JLabel();
+        jlIMC = new javax.swing.JLabel();
+        jlGrasaXC = new javax.swing.JLabel();
+        jlPesoGrasa = new javax.swing.JLabel();
+        jlAguaXC = new javax.swing.JLabel();
+        jlPesoAgua = new javax.swing.JLabel();
         btnNuevaConsulta = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbHoraDesayuno = new javax.swing.JComboBox<>();
         jLabel38 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbMinutoDesayuno = new javax.swing.JComboBox<>();
+        cbMinutoComida = new javax.swing.JComboBox<>();
         jLabel39 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cbHoraComida = new javax.swing.JComboBox<>();
+        cbHoraCena = new javax.swing.JComboBox<>();
         jLabel40 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cbMinutoCena = new javax.swing.JComboBox<>();
         jLabel41 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        cbMinutoColUno = new javax.swing.JComboBox<>();
+        cbHoraColUno = new javax.swing.JComboBox<>();
         jLabel42 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
-        jComboBox11 = new javax.swing.JComboBox<>();
-        jComboBox12 = new javax.swing.JComboBox<>();
+        cbHoraColDos = new javax.swing.JComboBox<>();
+        cbMinutoColDos = new javax.swing.JComboBox<>();
+        cbMinutoColTres = new javax.swing.JComboBox<>();
         jLabel43 = new javax.swing.JLabel();
-        jComboBox13 = new javax.swing.JComboBox<>();
+        cbHoraColTres = new javax.swing.JComboBox<>();
         jLabel31 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 217, 234));
@@ -152,36 +370,36 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel1.setText("Nombre: ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel19.setText("Leonardo");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 11, -1, -1));
+        jlNombre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlNombre.setText("Leonardo");
+        getContentPane().add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 11, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 217, 234));
         jLabel2.setText("Apellidos:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 11, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel4.setText("Vazquez Angulo");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 11, -1, -1));
+        jlApellidos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlApellidos.setText("Vazquez Angulo");
+        getContentPane().add(jlApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 11, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 217, 234));
-        jLabel5.setText("Edad: ");
+        jLabel5.setText("Fecha Nacimiento:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel6.setText("22");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        jlFNac.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlFNac.setText("22");
+        getContentPane().add(jlFNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(153, 217, 234));
         jLabel7.setText("ID:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 11, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel8.setText("2356891473");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 11, -1, -1));
+        jlID.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlID.setText("2356891473");
+        getContentPane().add(jlID, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(153, 217, 234));
@@ -218,9 +436,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel23.setText("Al levantarse");
         getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taLevantarse.setColumns(20);
+        taLevantarse.setRows(5);
+        taLevantarse.setText("Vaso de agua mas una fruta");
+        jScrollPane1.setViewportView(taLevantarse);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 151, 304, -1));
 
@@ -229,9 +448,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel24.setText("Desayuno:");
         getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 265, -1, -1));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        taDesayuno.setColumns(20);
+        taDesayuno.setRows(5);
+        taDesayuno.setText("Huevos mas frijoles\nmas  2 tazas de verdura fresca");
+        jScrollPane2.setViewportView(taDesayuno);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 291, 304, -1));
 
@@ -240,9 +460,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel25.setText("Comida:");
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 405, -1, -1));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        taComida.setColumns(20);
+        taComida.setRows(5);
+        taComida.setText("300 gramos de carne de pollo\n1 taza de frijol\n1 litro de agua natural");
+        jScrollPane3.setViewportView(taComida);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 431, 304, -1));
 
@@ -251,9 +472,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel26.setText("Cena:");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 545, -1, -1));
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        taCena.setColumns(20);
+        taCena.setRows(5);
+        taCena.setText("1 vaso de leche\n3 tacos de frijol");
+        jScrollPane4.setViewportView(taCena);
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 571, 304, -1));
 
@@ -262,9 +484,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel27.setText("Colación 1:");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 125, -1, -1));
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jScrollPane5.setViewportView(jTextArea5);
+        taColacionUno.setColumns(20);
+        taColacionUno.setRows(5);
+        taColacionUno.setText("2 naranjas");
+        jScrollPane5.setViewportView(taColacionUno);
 
         getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 151, 304, -1));
 
@@ -273,9 +496,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel28.setText("Colación 2:");
         getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 265, -1, -1));
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jScrollPane6.setViewportView(jTextArea6);
+        taColacionDos.setColumns(20);
+        taColacionDos.setRows(5);
+        taColacionDos.setText("1 platano mas una gelatina");
+        jScrollPane6.setViewportView(taColacionDos);
 
         getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 291, 304, -1));
 
@@ -284,9 +508,10 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel29.setText("Colación 3:");
         getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 405, -1, -1));
 
-        jTextArea7.setColumns(20);
-        jTextArea7.setRows(5);
-        jScrollPane7.setViewportView(jTextArea7);
+        taColacionTres.setColumns(20);
+        taColacionTres.setRows(5);
+        taColacionTres.setText("15 cacahuates\n1 pepino sin cascara");
+        jScrollPane7.setViewportView(taColacionTres);
 
         getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 431, 304, -1));
 
@@ -295,35 +520,36 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         jLabel30.setText("Recomendaciones:");
         getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 545, -1, -1));
 
-        jTextArea8.setColumns(20);
-        jTextArea8.setRows(5);
-        jScrollPane8.setViewportView(jTextArea8);
+        taRecomendaciones.setColumns(20);
+        taRecomendaciones.setRows(5);
+        taRecomendaciones.setText("Dos vasos de agua en cada comida\nEjersicio por 30 minutos");
+        jScrollPane8.setViewportView(taRecomendaciones);
 
         getContentPane().add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 571, 304, -1));
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel32.setText("85 kg");
-        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 49, -1, -1));
+        jlPeso.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPeso.setText("85 kg");
+        getContentPane().add(jlPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 49, -1, -1));
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel33.setText("27.75 kg / m^2");
-        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 87, -1, -1));
+        jlIMC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlIMC.setText("27.75");
+        getContentPane().add(jlIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 87, -1, -1));
 
-        jLabel34.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel34.setText("26 %");
-        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+        jlGrasaXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlGrasaXC.setText("26 %");
+        getContentPane().add(jlGrasaXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel35.setText("21 kg");
-        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 87, -1, -1));
+        jlPesoGrasa.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoGrasa.setText("21 kg");
+        getContentPane().add(jlPesoGrasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 87, -1, -1));
 
-        jLabel36.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel36.setText("56 %");
-        getContentPane().add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, -1));
+        jlAguaXC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlAguaXC.setText("56 %");
+        getContentPane().add(jlAguaXC, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, -1));
 
-        jLabel37.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel37.setText("65 kg");
-        getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, -1, -1));
+        jlPesoAgua.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jlPesoAgua.setText("65 kg");
+        getContentPane().add(jlPesoAgua, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, -1, -1));
 
         btnNuevaConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons_128px/save_128px.png"))); // NOI18N
         btnNuevaConsulta.setToolTipText("Guardar y pasar al plan de alimentos");
@@ -339,183 +565,374 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
         });
         getContentPane().add(btnNuevaConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cbHoraDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraDesayuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraDesayuno.setSelectedIndex(9);
+        cbHoraDesayuno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cbHoraDesayunoActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        getContentPane().add(cbHoraDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
         jLabel38.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel38.setText(":");
         getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
-        jComboBox3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        cbMinutoDesayuno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoDesayuno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoDesayuno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                cbMinutoDesayunoActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
+        getContentPane().add(cbMinutoDesayuno, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
 
-        jComboBox4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        cbMinutoComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoComida.setSelectedIndex(15);
+        cbMinutoComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                cbMinutoComidaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, -1));
+        getContentPane().add(cbMinutoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, -1, -1));
 
         jLabel39.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel39.setText(":");
         getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
 
-        jComboBox5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        getContentPane().add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
+        cbHoraComida.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraComida.setSelectedIndex(14);
+        getContentPane().add(cbHoraComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
-        jComboBox6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        getContentPane().add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, -1, -1));
+        cbHoraCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraCena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraCena.setSelectedIndex(21);
+        getContentPane().add(cbHoraCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel40.setText(":");
         getContentPane().add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, -1, -1));
 
-        jComboBox7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+        cbMinutoCena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoCena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoCena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox7ActionPerformed(evt);
+                cbMinutoCenaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, -1, -1));
+        getContentPane().add(cbMinutoCena, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel41.setText(":");
         getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, -1, -1));
 
-        jComboBox8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+        cbMinutoColUno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoColUno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoColUno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox8ActionPerformed(evt);
+                cbMinutoColUnoActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, -1, -1));
+        getContentPane().add(cbMinutoColUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, -1, -1));
 
-        jComboBox9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        getContentPane().add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, -1));
+        cbHoraColUno.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraColUno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraColUno.setSelectedIndex(12);
+        getContentPane().add(cbHoraColUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, -1));
 
         jLabel42.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel42.setText(":");
         getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, -1, -1));
 
-        jComboBox10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        getContentPane().add(jComboBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
+        cbHoraColDos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraColDos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraColDos.setSelectedIndex(17);
+        getContentPane().add(cbHoraColDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
 
-        jComboBox11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        cbMinutoColDos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoColDos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoColDos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox11ActionPerformed(evt);
+                cbMinutoColDosActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, -1, -1));
+        getContentPane().add(cbMinutoColDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, -1, -1));
 
-        jComboBox12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        jComboBox12.addActionListener(new java.awt.event.ActionListener() {
+        cbMinutoColTres.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbMinutoColTres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cbMinutoColTres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox12ActionPerformed(evt);
+                cbMinutoColTresActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, -1, -1));
+        getContentPane().add(cbMinutoColTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel43.setText(":");
         getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 400, -1, -1));
 
-        jComboBox13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        getContentPane().add(jComboBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, -1, -1));
+        cbHoraColTres.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        cbHoraColTres.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cbHoraColTres.setSelectedIndex(19);
+        getContentPane().add(cbHoraColTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, -1, -1));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo_invertido_1024x720.png"))); // NOI18N
-        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 690));
-
-        jMenu1.setText("Archivo");
-        jMenu1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jMenuItem1.setText("Guardar menú");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jMenuItem2.setText("Descargar menú");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jMenuItem3.setText("Imprimir menú");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jMenuItem4.setText("Salir");
-        jMenu1.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
         // TODO add your handling code here:
+        int bandera = 0;
+        /**
+         * Levantarse
+         */
+        if(!taLevantarse.getText().equals("")){
+            if(funcion.tipoString(taLevantarse.getText())){
+                setLevantarse(taLevantarse.getText());
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null,"No se pueden ingresar caracteres espciales en el campo Levantarse","Error", JOptionPane.ERROR_MESSAGE);
+                taLevantarse.setText("");
+            }
+        }else{
+            setLevantarse("Sin alimentos");
+        }
+        /**
+         * Desayuno
+         */
+        if(!taDesayuno.getText().equals("")){
+            if(funcion.tipoString(taDesayuno.getText())){
+                setDesayuno(taDesayuno.getText());
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null,"No se pueden ingresar caracteres espciales en el campo Desayuno","Error", JOptionPane.ERROR_MESSAGE);
+                taDesayuno.setText("");
+            }
+        }else{
+            setLevantarse("Sin alimentos");
+        }
+        /**
+         * Cena
+         */
+        if(!taCena.getText().equals("")){
+            if(funcion.tipoString(taCena.getText())){
+                setCena(taCena.getText());
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null,"No se pueden ingresar caracteres espciales en el campo Cena","Error", JOptionPane.ERROR_MESSAGE);
+                taCena.setText("");
+            }
+        }else{
+            setLevantarse("Sin alimentos");
+        }
+        /**
+         * Colacion uno
+         */
+        if(!taColacionUno.getText().equals("")){
+            if(funcion.tipoString(taColacionUno.getText())){
+                setColacionUno(taColacionUno.getText());
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null,"No se pueden ingresar caracteres espciales en el campo Colación Uno","Error", JOptionPane.ERROR_MESSAGE);
+                taColacionUno.setText("");
+            }
+        }else{
+            setLevantarse("Sin alimentos");
+        }
+        /**
+         * Colacion Dos
+         */
+        if(!taColacionDos.getText().equals("")){
+            if(funcion.tipoString(taColacionDos.getText())){
+                setColacionDos(taColacionDos.getText());
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null,"No se pueden ingresar caracteres espciales en el campo Colación Dos","Error", JOptionPane.ERROR_MESSAGE);
+                taColacionDos.setText("");
+            }
+        }else{
+            setLevantarse("Sin alimentos");
+        }
+        /**
+         * Colación tres
+         */
+        if(!taColacionTres.getText().equals("")){
+            if(funcion.tipoString(taColacionTres.getText())){
+                setColacionDos(taColacionTres.getText());
+            }else{
+                bandera = bandera + 1;
+                JOptionPane.showMessageDialog(null,"No se pueden ingresar caracteres espciales en el campo Colación Tres","Error", JOptionPane.ERROR_MESSAGE);
+                taColacionTres.setText("");
+            }
+        }else{
+            setLevantarse("Sin alimentos");
+        }
         
+        
+        
+        
+        /**
+         * Hora desayuno
+         */
+        String hDesayuno = (String) cbHoraDesayuno.getSelectedItem();
+        String mDesayuno = (String) cbMinutoDesayuno.getSelectedItem();
+        String horaFinalDesayuno = hDesayuno+mDesayuno;
+        int horaFinalDesayunoNum = Integer.parseInt(horaFinalDesayuno);
+        System.out.println(horaFinalDesayuno);
+        /**
+         * Hora comida
+         */
+        String hComida = (String) cbHoraComida.getSelectedItem();
+        String mComida = (String) cbMinutoComida.getSelectedItem();
+        String horaFinalComida = hComida+mComida;
+        int horaFinalComidaNum = Integer.parseInt(horaFinalComida);
+        System.out.println(horaFinalComidaNum);
+        /**
+         * Hora Cena
+         */
+        String hCena = (String) cbHoraCena.getSelectedItem();
+        String mCena = (String) cbMinutoCena.getSelectedItem();
+        String horaFinalCena = hCena+mCena;
+        int horaFinalCenaNum = Integer.parseInt(horaFinalCena);
+        System.out.println(horaFinalCenaNum);
+        if(horaFinalComidaNum>horaFinalDesayunoNum&&horaFinalCenaNum>horaFinalComidaNum){
+            setDesayuno(horaFinalDesayuno);
+            setComida(horaFinalComida);
+            setCena(horaFinalCena);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null,"Conflicto de horarios favor de revisar","Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        /**
+         * Colaciones uno
+         */
+        String hColUno = (String) cbHoraColUno.getSelectedItem();
+        String mColUno = (String) cbMinutoColUno.getSelectedItem();
+        String horaFinalColUno = hColUno+mColUno;
+        int horaFinalColUnoNum = Integer.parseInt(horaFinalColUno);
+        System.out.println(horaFinalColUnoNum);
+        /**
+         * Colacion dos
+         */
+        String hColDos = (String) cbHoraColDos.getSelectedItem();
+        String mColDos = (String) cbMinutoColDos.getSelectedItem();
+        String horaFinalColDos = hColDos+mColDos;
+        int horaFinalColDosNum = Integer.parseInt(horaFinalColDos);
+        System.out.println(horaFinalColDosNum);
+        /**
+         * Colacion tres
+         */
+        String hColTres = (String) cbHoraColTres.getSelectedItem();
+        String mColTres = (String) cbMinutoColTres.getSelectedItem();
+        String horaFinalColTres = hColTres+mColTres;
+        int horaFinalColTresNum = Integer.parseInt(horaFinalColTres);
+        System.out.println(horaFinalColTresNum);
+        
+        if(horaFinalColDosNum>horaFinalColUnoNum && horaFinalColTresNum>horaFinalColDosNum){
+            setHoraColacionUno(horaFinalColUno);
+            setHoraColacionDos(horaFinalColDos);
+            setHoraColacionTres(horaFinalColTres);
+        }else{
+            bandera = bandera + 1;
+            JOptionPane.showMessageDialog(null,"Conflicto de horarios favor de revisar","Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if(bandera == 0){
+            int respvag = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar el plan de alimentos", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(respvag==0){
+                try {
+                    cons.guardarPlan(Integer.parseInt(idUsuario), Integer.parseInt(idPaciente), encript.encriptarPlan(getLevantarse()), encript.encriptarPlan(getDesayuno()), encript.encriptarPlan(getComida()), encript.encriptarPlan(getCena()), encript.encriptarPlan(getColacionUno()), 
+                            encript.encriptarPlan(getColacionDos()), encript.encriptarPlan(getColacionTres()), encript.encriptarPlan(getRecomendaciones()), encript.encriptar(getHoraDesayuno()), encript.encriptar(getHoraComida()), 
+                            encript.encriptar(getHoraCena()), encript.encriptar(getHoraColacionUno()), encript.encriptar(getHoraColacionDos()), encript.encriptar(getHoraColacionTres()));
+                    JFileChooser dlg=new JFileChooser();
+                    int option = dlg.showSaveDialog(this);
+                    if(option == JFileChooser.APPROVE_OPTION){
+                        File f = dlg.getSelectedFile();
+                        f.toString();
+                        System.out.println(f);
+                        String ruta = f.toString();
+                        String contenido =  "Datos del paciente\n Nombre: "+jlNombre.getText()+" Apellidos: "+jlApellidos.getText()+" \nFecha nacimiento: "+jlFNac.getText()+" \nID: "+jlID.getText()+"\n Peso: "+jlPeso.getText()+
+                                            " Kg\nPorcentaje de grasa: "+jlGrasaXC.getText()+"\nPorcentaje de Agua corporal: "+jlAguaXC.getText()+" \nIMC: "+jlIMC.getText()+" \nPeso grasa: "+jlPesoGrasa.getText()+" \nPeso agua: "+jlPesoAgua.getText()+" \n"+
+                                            "\n\nAl levantarse: " + taLevantarse.getText() + "\n\nHora Desayuno: "+hDesayuno+":"+mDesayuno+" horas\nDesayuno: " + taDesayuno.getText() + "\n\n"
+                                            + "Hora colación uno: "+hColUno+":"+mColUno+" horas \nColacion Uno: "+taColacionUno.getText()+"\n\nHora comida: "+hComida+":"+mComida+" horas\nComida: "+taComida.getText()+"\n\nHora colación dos: "+hColDos+":"+mColDos+" horas\n"
+                                            + "Colacion Dos: "+taColacionDos.getText()+"\n\nHora cena: "+hCena+":"+mCena+" horas\nCena: "+taCena.getText();
+                        nuevoPlanAlimenticioFrame javaIOUtils = new nuevoPlanAlimenticioFrame();
+                        String[] imc = jlIMC.getText().split(" ");
+                        System.out.println(imc[0]);
+                        String fromFile="";
+                        String toFile="";
+                        if(Double.valueOf(imc[0])<=20){
+                            fromFile = "C:\\Users\\Rafael\\Documents\\NetBeansProjects\\HealthFocus\\desnutricion.pdf";
+                            toFile = "C:\\Users\\Rafael\\Documents\\desnutricion.pdf";
+                        }else if(Double.valueOf(imc[0])>=20&&Double.valueOf(imc[0])<=25){
+                             fromFile = "C:\\Users\\Rafael\\Documents\\NetBeansProjects\\HealthFocus\\normopeso.pdf";
+                             toFile = "C:\\Users\\Rafael\\Documents\\normopeso.pdf";
+                        }else{
+                             fromFile = "C:\\Users\\Rafael\\Documents\\NetBeansProjects\\HealthFocus\\sobrepeso.pdf";
+                             toFile = "C:\\Users\\Rafael\\Documents\\sobrepeso.pdf";
+                        }                        
+                        boolean result = javaIOUtils.copyFile(fromFile, toFile);
+                        System.out.println(result
+                                ? "Success! File copying (Éxito! Fichero copiado)"
+                                : "Error! Failed to copy the file (Error! No se ha podido copiar el fichero)");
+                        /*try {
+                            FileOutputStream archivo = new FileOutputStream(f+".pdf");
+                            Document doc = new Document();
+                            PdfWriter.getInstance(doc, archivo);
+                            doc.open();
+                            doc.add(new Paragraph(contenido));
+                            doc.close();
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(nuevoPlanAlimenticioFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (DocumentException ex) {
+                            Logger.getLogger(nuevoPlanAlimenticioFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }*/
+                        generarPDF g = new generarPDF();
+                        g.generarPDF("Health Focus", contenido, "Health Focus", "C:\\Users\\Rafael\\Documents\\NetBeansProjects\\HealthFocus\\headerIcon.png", ruta+".pdf");
+                        this.dispose();
+                        
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(nuevoPlanAlimenticioFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Existen campos sin seleccionar, favor de verificar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnNuevaConsultaActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cbMinutoDesayunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinutoDesayunoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cbMinutoDesayunoActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+    private void cbMinutoComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinutoComidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }//GEN-LAST:event_cbMinutoComidaActionPerformed
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+    private void cbMinutoCenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinutoCenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox7ActionPerformed
+    }//GEN-LAST:event_cbMinutoCenaActionPerformed
 
-    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+    private void cbMinutoColUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinutoColUnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox8ActionPerformed
+    }//GEN-LAST:event_cbMinutoColUnoActionPerformed
 
-    private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
+    private void cbMinutoColDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinutoColDosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox11ActionPerformed
+    }//GEN-LAST:event_cbMinutoColDosActionPerformed
 
-    private void jComboBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox12ActionPerformed
+    private void cbMinutoColTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinutoColTresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox12ActionPerformed
+    }//GEN-LAST:event_cbMinutoColTresActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cbHoraDesayunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHoraDesayunoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cbHoraDesayunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -554,18 +971,18 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevaConsulta;
-    private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
+    private javax.swing.JComboBox<String> cbHoraCena;
+    private javax.swing.JComboBox<String> cbHoraColDos;
+    private javax.swing.JComboBox<String> cbHoraColTres;
+    private javax.swing.JComboBox<String> cbHoraColUno;
+    private javax.swing.JComboBox<String> cbHoraComida;
+    private javax.swing.JComboBox<String> cbHoraDesayuno;
+    private javax.swing.JComboBox<String> cbMinutoCena;
+    private javax.swing.JComboBox<String> cbMinutoColDos;
+    private javax.swing.JComboBox<String> cbMinutoColTres;
+    private javax.swing.JComboBox<String> cbMinutoColUno;
+    private javax.swing.JComboBox<String> cbMinutoComida;
+    private javax.swing.JComboBox<String> cbMinutoDesayuno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -576,7 +993,6 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -591,30 +1007,15 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -623,13 +1024,23 @@ public class nuevoPlanAlimenticioFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextArea jTextArea8;
+    private javax.swing.JLabel jlAguaXC;
+    private javax.swing.JLabel jlApellidos;
+    private javax.swing.JLabel jlFNac;
+    private javax.swing.JLabel jlGrasaXC;
+    private javax.swing.JLabel jlID;
+    private javax.swing.JLabel jlIMC;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlPeso;
+    private javax.swing.JLabel jlPesoAgua;
+    private javax.swing.JLabel jlPesoGrasa;
+    private javax.swing.JTextArea taCena;
+    private javax.swing.JTextArea taColacionDos;
+    private javax.swing.JTextArea taColacionTres;
+    private javax.swing.JTextArea taColacionUno;
+    private javax.swing.JTextArea taComida;
+    private javax.swing.JTextArea taDesayuno;
+    private javax.swing.JTextArea taLevantarse;
+    private javax.swing.JTextArea taRecomendaciones;
     // End of variables declaration//GEN-END:variables
 }

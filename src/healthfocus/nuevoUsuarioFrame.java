@@ -5,6 +5,7 @@
  */
 package healthfocus;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -471,9 +472,13 @@ public class nuevoUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tfIDActionPerformed
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
-        // TODO add your handling code here:
-        guardar();
-        //this.dispose();
+        try {
+            // TODO add your handling code here:
+            guardar();
+            //this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevoUsuarioFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     private void jpPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpPassFocusGained
@@ -497,8 +502,12 @@ public class nuevoUsuarioFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jpPass2FocusLost
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        guardar();
+        try {
+            // TODO add your handling code here:
+            guardar();
+        } catch (SQLException ex) {
+            Logger.getLogger(nuevoUsuarioFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -561,8 +570,9 @@ public class nuevoUsuarioFrame extends javax.swing.JFrame {
     }
     /**
      * guardar() recoje todos los datos que existan en el formulario, los analiza y si todos están correcto se guardan
+     * @throws java.sql.SQLException
      */
-    public void guardar(){
+    public void guardar() throws SQLException{
         System.out.println("Clic en guardar");
         if (funcion.comprobarEspaciosVacios(tfNombre.getText()) && funcion.comprobarEspaciosVacios(tfApellidos.getText()) && funcion.comprobarEspaciosVacios((String) cbSexo.getSelectedItem())
                 && funcion.comprobarEspaciosVacios(tfNac.getText()) && funcion.comprobarEspaciosVacios(tfEstatura.getText()) && funcion.comprobarEspaciosVacios(tfDomicilio.getText())
@@ -602,14 +612,26 @@ public class nuevoUsuarioFrame extends javax.swing.JFrame {
                                                 int resp = JOptionPane.showConfirmDialog(null, "¿Éstas seguro de guardar la información del usuario?", "Atención", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                                                 if (resp == 0) {
                                                     consultasMysql ingreso = new consultasMysql();
-                                                    try {
-                                                        if (ingreso.insertarNuevoUsuario(id, nombre, apellidos, sexo, fNac, domicilio, cp, ciudad, estatura, pass) == 0) {
-                                                            JOptionPane.showMessageDialog(null, "Datos guardados exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                                                            this.dispose();
+                                                    int b = 0;
+
+                                                    ResultSet rsBU = ingreso.buscarUsuario(id);
+                                                    while (rsBU.next()) {
+                                                        if (rsBU.getString(1).equals(tfID.getText())) {
+                                                            JOptionPane.showMessageDialog(null, "Error al guardar los datos, este ID ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                                                            b = 1;
                                                         }
-                                                    } catch (SQLException ex) {
-                                                        JOptionPane.showMessageDialog(null, "Error al guardar los datos", "Error", JOptionPane.ERROR_MESSAGE);
                                                     }
+                                                    if (b == 0) {
+                                                        try {
+                                                            if (ingreso.insertarNuevoUsuario(id, nombre, apellidos, sexo, fNac, domicilio, cp, ciudad, pass) == 0) {
+                                                                JOptionPane.showMessageDialog(null, "Datos guardados exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                                                                this.dispose();
+                                                            }
+                                                        } catch (SQLException ex) {
+                                                            JOptionPane.showMessageDialog(null, "Error al guardar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+                                                        }
+                                                    }
+
                                                 }
                                             }
                                         } else {

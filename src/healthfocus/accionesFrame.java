@@ -13,7 +13,14 @@ import javax.swing.ImageIcon;
  */
 public class accionesFrame extends javax.swing.JFrame {
     
-    
+    private String codigoUsuario = "";
+    public String getCodigoUsuario() {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(String cUser) {
+        this.codigoUsuario = codigoUsuario;
+    }
     /**
      * Creates new form accionesFrame
      */
@@ -22,9 +29,14 @@ public class accionesFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/icons/headerIcon.png")).getImage());
         loginFrame lf = new loginFrame();
-        System.out.println(lf.user);
+        codigoUsuario = lf.user;
+        //System.out.println(codigoUsuario);
         lf.dispose();
+        
+
+    
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
